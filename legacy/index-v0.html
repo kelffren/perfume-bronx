@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Perfumes Arabes Originales | Bronx</title>
+<meta name="description" content="Perfumes arabes 100% originales. Yara, Lattafa, Afnan. Muestra gratis a domicilio en el Bronx. Verifica la originalidad con codigo QR.">
+<style>
+  :root{
+    --bg:#0b0b0f; --gold:#d4af37; --gold2:#f5d76e; --text:#f2f2f2; --muted:#a8a8b3;
+    --card:#16161d; --ok:#2ecc71; --wa:#25d366;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html{scroll-behavior:smooth}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;overflow-x:hidden}
+  .wrap{max-width:480px;margin:0 auto;padding:0 16px 80px}
+  header{padding:18px 0 10px;display:flex;align-items:center;justify-content:space-between}
+  .logo{font-weight:800;letter-spacing:.5px;font-size:18px}
+  .logo span{color:var(--gold)}
+  .badge{font-size:11px;color:var(--muted);border:1px solid #2a2a33;border-radius:999px;padding:4px 10px}
+  .hero{padding:10px 0 18px;text-align:center}
+  .hero h1{font-size:26px;line-height:1.2;margin-bottom:10px}
+  .hero h1 em{font-style:normal;color:var(--gold)}
+  .hero p{color:var(--muted);font-size:14px;margin-bottom:16px}
+  .video{position:relative;border-radius:16px;overflow:hidden;background:#000;aspect-ratio:9/16;max-height:70vh;margin:0 auto 16px;border:1px solid #2a2a33;box-shadow:0 10px 40px rgba(212,175,55,.15)}
+  .video .ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:var(--muted);font-size:13px;text-align:center;padding:20px;background:radial-gradient(circle at 50% 30%,#1a1420 0%,#0b0b0f 70%)}
+  .video .ph .ico{width:64px;height:64px;border-radius:50%;border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;font-size:26px;color:var(--gold)}
+  .btn{display:block;width:100%;text-align:center;text-decoration:none;border-radius:14px;padding:16px 18px;font-weight:700;font-size:16px;letter-spacing:.3px;transition:transform .15s ease, box-shadow .15s ease}
+  .btn:active{transform:scale(.98)}
+  .btn-wa{background:var(--wa);color:#062;box-shadow:0 8px 24px rgba(37,211,102,.25)}
+  .btn-wa::before{content:"💬  "}
+  .btn-gold{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#1a1200;box-shadow:0 8px 24px rgba(212,175,55,.25)}
+  .btn-ghost{background:transparent;color:var(--text);border:1px solid #2a2a33}
+  .sticky{position:fixed;left:0;right:0;bottom:0;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:rgba(11,11,15,.92);backdrop-filter:blur(10px);border-top:1px solid #2a2a33;z-index:50}
+  .sticky .btn{padding:14px}
+  section{padding:22px 0;border-top:1px solid #1f1f28}
+  h2{font-size:18px;margin-bottom:12px;color:var(--gold2)}
+  .cards{display:grid;gap:10px}
+  .card{background:var(--card);border:1px solid #2a2a33;border-radius:14px;padding:14px}
+  .card b{display:block;margin-bottom:4px}
+  .card span{color:var(--muted);font-size:13px}
+  .quiz{display:grid;gap:8px;margin-top:8px}
+  .quiz button{background:var(--card);border:1px solid #2a2a33;color:var(--text);border-radius:12px;padding:12px;font-size:14px;text-align:left}
+  .quiz button.sel{border-color:var(--gold);background:rgba(212,175,55,.08);color:var(--gold2)}
+  .testi{font-size:14px;color:var(--muted)}
+  .testi b{color:var(--text)}
+  .steps{display:grid;gap:10px;counter-reset:s}
+  .step{background:var(--card);border:1px solid #2a2a33;border-radius:14px;padding:14px;position:relative;padding-left:52px}
+  .step::before{counter-increment:s;content:counter(s);position:absolute;left:14px;top:14px;width:26px;height:26px;border-radius:50%;background:var(--gold);color:#1a1200;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:13px}
+  .step b{display:block;margin-bottom:2px}
+  .step span{color:var(--muted);font-size:13px}
+  .qr{width:110px;height:110px;border-radius:12px;background:#fff;display:flex;align-items:center;justify-content:center;margin:10px auto;font-size:11px;color:#111;font-weight:700;text-align:center;line-height:1.3}
+  footer{text-align:center;color:var(--muted);font-size:12px;padding:18px 0 40px}
+  .hidden{display:none!important}
+  .ok{color:var(--ok)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="logo">PERFUME<span>ARABE</span></div>
+    <div class="badge">Bronx · Originales</div>
+  </header>
+
+  <div class="hero">
+    <h1>Perfumes arabes <em>originales</em>.<br>No imitaciones.</h1>
+    <p>Yara · Lattafa · Afnan. Mas de 8 horas en piel. Muestra gratis a domicilio antes de pagar.</p>
+    <div class="video" id="videoBox">
+      <div class="ph">
+        <div class="ico">▶</div>
+        <div>Video 30s — placeholder<br>spray en piel, luz dorada, frasco al vacio</div>
+      </div>
+    </div>
+    <a class="btn btn-wa" id="btnTop" href="https://wa.me/15551234567?text=Hola%2C%20vi%20tu%20anuncio%20de%20perfumes%20%C3%A1rabes.%20Quiero%20la%20muestra%20gratis." target="_blank" rel="noreferrer">Quiero mi muestra gratis</a>
+  </div>
+
+  <section>
+    <h2>Por que es original</h2>
+    <div class="cards">
+      <div class="card"><b>Sellado al vacio</b><span>Frasco intacto, sin abrir. Si llega abierto, no pagas.</span></div>
+      <div class="card"><b>Sello holografico</b><span>Cada frasco trae sello unico que no se puede copiar.</span></div>
+      <div class="card"><b>Codigo QR verificable</b><span>Escaneas y confirmas la autenticidad tu mismo, en el momento.</span></div>
+    </div>
+    <div class="qr">QR<br>placeholder</div>
+  </section>
+
+  <section>
+    <h2>La oferta sin riesgo</h2>
+    <div class="steps">
+      <div class="step"><b>Te llevamos la muestra</b><span>Gratis, a tu casa en el Bronx. La hueles antes de gastar un peso.</span></div>
+      <div class="step"><b>Si te enamoras, compras</b><span>Precios de catalogo. Envio gratis en pedidos desde $50.</span></div>
+      <div class="step"><b>Si no te convence, no pagas</b><span>Cero compromiso. La muestra es tuya igual.</span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Lo que dicen los clientes</h2>
+    <div class="cards">
+      <div class="card testi">"Pedi Yara y duro todo el dia en la oficina. La muestra me salvo de gastar en algo que no me gustaba." <b>— Maria, Bronx</b></div>
+      <div class="card testi">"Por fin alguien que deja verificar el QR. Compre tranquila." <b>— Ana, Soundview</b></div>
+    </div>
+  </section>
+
+  <section id="filtro">
+    <h2>Encuentra tu aroma</h2>
+    <p style="color:var(--muted);font-size:14px;margin-bottom:8px">Dos preguntas rapidas y te mando el catalogo exacto por WhatsApp.</p>
+    <div class="quiz" id="q1">
+      <div style="font-size:13px;color:var(--muted)">¿Para quien es?</div>
+      <button data-q="para" data-v="para_mi">Para mi</button>
+      <button data-q="para" data-v="regalo">De regalo</button>
+    </div>
+    <div class="quiz hidden" id="q2">
+      <div style="font-size:13px;color:var(--muted)">¿Que familia buscas?</div>
+      <button data-q="familia" data-v="dulce">Dulce (vainilla, caramelo)</button>
+      <button data-q="familia" data-v="amaderada">Amaderada (oud, sandalo)</button>
+      <button data-q="familia" data-v="especiada">Especiada (azafran, cardamomo)</button>
+      <button data-q="familia" data-v="no_se">No se, sorprendeme</button>
+    </div>
+    <div class="hidden" id="doneBox" style="margin-top:12px">
+      <div class="card" style="border-color:var(--ok)"><b class="ok">Listo ✓</b><span id="doneText"></span></div>
+      <a class="btn btn-gold" id="btnDone" href="#" target="_blank" rel="noreferrer" style="margin-top:10px">Abrir WhatsApp con mi seleccion</a>
+    </div>
+  </section>
+
+  <footer>
+    Bronx, NY · Mensajeria gratis · Respondo en minutos<br>
+    <span style="opacity:.6">Prototipo V0 · placeholders a reemplazar</span>
+  </footer>
+</div>
+
+<div class="sticky hidden" id="sticky">
+  <a class="btn btn-wa" id="btnSticky" href="https://wa.me/15551234567?text=Hola%2C%20vi%20tu%20anuncio%20de%20perfumes%20%C3%A1rabes.%20Quiero%20la%20muestra%20gratis." target="_blank" rel="noreferrer">Quiero mi muestra gratis</a>
+</div>
+
+<script>
+(function(){
+  var answers={};}
+  var q1=document.getElementById('q1');}
+  var q2=document.getElementById('q2');}
+  var doneBox=document.getElementById('doneBox');}
+  var doneText=document.getElementById('doneText');}
+  var btnDone=document.getElementById('btnDone');}
+  var sticky=document.getElementById('sticky');}
+  var NUM='15551234567';}
+
+  function waLink(extra){
+    var t='Hola, vi tu anuncio de perfumes arabes. Quiero la muestra gratis.';}
+    if(extra) t+=' '+extra;}
+    return 'https://wa.me/'+NUM+'?text='+encodeURIComponent(t);}
+  }
+  ['btnTop','btnSticky'].forEach(function(id){document.getElementById(id).href=waLink();});}
+
+  q1.addEventListener('click',function(e){
+    var b=e.target.closest('button'); if(!b) return;}
+    q1.querySelectorAll('button').forEach(function(x){x.classList.remove('sel');});}
+    b.classList.add('sel');}
+    answers.para=b.getAttribute('data-v');}
+    q2.classList.remove('hidden');}
+    q2.scrollIntoView({behavior:'smooth',block:'center'});}
+  });}
+  q2.addEventListener('click',function(e){
+    var b=e.target.closest('button'); if(!b) return;}
+    q2.querySelectorAll('button').forEach(function(x){x.classList.remove('sel');});}
+    b.classList.add('sel');}
+    answers.familia=b.getAttribute('data-v');}
+    var fam={dulce:'dulce',amaderada:'amaderada',especiada:'especiada',no_se:'sin preferencia definida'}[answers.familia];}
+    var para={para_mi:'para uso personal',regalo:'de regalo'}[answers.para];}
+    doneText.textContent='Te prepare el catalogo de aromas '+fam+' '+para+'. Toca el boton y te lo mando al instante.';}
+    btnDone.href=waLink('Busco aroma '+fam+', es '+para+'.');}
+    doneBox.classList.remove('hidden');}
+    doneBox.scrollIntoView({behavior:'smooth',block:'center'});}
+  });}
+
+  window.addEventListener('scroll',function(){
+    sticky.classList.toggle('hidden', window.scrollY<420);}
+  });}
+})();}
+</script>
+</body>
+</html>
