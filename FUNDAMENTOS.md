@@ -19,24 +19,24 @@ Este archivo fija la dirección para colaboradores, agentes y desarrolladores. E
 ## 3. Oferta inicial propuesta — pendiente de validar inventario
 | Producto | Precio previsto | Costo estimado | Margen bruto por unidad* | Función |
 |---|---:|---:|---:|---|
-| Lattafa Yara | $25 (precio regular propuesto: $35) | $18 | $7 | Producto gancho |
-| Lattafa Khamrah | $35 | $18 | $17 | Venta complementaria |
+| Lattafa Yara | $25 (precio regular propuesto: $35) | $18 | $7 | Captación de conversaciones |
+| Lattafa Khamrah | $35 | $18 | $17 | Captación y posible venta complementaria |
 | Lattafa Asad | $35 | $18 | $17 | Venta complementaria |
-| Promoción de 2 frascos | $55 | $36 | $19 | Elevar ticket medio |
+| Promoción de 2 frascos | $55 | $36 | $19 | Elevar ticket medio; validar combinaciones y rentabilidad |
 
 *Margen **antes** de entrega, anuncios, comisiones, devoluciones, impuestos y tiempo de trabajo. La promoción requiere definir qué combinaciones son elegibles y confirmar rentabilidad. **No publicar precios tachados como «antes $35» sin un precio anterior real y defendible.**
 
-Asad Zanzibar y otros perfumes quedan como candidatos para una fase posterior; no anunciar stock inexistente.
+**Upsell de mayor margen:** Game Space, con costo reportado de **$50**, precio de venta objetivo **desde $80** y margen bruto estimado **$30** antes de anuncios, entrega y otros gastos. Confirmar modelo exacto, existencias, autenticidad y precio final antes de publicarlo. Asad Zanzibar y otros perfumes quedan como candidatos para una fase posterior; no anunciar stock inexistente.
 
 ## 4. Zonas y logística
 - Áreas objetivo: Bronx, Yonkers y Westchester.
 - Hipótesis operativa: delivery local con costo estimado de $3–$5 y recorrido aproximado de 15–30 minutos **según dirección y tráfico**; no prometer tiempos universales.
 - New Jersey: en pausa para pedidos normales; evaluar solamente pedidos desde $200.
-- Delivery gratis desde $25 **si la dirección está cubierta y el costo real lo permite**. Confirmar siempre zona, disponibilidad y plazo antes de cerrar.
-- La entrega individual de Yara puede dejar apenas $2–$4 después de un reparto de $3–$5, **antes de anuncios**. Por eso es importante la venta complementaria.
+- **Regla comercial actual: delivery gratis a partir de 2 unidades**, dentro de la zona de cobertura confirmada. **Una sola unidad no tiene delivery gratis.** Confirmar tarifa de una unidad, dirección, disponibilidad y plazo antes de cerrar.
+- El costo de entregar una sola unidad no debe absorberse automáticamente: cobrar delivery según tarifa confirmada. La venta de 2+ unidades permite evaluar delivery gratis según margen total del pedido.
 
 ## 5. Embudo y canales
-**Canal principal:** anuncio o contenido orgánico → WhatsApp directo → asesoramiento → confirmación de producto, precio y entrega → pedido → venta cobrada.
+**Canal principal:** anuncio de Yara/Khamrah/Asad → WhatsApp directo → diagnóstico breve del gusto y presupuesto → recomendación personalizada, incluido un perfume de mayor margen cuando realmente encaje → confirmación de producto, precio y entrega → pedido → venta cobrada. **Los tres perfumes iniciales son productos de captación; su función principal es conseguir conversaciones a bajo costo, no maximizar margen por frasco.**
 
 **Canal de apoyo:** anuncio o búsqueda → página del perfume → fotos, precio, notas, autenticidad y entrega → WhatsApp con mensaje contextual.
 
@@ -45,7 +45,8 @@ Asad Zanzibar y otros perfumes quedan como candidatos para una fase posterior; n
 - CTA principal contextual: «Pedir por WhatsApp» o «Consultar disponibilidad».
 - «Comenta QUIERO» es un **ángulo a experimentar**, no una garantía de mayor conversión.
 - Responder idealmente en menos de 5 minutos, con expectativas operativas realistas.
-- El upsell de un segundo perfume debe ser útil y transparente, nunca presión engañosa.
+- El upsell puede consistir en un perfume de mayor margen (ej. Game Space) o en un segundo frasco. Debe ser útil, adecuado al cliente y transparente, nunca presión engañosa.
+- **Objetivo de adquisición:** $0.30 por conversación real de WhatsApp, como hipótesis a probar; no afirmar que ya se consigue. Separar conversación iniciada, conversación calificada y venta cobrada.
 
 ## 6. Mensajes creativos e hipótesis de marketing
 - Explorar el ángulo de **alternativa olfativa a fragancias de lujo** («inspirado en», «recuerda a») cuando sea razonable; evitar afirmar equivalencia, identidad de fórmula o afiliación con marcas de lujo.
@@ -80,6 +81,8 @@ Registrar por producto y campaña:
 - Costo por conversación, costo por adquisición, gasto publicitario, costo de reparto, devoluciones y beneficio neto.
 - Tiempo de primera respuesta y motivos de abandono.
 
+**Ejemplo de captación:** 100 conversaciones a $0.30 costarían $30; 10 ventas de Game Space a $30 de margen bruto aportarían $300 antes de adquisición, reparto y otros costos. No extrapolar sin medir la tasa real de cierre y mezcla de pedidos.
+
 **Meta aspiracional aportada:** $160/día de margen. **No es pronóstico ni resultado confirmado.** La estimación de 13–15 frascos/día, 45–60 conversaciones/día y 20% de cierre requiere reconciliar unidades vs. pedidos y mezcla de productos. Con 45–60 conversaciones al 20%, se esperan 9–12 pedidos, que pueden contener una o más unidades. Modelar beneficio real antes de decidir presupuesto.
 
 ## 10. Fases de ejecución
@@ -103,5 +106,7 @@ Para cada cambio importante, documentar:
 - **Evidencia:** fuente externa o métrica propia, con fecha.
 - **Efecto esperado:** conversión, confianza, margen, velocidad o experiencia.
 - **Resultado:** implementación, prueba y decisión posterior.
+
+**Actualización de dirección (17-10-2026):** la web debe explicar con claridad la regla de delivery gratis por 2+ unidades; los productos de entrada atraen conversaciones y el equipo realiza recomendaciones consultivas de mayor margen. Priorizar costo por conversación **calificada**, tasa de upsell, margen de contribución por pedido y ventas cobradas.
 
 **Principio rector:** construir una marca local confiable, con una experiencia de compra excelente y una economía por pedido sostenible. El diseño ayuda a vender; la confianza permite cerrar; la rentabilidad permite crecer.
