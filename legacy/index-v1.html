@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Perfumes árabes originales en el Bronx · Muestra gratis</title>
+<meta name="description" content="Perfumes árabes 100% originales: Yara, Lattafa, Afnan. Más de 8 horas en piel. Muestra gratis a domicilio en el Bronx antes de pagar. Encuentra tu aroma en 30 segundos.">
+<meta name="theme-color" content="#0b0b0d">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b0b0d'/%3E%3Cpath d='M26 10h12v8l6 6v26a4 4 0 0 1-4 4H24a4 4 0 0 1-4-4V24l6-6z' fill='none' stroke='%23e6cfa4' stroke-width='3'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Sistema de diseño basado en docs/kelodiamonds-mobile-audit (colores, tipografías, píldoras, espaciados) */
+:root{
+  --ink:#111111; --white:#ffffff; --soft:#f7f7f5; --cream:#faf8f5; --night:#0b0b0d; --night2:#050505;
+  --muted:#666666; --muted2:#777777; --line:#e8e8e8; --line2:#dddddd;
+  --gold:#e6cfa4; --gold-line:rgba(201,162,106,.55); --gold-deep:#8a6a33;
+  --wa:#25d366; --wa-ink:#063d1c;
+  --serif:"Cormorant Garamond",Georgia,"Times New Roman",serif;
+  --sans:"DM Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  --ease:cubic-bezier(0.22,1,0.36,1);
+  --pad:20px;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);color:var(--ink);background:var(--white);line-height:1.55;font-size:15px;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--gold-deep);outline-offset:3px;border-radius:8px}
+.wrap{max-width:560px;margin:0 auto;padding:0 var(--pad)}
+.eyebrow{font-size:11px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:#8a8a8a}
+h1,h2,h3.serif{font-family:var(--serif);font-weight:500;letter-spacing:.005em}
+h2{font-size:30px;line-height:1.15;margin:10px 0 10px}
+.lead{color:var(--muted);font-size:14.5px}
+section{padding:72px 0}
+.center{text-align:center}
+
+/* Botones píldora (patrón del audit) */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:14px 28px;border-radius:9999px;font-weight:500;font-size:15px;text-decoration:none;transition:transform .18s var(--ease),background .18s var(--ease),box-shadow .18s var(--ease)}
+.btn:active{transform:scale(.97)}
+.btn-block{width:100%}
+.btn-primary{background:var(--ink);color:#fff}
+.btn-gold{background:var(--gold);color:#1a1405;box-shadow:0 10px 30px -12px rgba(230,207,164,.6)}
+.btn-outline{border:1px solid var(--line2);color:var(--ink);background:transparent}
+.btn-outline-light{border:1px solid rgba(255,255,255,.35);color:#fff}
+.btn-wa{background:var(--wa);color:var(--wa-ink);font-weight:600}
+.btn svg{width:20px;height:20px;flex:none}
+
+/* Header fijo */
+.top{position:fixed;inset:0 0 auto 0;height:60px;z-index:40;display:flex;align-items:center;transition:background .24s var(--ease),border-color .24s var(--ease);border-bottom:1px solid transparent}
+.top.solid{background:rgba(11,11,13,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-color:rgba(255,255,255,.08)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;width:100%}
+.logo{display:inline-flex;align-items:center;min-height:44px;font-family:var(--serif);font-size:19px;color:#fff;letter-spacing:.08em;white-space:nowrap;text-decoration:none}
+.logo b{color:var(--gold);font-weight:600}
+.chip{white-space:nowrap;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.8);border:1px solid rgba(255,255,255,.22);border-radius:9999px;padding:6px 12px}
+
+/* Hero */
+.hero{position:relative;min-height:100svh;background:var(--night);color:#fff;display:flex;align-items:flex-end;overflow:hidden;padding:88px 0 92px}
+.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 45% at 72% 30%,rgba(230,207,164,.28) 0%,rgba(230,207,164,0) 70%),radial-gradient(80% 60% at 10% 100%,rgba(138,106,51,.25) 0%,rgba(0,0,0,0) 70%)}
+.bottle{position:absolute;right:-18px;top:76px;width:210px;opacity:.9;pointer-events:none}
+.hero .wrap{position:relative}
+.hero .eyebrow{color:rgba(255,255,255,.75)}
+.hero h1{font-size:44px;line-height:1.02;margin:12px 0 14px}
+.hero h1 em{font-style:italic;color:var(--gold)}
+.hero p.sub{color:rgba(255,255,255,.82);font-size:15px;max-width:30ch;margin-bottom:18px}
+.trust{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px;list-style:none}
+.trust li{font-size:12.5px;color:rgba(255,255,255,.9);border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.04);border-radius:9999px;padding:7px 12px;display:flex;gap:6px;align-items:center}
+.trust li::before{content:"✓";color:var(--gold);font-weight:600}
+.hero .alt{display:block;text-align:center;margin-top:14px;font-size:14px;color:rgba(255,255,255,.78);text-decoration:underline;text-underline-offset:4px;min-height:44px;line-height:44px}
+.hero .meta{margin-top:6px;font-size:12px;color:rgba(255,255,255,.55);text-align:center}
+
+/* Cómo funciona */
+.steps{display:grid;gap:12px;margin-top:26px;counter-reset:s;list-style:none}
+.steps li{background:var(--soft);border-radius:18px;padding:20px 20px 20px 72px;position:relative}
+.steps li::before{counter-increment:s;content:"0" counter(s);position:absolute;left:20px;top:16px;font-family:var(--serif);font-size:34px;color:#c9c2b4;line-height:1}
+.steps b{display:block;font-weight:500;font-size:16px;margin-bottom:2px}
+.steps span{color:var(--muted2);font-size:14px}
+
+/* Aromas */
+.aromas{background:var(--cream)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:26px}
+.aroma{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px 16px;text-align:left;min-height:132px;display:flex;flex-direction:column;gap:6px;transition:border-color .18s var(--ease),transform .18s var(--ease)}
+.aroma:active{transform:scale(.98)}
+.aroma:hover{border-color:var(--ink)}
+.aroma .ico{font-size:22px}
+.aroma b{font-weight:500;font-size:16px}
+.aroma span{color:var(--muted2);font-size:13px;line-height:1.4}
+.brands{margin-top:22px;text-align:center;font-family:var(--serif);font-size:22px;letter-spacing:.12em;color:#3a3a3a}
+
+/* Original */
+.cards{display:grid;gap:12px;margin-top:26px}
+.card{border:1px solid var(--line);border-radius:18px;padding:20px;display:flex;gap:14px;align-items:flex-start}
+.card .ic{width:44px;height:44px;border-radius:9999px;background:var(--soft);display:flex;align-items:center;justify-content:center;flex:none;font-size:20px}
+.card b{display:block;font-weight:500;font-size:16px}
+.card span{color:var(--muted2);font-size:14px}
+
+/* FAQ */
+.faq{background:var(--soft)}
+details{border-bottom:1px solid #e2e2e0}
+summary{list-style:none;min-height:64px;display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:16px;cursor:pointer;padding:16px 0}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-size:22px;color:var(--muted);transition:transform .24s var(--ease)}
+details[open] summary::after{transform:rotate(45deg)}
+details p{color:var(--muted);font-size:14.5px;padding:0 0 18px}
+
+/* CTA final */
+.final{background:var(--ink);color:#fff;text-align:center;padding:84px 0 120px}
+.final h2{font-size:36px}
+.final p{color:rgba(255,255,255,.68);margin-bottom:24px}
+.final .btns{display:grid;gap:12px}
+footer{background:var(--ink);color:rgba(255,255,255,.55);font-size:12.5px;text-align:center;padding:0 0 120px}
+footer .wrap{border-top:1px solid rgba(255,255,255,.1);padding-top:22px}
+
+/* Barra sticky inferior */
+.sticky{position:fixed;left:12px;right:84px;bottom:calc(12px + env(safe-area-inset-bottom));z-index:45;background:rgba(255,255,255,.96);border-radius:9999px;box-shadow:0 10px 30px -12px rgba(0,0,0,.35);display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 8px 8px 18px;transform:translateY(140%);transition:transform .36s var(--ease);max-width:520px}
+.sticky.show{transform:none}
+.sticky small{font-size:12.5px;line-height:1.25;color:var(--ink)}
+.sticky small b{display:block;font-weight:600}
+.sticky .btn{min-height:46px;padding:10px 18px;font-size:14px;white-space:nowrap}
+@media (min-width:640px){.sticky{left:50%;right:auto;width:520px;transform:translate(-50%,140%)}.sticky.show{transform:translate(-50%,0)}}
+
+/* WhatsApp flotante */
+.fab{position:fixed;right:14px;bottom:calc(12px + env(safe-area-inset-bottom));z-index:46;width:60px;height:60px;border-radius:9999px;background:var(--wa);display:flex;align-items:center;justify-content:center;box-shadow:0 10px 26px -8px rgba(37,211,102,.7)}
+.fab svg{width:30px;height:30px}
+
+/* Quiz (pantalla completa, un paso por pantalla) */
+.quiz{position:fixed;inset:0;z-index:60;background:var(--white);display:flex;flex-direction:column;visibility:hidden;opacity:0;transform:translateY(16px);transition:opacity .24s var(--ease),transform .24s var(--ease),visibility 0s .24s}
+.quiz.open{visibility:visible;opacity:1;transform:none;transition:opacity .24s var(--ease),transform .24s var(--ease)}
+.qbar{display:flex;align-items:center;gap:8px;padding:10px 12px;border-bottom:1px solid var(--line)}
+.iconbtn{width:44px;height:44px;border-radius:9999px;display:flex;align-items:center;justify-content:center;font-size:20px;color:var(--ink);flex:none}
+.iconbtn:disabled{opacity:.25;cursor:default}
+.progress{flex:1;height:4px;border-radius:9999px;background:#ececea;overflow:hidden}
+.progress i{display:block;height:100%;width:0;background:var(--ink);transition:width .36s var(--ease)}
+.qcount{font-size:12px;color:var(--muted);min-width:38px;text-align:right}
+.qbody{flex:1;overflow-y:auto;padding:28px var(--pad) 32px;max-width:560px;width:100%;margin:0 auto}
+.qstep{display:none;animation:fade .36s var(--ease)}
+.qstep.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateX(12px)}to{opacity:1;transform:none}}
+.qstep h2{font-size:30px;margin:8px 0 6px}
+.qstep .lead{margin-bottom:22px}
+.opts{display:grid;gap:10px}
+.opt{width:100%;min-height:60px;border:1px solid #e2e2e2;border-radius:16px;padding:14px 18px;text-align:left;display:flex;align-items:center;gap:14px;background:#fff;font-size:16px;transition:border-color .18s var(--ease),background .18s var(--ease)}
+.opt .e{font-size:22px;width:28px;text-align:center;flex:none}
+.opt small{display:block;color:var(--muted2);font-size:13px;margin-top:1px}
+.opt[aria-pressed="true"]{border-color:var(--ink);background:#f5f5f3}
+.sublabel{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#8a8a8a;margin:26px 0 10px}
+.opts.row{grid-template-columns:1fr 1fr 1fr}
+.opts.row .opt{flex-direction:column;justify-content:center;text-align:center;gap:2px;padding:12px 8px;font-size:15px}
+
+/* Resultado */
+.tier{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;border-radius:9999px;padding:7px 12px}
+.tier.hot{background:#fff3e0;color:#8a4b00}
+.tier.warm{background:#f5f1e8;color:#6b5a2e}
+.tier.out{background:#eef1f4;color:#3c4a57}
+.reco{display:grid;gap:10px;margin:18px 0}
+.rcard{border:1px solid var(--line);border-radius:18px;padding:16px 18px;background:var(--cream)}
+.rcard b{font-family:var(--serif);font-size:22px;font-weight:500;display:block}
+.rcard span{color:var(--muted);font-size:14px}
+.summary{list-style:none;border-top:1px solid var(--line);margin:18px 0 20px}
+.summary li{display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid var(--line);font-size:14.5px}
+.summary li span:first-child{color:var(--muted)}
+.summary li span:last-child{text-align:right;font-weight:500}
+.note{font-size:13.5px;color:var(--muted);background:var(--soft);border-radius:14px;padding:14px 16px;margin-bottom:18px}
+.textlink{display:block;margin:14px auto 0;text-align:center;font-size:14px;color:var(--muted);text-decoration:underline;text-underline-offset:4px;min-height:44px;line-height:44px}
+body.locked{overflow:hidden}
+#rWa{margin:4px 0 16px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+@media (min-width:900px){.hero h1{font-size:60px}.bottle{right:8%;width:300px;top:110px}}
+</style>
+</head>
+<body>
+
+<header class="top" id="top">
+  <div class="wrap">
+    <a class="logo" href="#inicio" aria-label="Perfume Árabe, inicio">PERFUME<b>ÁRABE</b></a>
+    <span class="chip">Bronx · Originales</span>
+  </div>
+</header>
+
+<main>
+  <!-- 1. HERO: qué es, por qué confiar, un CTA -->
+  <section class="hero" id="inicio" aria-labelledby="h1">
+    <svg class="bottle" viewBox="0 0 200 300" aria-hidden="true">
+      <defs><linearGradient id="g" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#f3e3c3"/><stop offset=".55" stop-color="#b8935a"/><stop offset="1" stop-color="#3b2a12"/></linearGradient></defs>
+      <rect x="82" y="20" width="36" height="26" rx="4" fill="#1b1b1f" stroke="#e6cfa4" stroke-opacity=".6"/>
+      <rect x="90" y="46" width="20" height="18" fill="#2a2a2e"/>
+      <path d="M60 64h80l22 40v150a22 22 0 0 1-22 22H60a22 22 0 0 1-22-22V104z" fill="url(#g)" opacity=".85"/>
+      <path d="M60 64h80l22 40v150a22 22 0 0 1-22 22H60a22 22 0 0 1-22-22V104z" fill="none" stroke="#e6cfa4" stroke-opacity=".7"/>
+      <path d="M70 120h60M70 230h60" stroke="#fff" stroke-opacity=".25"/>
+    </svg>
+    <div class="wrap">
+      <p class="eyebrow">Perfumes árabes · Bronx, NY</p>
+      <h1 id="h1">Perfumes árabes <em>originales</em>. No imitaciones.</h1>
+      <p class="sub">Yara · Lattafa · Afnan. Más de 8 horas en piel. Te llevamos la muestra gratis a domicilio en el Bronx antes de pagar.</p>
+      <ul class="trust" aria-label="Garantías">
+        <li>Sellado al vacío</li><li>Sello holográfico</li><li>QR verificable</li>
+      </ul>
+      <button class="btn btn-gold btn-block" data-open-quiz>Encuentra tu aroma en 30 segundos</button>
+      <a class="alt" href="#" data-wa-direct target="_blank" rel="noopener">Prefiero escribir directo por WhatsApp</a>
+      <p class="meta">4 preguntas · sin registro · respondemos en minutos</p>
+    </div>
+  </section>
+
+  <!-- 2. Cómo funciona -->
+  <section id="como" aria-labelledby="h-como">
+    <div class="wrap">
+      <p class="eyebrow">Sin riesgo</p>
+      <h2 id="h-como">Así funciona</h2>
+      <p class="lead">La hueles antes de gastar. Si no te convence, no pagas.</p>
+      <ol class="steps">
+        <li><b>Te llevamos la muestra</b><span>Gratis, a tu casa en el Bronx.</span></li>
+        <li><b>Si te enamoras, compras</b><span>Precios de catálogo. Envío gratis en pedidos desde $50.</span></li>
+        <li><b>Si no te convence, no pagas</b><span>Cero compromiso. La muestra es tuya igual.</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 3. Aromas: atajo al quiz con el aroma ya elegido -->
+  <section class="aromas" id="aromas" aria-labelledby="h-aromas">
+    <div class="wrap center">
+      <p class="eyebrow">Elige por cómo quieres oler</p>
+      <h2 id="h-aromas">¿Qué aroma va contigo?</h2>
+      <p class="lead">Toca uno y te recomendamos en segundos.</p>
+      <div class="grid2">
+        <button class="aroma" data-open-quiz data-preset="dulce"><span class="ico" aria-hidden="true">🍯</span><b>Dulce</b><span>Vainilla, caramelo, frutal</span></button>
+        <button class="aroma" data-open-quiz data-preset="amaderado"><span class="ico" aria-hidden="true">🪵</span><b>Oud / amaderado</b><span>Oud, sándalo, intenso</span></button>
+        <button class="aroma" data-open-quiz data-preset="fresco"><span class="ico" aria-hidden="true">🌿</span><b>Fresco</b><span>Limpio, cítrico, para diario</span></button>
+        <button class="aroma" data-open-quiz data-preset="especiado"><span class="ico" aria-hidden="true">🌶️</span><b>Oriental / especiado</b><span>Azafrán, cardamomo</span></button>
+      </div>
+      <p class="brands" aria-label="Marcas">LATTAFA · AFNAN</p>
+    </div>
+  </section>
+
+  <!-- 4. Por qué es original -->
+  <section id="original" aria-labelledby="h-orig">
+    <div class="wrap">
+      <p class="eyebrow">Confianza</p>
+      <h2 id="h-orig">Por qué es original</h2>
+      <div class="cards">
+        <div class="card"><span class="ic" aria-hidden="true">🔒</span><div><b>Sellado al vacío</b><span>Frasco intacto, sin abrir. Si llega abierto, no pagas.</span></div></div>
+        <div class="card"><span class="ic" aria-hidden="true">✨</span><div><b>Sello holográfico</b><span>Cada frasco trae un sello único que no se puede copiar.</span></div></div>
+        <div class="card"><span class="ic" aria-hidden="true">📱</span><div><b>Código QR verificable</b><span>Lo escaneas y confirmas la autenticidad tú mismo, en el momento.</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. FAQ (solo datos reales del V0) -->
+  <section class="faq" id="faq" aria-labelledby="h-faq">
+    <div class="wrap">
+      <p class="eyebrow">Preguntas</p>
+      <h2 id="h-faq">Lo que todos preguntan</h2>
+      <details><summary>¿La muestra de verdad es gratis?</summary><p>Sí. Te la llevamos a tu casa en el Bronx sin costo. Si no te convence, no pagas nada y la muestra es tuya igual.</p></details>
+      <details><summary>¿Cómo sé que es original?</summary><p>Cada frasco llega sellado al vacío, con sello holográfico y un código QR que puedes verificar tú mismo. Si llega abierto, no pagas.</p></details>
+      <details><summary>¿Cuánto dura en la piel?</summary><p>Más de 8 horas en piel.</p></details>
+      <details><summary>¿Cobran el envío?</summary><p>El envío es gratis en pedidos desde $50.</p></details>
+      <details><summary>¿Entregan fuera del Bronx?</summary><p id="faq-zone"></p></details>
+    </div>
+  </section>
+
+  <!-- 6. CTA final -->
+  <section class="final" aria-labelledby="h-final">
+    <div class="wrap">
+      <h2 id="h-final">Huele antes de pagar.</h2>
+      <p>Muestra gratis a domicilio en el Bronx. Respondemos en minutos.</p>
+      <div class="btns">
+        <button class="btn btn-gold btn-block" data-open-quiz>Encontrar mi aroma</button>
+        <a class="btn btn-outline-light btn-block" href="#" data-wa-direct target="_blank" rel="noopener">Escribir por WhatsApp</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">Bronx, NY · Mensajería gratis · Respondemos en minutos</div>
+</footer>
+
+<!-- Barra sticky + WhatsApp flotante -->
+<div class="sticky" id="sticky" aria-hidden="true">
+  <small><b>Muestra gratis</b>en el Bronx</small>
+  <button class="btn btn-primary" data-open-quiz tabindex="-1">Encontrar mi aroma</button>
+</div>
+<a class="fab" href="#" data-wa-direct target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">
+  <svg viewBox="0 0 32 32" aria-hidden="true"><path fill="#fff" d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3zm0 23.7c-2 0-3.9-.5-5.6-1.5l-.4-.2-3.9 1 1-3.8-.3-.4A10.7 10.7 0 1 1 16 26.7zm5.9-8c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2l-1 1.2c-.2.2-.4.2-.7.1a8.8 8.8 0 0 1-4.4-3.8c-.3-.6.3-.5.9-1.7.1-.2 0-.4 0-.5l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.8s1.2 3.2 1.4 3.5c.2.2 2.4 3.6 5.8 5 2.1.9 3 1 4 .8.7-.1 1.9-.8 2.2-1.5.3-.8.3-1.4.2-1.5-.1-.2-.3-.3-.6-.4z"/></svg>
+</a>
+
+<!-- QUIZ -->
+<div class="quiz" id="quiz" role="dialog" aria-modal="true" aria-labelledby="quizTitle" aria-hidden="true">
+  <div class="qbar">
+    <button class="iconbtn" id="qBack" aria-label="Atrás">←</button>
+    <div class="progress" role="progressbar" aria-valuemin="1" aria-valuemax="4" aria-valuenow="1" aria-label="Progreso"><i id="qProg"></i></div>
+    <span class="qcount" id="qCount">1 de 4</span>
+    <button class="iconbtn" id="qClose" aria-label="Cerrar">✕</button>
+  </div>
+  <div class="qbody">
+    <h2 id="quizTitle" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Encuentra tu aroma</h2>
+
+    <div class="qstep" data-step="1">
+      <p class="eyebrow">Pregunta 1</p>
+      <h2>¿Para quién es?</h2>
+      <p class="lead">Así te recomendamos mejor.</p>
+      <div class="opts" data-key="para">
+        <button class="opt" data-v="mi"><span class="e" aria-hidden="true">🙋</span><span>Para mí</span></button>
+        <button class="opt" data-v="regalo"><span class="e" aria-hidden="true">🎁</span><span>Es un regalo</span></button>
+      </div>
+    </div>
+
+    <div class="qstep" data-step="2">
+      <p class="eyebrow">Pregunta 2</p>
+      <h2>¿Qué aroma te gusta?</h2>
+      <p class="lead">Elige el que más te llame.</p>
+      <div class="opts" data-key="aroma">
+        <button class="opt" data-v="dulce"><span class="e" aria-hidden="true">🍯</span><span>Dulce<small>Vainilla, caramelo, frutal</small></span></button>
+        <button class="opt" data-v="amaderado"><span class="e" aria-hidden="true">🪵</span><span>Oud / amaderado<small>Oud, sándalo, intenso</small></span></button>
+        <button class="opt" data-v="fresco"><span class="e" aria-hidden="true">🌿</span><span>Fresco<small>Limpio, cítrico, para diario</small></span></button>
+        <button class="opt" data-v="especiado"><span class="e" aria-hidden="true">🌶️</span><span>Oriental / especiado<small>Azafrán, cardamomo</small></span></button>
+        <button class="opt" data-v="nose"><span class="e" aria-hidden="true">✨</span><span>No sé, sorpréndeme</span></button>
+      </div>
+    </div>
+
+    <div class="qstep" data-step="3">
+      <p class="eyebrow">Pregunta 3</p>
+      <h2>¿Cuánto quieres invertir?</h2>
+      <p class="lead">Envío gratis desde $50.</p>
+      <div class="opts" data-key="presupuesto">
+        <button class="opt" data-v="menos50"><span class="e" aria-hidden="true">💵</span><span>Menos de $50</span></button>
+        <button class="opt" data-v="50a100"><span class="e" aria-hidden="true">💳</span><span>$50 a $100<small>Envío gratis</small></span></button>
+        <button class="opt" data-v="mas100"><span class="e" aria-hidden="true">💎</span><span>Más de $100<small>Envío gratis</small></span></button>
+        <button class="opt" data-v="muestra"><span class="e" aria-hidden="true">🧪</span><span>Primero quiero la muestra gratis</span></button>
+      </div>
+    </div>
+
+    <div class="qstep" data-step="4">
+      <p class="eyebrow">Pregunta 4</p>
+      <h2>¿Dónde y cuándo?</h2>
+      <p class="lead">Para coordinar tu entrega.</p>
+      <div class="opts" data-key="zona">
+        <button class="opt" data-v="bronx"><span class="e" aria-hidden="true">📍</span><span>En el Bronx</span></button>
+        <button class="opt" data-v="nyc"><span class="e" aria-hidden="true">🗽</span><span>Otro condado de NYC<small>Manhattan, Brooklyn, Queens, Staten Island</small></span></button>
+        <button class="opt" data-v="fuera"><span class="e" aria-hidden="true">✈️</span><span>Fuera de NYC</span></button>
+      </div>
+      <p class="sublabel" id="whenLabel">¿Para cuándo lo quieres?</p>
+      <div class="opts row" data-key="cuando" aria-labelledby="whenLabel">
+        <button class="opt" data-v="hoy"><span class="e" aria-hidden="true">⚡</span>Hoy</button>
+        <button class="opt" data-v="semana"><span class="e" aria-hidden="true">📅</span>Esta semana</button>
+        <button class="opt" data-v="mirando"><span class="e" aria-hidden="true">👀</span>Solo miro</button>
+      </div>
+    </div>
+
+    <div class="qstep" data-step="5" id="result" aria-live="polite">
+      <span class="tier" id="rTier"></span>
+      <h2 id="rTitle"></h2>
+      <p class="lead" id="rLead"></p>
+      <div class="reco" id="rReco"></div>
+      <a class="btn btn-wa btn-block" id="rWa" href="#" target="_blank" rel="noopener">
+        <svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3zm5.9 15.7c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2l-1 1.2c-.2.2-.4.2-.7.1a8.8 8.8 0 0 1-4.4-3.8c-.3-.6.3-.5.9-1.7.1-.2 0-.4 0-.5l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.8s1.2 3.2 1.4 3.5c.2.2 2.4 3.6 5.8 5 2.1.9 3 1 4 .8.7-.1 1.9-.8 2.2-1.5.3-.8.3-1.4.2-1.5-.1-.2-.3-.3-.6-.4z"/></svg>
+        <span id="rWaLabel">Pedir mi muestra por WhatsApp</span>
+      </a>
+      <div class="note" id="rNote"></div>
+      <ul class="summary" id="rSummary"></ul>
+      <button class="textlink" id="rRestart">Cambiar respuestas</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* =========================================================================
+   CONFIGURACIÓN — rellenar antes de publicar
+   ========================================================================= */
+// TODO(Kelffren): número real de WhatsApp en formato internacional, solo dígitos (ej. 1718XXXXXXX).
+// El V0 usaba 15551234567, que es un número de prueba (555), no uno real.
+var WHATSAPP_NUMBER = '15551234567';
+
+// TODO(Kelffren): política real para otros condados de NYC y fuera de NYC.
+// Mientras sea null, la página solo dice que la muestra a domicilio es en el Bronx y que se confirma por WhatsApp.
+var SHIPPING_POLICY = { nyc: null, fuera: null };
+
+// Catálogo. Solo "Yara (Lattafa)" aparece por nombre en el V0. Sin precios en ningún repo.
+// TODO(Kelffren): agregar perfumes reales { name, brand, family, price } (family: dulce|amaderado|fresco|especiado).
+var CATALOG = [
+  { name: 'Yara', brand: 'Lattafa', family: 'dulce', price: null }
+];
+/* ========================================================================= */
+
+(function(){
+  'use strict';
+  var L = {
+    para:{mi:'Para mí', regalo:'Regalo'},
+    aroma:{dulce:'Dulce', amaderado:'Oud / amaderado', fresco:'Fresco', especiado:'Oriental / especiado', nose:'Sorpréndeme'},
+    presupuesto:{menos50:'Menos de $50', '50a100':'$50 a $100', mas100:'Más de $100', muestra:'Primero la muestra gratis'},
+    zona:{bronx:'Bronx', nyc:'Otro condado de NYC', fuera:'Fuera de NYC'},
+    cuando:{hoy:'Hoy', semana:'Esta semana', mirando:'Solo estoy mirando'}
+  };
+  var FAMILY_DESC = {
+    dulce:'Aromas dulces: vainilla, caramelo y notas frutales.',
+    amaderado:'Aromas intensos de oud y sándalo.',
+    fresco:'Aromas limpios y cítricos para todos los días.',
+    especiado:'Aromas orientales con azafrán y cardamomo.',
+    nose:'Te armamos una selección variada para que elijas oliendo.'
+  };
+  var TOTAL = 4, step = 1, A = {};
+  var $ = function(s,r){return (r||document).querySelector(s);};
+  var $$ = function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s));};
+  var quiz = $('#quiz'), lastFocus = null;
+
+  function wa(text){ return 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(text); }
+  var GENERIC = 'Hola 👋 Vengo de la página de perfumes árabes. Quiero mi muestra gratis a domicilio. ¿Me ayudas a elegir?';
+  $$('[data-wa-direct]').forEach(function(a){ a.href = wa(GENERIC); });
+
+  function zoneText(z){
+    if (z === 'bronx') return 'Estás en zona: te llevamos la muestra gratis a domicilio en el Bronx.';
+    var p = SHIPPING_POLICY[z];
+    if (p) return p;
+    return z === 'nyc'
+      ? 'La muestra gratis a domicilio es en el Bronx. Para otros condados de NYC te confirmamos por WhatsApp si podemos llevártela o enviártela.'
+      : 'Por ahora entregamos en el Bronx. Escríbenos y te decimos con honestidad si podemos enviarte a tu zona.';
+  }
+  $('#faq-zone').textContent = 'La muestra gratis a domicilio es en el Bronx. ' + (SHIPPING_POLICY.nyc || 'Para otros condados de NYC y fuera de NYC, escríbenos por WhatsApp y te confirmamos si podemos enviarte.');
+
+  function qualify(){
+    if (A.zona === 'fuera') return 'out';
+    if (A.zona === 'bronx' && (A.cuando === 'hoy' || A.cuando === 'semana')) return 'hot';
+    return 'warm';
+  }
+  function recommend(){
+    var fam = A.aroma;
+    if (fam === 'nose') return [];
+    var list = CATALOG.filter(function(p){ return p.family === fam; }).slice(0,3);
+    return list;
+  }
+  function buildMessage(tier, reco){
+    var lines = [];
+    lines.push('Hola 👋 Vengo de la página y ya respondí el filtro.');
+    lines.push(A.presupuesto === 'muestra' || A.zona === 'bronx' ? 'Quiero mi muestra gratis.' : 'Quiero información para comprar.');
+    lines.push('');
+    lines.push('• Es: ' + L.para[A.para]);
+    lines.push('• Aroma: ' + L.aroma[A.aroma]);
+    lines.push('• Presupuesto: ' + L.presupuesto[A.presupuesto]);
+    lines.push('• Zona: ' + L.zona[A.zona]);
+    lines.push('• Lo quiero: ' + L.cuando[A.cuando]);
+    if (reco.length) lines.push('• Me interesa: ' + reco.map(function(p){return p.name + ' (' + p.brand + ')';}).join(', '));
+    lines.push('');
+    if (tier === 'hot') lines.push('¿Me confirmas cuándo me la pueden llevar? Mi dirección te la paso por aquí.');
+    else if (tier === 'warm' && A.zona === 'nyc') lines.push('¿Pueden llevarme o enviarme la muestra a mi condado?');
+    else if (tier === 'warm') lines.push('¿Me mandas opciones para decidir?');
+    else lines.push('Estoy fuera de NYC. ¿Pueden enviarme a mi zona?');
+    return lines.join('\n');
+  }
+
+  function render(){
+    $$('.qstep').forEach(function(s){ s.classList.toggle('active', +s.dataset.step === step); });
+    var shown = Math.min(step, TOTAL);
+    $('#qProg').style.width = (step > TOTAL ? 100 : (shown-1)/TOTAL*100 + 12) + '%';
+    $('.progress').setAttribute('aria-valuenow', shown);
+    $('#qCount').textContent = step > TOTAL ? 'Listo' : shown + ' de ' + TOTAL;
+    $('#qBack').disabled = step === 1;
+    $$('.opts').forEach(function(g){
+      $$('.opt', g).forEach(function(b){ b.setAttribute('aria-pressed', A[g.dataset.key] === b.dataset.v ? 'true' : 'false'); });
+    });
+    if (step > TOTAL) showResult();
+    var h = $('.qstep.active h2'); if (h) { h.setAttribute('tabindex','-1'); h.focus({preventScroll:true}); }
+    $('.qbody').scrollTop = 0;
+  }
+
+  function showResult(){
+    var tier = qualify(), reco = recommend();
+    var T = {
+      hot:  ['🔥 Prioridad: hoy', 'Listo. Tu muestra está a un mensaje.', 'Estás en zona de entrega. Toca el botón y coordinamos la muestra gratis por WhatsApp.'],
+      warm: ['Te ayudamos a elegir', 'Tenemos opciones para ti.', 'Toca el botón y te mandamos las opciones por WhatsApp.'],
+      out:  ['Fuera de zona', 'Gracias por tu interés.', 'Te respondemos con honestidad sobre envíos a tu zona.']
+    }[tier];
+    var t = $('#rTier'); t.className = 'tier ' + tier; t.textContent = T[0];
+    $('#rTitle').textContent = T[1];
+    $('#rLead').textContent = T[2];
+    var box = $('#rReco'); box.innerHTML = '';
+    var cards = reco.length ? reco.map(function(p){ return {t:p.name + ' · ' + p.brand, s: FAMILY_DESC[p.family] + (p.price ? ' · $' + p.price : '')}; })
+                            : [{t: A.aroma === 'nose' ? 'Selección sorpresa' : 'Selección ' + L.aroma[A.aroma].toLowerCase(), s: FAMILY_DESC[A.aroma] + ' Te enviamos 2 o 3 opciones de Lattafa y Afnan por WhatsApp.'}];
+    cards.forEach(function(c){
+      var d = document.createElement('div'); d.className = 'rcard';
+      var b = document.createElement('b'); b.textContent = c.t;
+      var s = document.createElement('span'); s.textContent = c.s;
+      d.appendChild(b); d.appendChild(s); box.appendChild(d);
+    });
+    var note = zoneText(A.zona);
+    if (A.presupuesto === '50a100' || A.presupuesto === 'mas100') note += ' Tu pedido califica para envío gratis (desde $50).';
+    $('#rNote').textContent = note;
+    var sum = $('#rSummary'); sum.innerHTML = '';
+    [['Para', L.para[A.para]], ['Aroma', L.aroma[A.aroma]], ['Presupuesto', L.presupuesto[A.presupuesto]], ['Zona', L.zona[A.zona]], ['Cuándo', L.cuando[A.cuando]]].forEach(function(r){
+      var li = document.createElement('li'); var a = document.createElement('span'); var b = document.createElement('span');
+      a.textContent = r[0]; b.textContent = r[1]; li.appendChild(a); li.appendChild(b); sum.appendChild(li);
+    });
+    var msg = buildMessage(tier, reco);
+    var link = $('#rWa'); link.href = wa(msg); link.dataset.tier = tier;
+    $('#rWaLabel').textContent = tier === 'out' ? 'Preguntar por envío en WhatsApp' : (A.presupuesto === 'muestra' || A.zona === 'bronx' ? 'Pedir mi muestra por WhatsApp' : 'Recibir opciones por WhatsApp');
+  }
+
+  function open(preset){
+    A = {}; step = 1;
+    if (preset) { A.aroma = preset; A._preset = true; }
+    lastFocus = document.activeElement;
+    quiz.classList.add('open'); quiz.setAttribute('aria-hidden','false'); document.body.classList.add('locked');
+    render();
+  }
+  function close(){
+    quiz.classList.remove('open'); quiz.setAttribute('aria-hidden','true'); document.body.classList.remove('locked');
+    if (lastFocus) lastFocus.focus({preventScroll:true});
+  }
+  function next(){
+    step++;
+    // si el aroma vino preseleccionado desde las tarjetas, saltar la pregunta 2
+    if (step === 2 && A.aroma && A._preset) step = 3;
+    render();
+  }
+
+  $$('[data-open-quiz]').forEach(function(b){
+    b.addEventListener('click', function(){ open(b.dataset.preset); });
+  });
+  $('#qClose').addEventListener('click', close);
+  $('#qBack').addEventListener('click', function(){
+    step--; if (step === 2 && A._preset) step = 1; if (step < 1) step = 1; render();
+  });
+  $('#rRestart').addEventListener('click', function(){ A = {}; step = 1; render(); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && quiz.classList.contains('open')) close(); });
+
+  $$('.opts').forEach(function(g){
+    g.addEventListener('click', function(e){
+      var b = e.target.closest('.opt'); if (!b) return;
+      A[g.dataset.key] = b.dataset.v;
+      if (g.dataset.key === 'aroma') A._preset = false;
+      render();
+      if (step === 4) { if (A.zona && A.cuando) setTimeout(next, 220); else if (g.dataset.key === 'zona') { var w = $('#whenLabel'); w.scrollIntoView({behavior:'smooth', block:'center'}); } return; }
+      setTimeout(next, 220);
+    });
+  });
+
+  // Header sólido + barra sticky tras el hero
+  var top = $('#top'), sticky = $('#sticky'), hero = $('#inicio');
+  function onScroll(){
+    var y = window.scrollY, h = hero.offsetHeight;
+    top.classList.toggle('solid', y > 20);
+    var show = y > h * 0.6;
+    sticky.classList.toggle('show', show);
+    sticky.setAttribute('aria-hidden', show ? 'false' : 'true');
+    $('button', sticky).tabIndex = show ? 0 : -1;
+  }
+  window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
+})();
+</script>
+</body>
+</html>
