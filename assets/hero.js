@@ -39,7 +39,7 @@
   play();
 })();
 
-// A single 20 CSS pixel nudge. Browser toolbar collapse is
+// A single 50 CSS pixel nudge. Browser toolbar collapse is
 // browser-controlled: never chase it with larger scrolls or repeated attempts.
 (() => {
   const mobile = matchMedia('(max-width: 720px) and (pointer: coarse)');
@@ -63,10 +63,10 @@
     const root = document.documentElement;
     const previous = root.style.scrollBehavior;
     root.style.scrollBehavior = 'auto';
-    window.scrollTo({top: window.scrollY + 20, left: window.scrollX, behavior: 'instant'});
+    window.scrollTo({top: window.scrollY + 50, left: window.scrollX, behavior: 'instant'});
     root.style.scrollBehavior = previous;
   }, 350); };
-  // Let reload scroll restoration finish before applying the relative 20px nudge.
+  // Let reload scroll restoration finish before applying the relative 50px nudge.
   if (document.readyState === 'complete') schedule();
   else window.addEventListener('pageshow', schedule, {once: true, signal: listeners.signal});
   // Visitor input always wins; browser restoration on reload is not user input.
