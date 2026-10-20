@@ -45,26 +45,34 @@
   const mobile = matchMedia('(max-width: 720px) and (pointer: coarse)');
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   const navigation = performance.getEntriesByType('navigation')[0];
+  const reloading = navigation?.type === 'reload';
   if (!mobile.matches || reduced.matches || navigator.standalone ||
       matchMedia('(display-mode: standalone)').matches ||
-      navigation?.type === 'back_forward' || location.hash || window.scrollY !== 0) return;
+      navigation?.type === 'back_forward' ||
+      (!reloading && (location.hash || window.scrollY !== 0))) return;
 
   const listeners = new AbortController();
   const cancel = () => { clearTimeout(timer); listeners.abort(); };
-  const timer = setTimeout(() => {
+  let timer;
+  const schedule = () => { timer = setTimeout(() => {
     listeners.abort();
-    if (!mobile.matches || reduced.matches || document.hidden || location.hash ||
-        window.scrollY !== 0 || document.body.classList.contains('lock') ||
+    if (!mobile.matches || reduced.matches || document.hidden ||
+        (!reloading && (location.hash || window.scrollY !== 0)) || document.body.classList.contains('lock') ||
         document.querySelector('.menu.open,.langmenu.open')) return;
     // Override the site's smooth anchor scrolling for this imperceptible nudge.
     const root = document.documentElement;
     const previous = root.style.scrollBehavior;
     root.style.scrollBehavior = 'auto';
-    window.scrollTo({top: 3, left: 0, behavior: 'instant'});
+    window.scrollTo({top: window.scrollY + 3, left: window.scrollX, behavior: 'instant'});
     root.style.scrollBehavior = previous;
-  }, 350);
-  // Any visitor interaction takes priority, including a restored scroll position.
-  for (const event of ['touchstart', 'pointerdown', 'wheel', 'keydown', 'scroll', 'pagehide']) {
+  }, 350); };
+  // Let reload scroll restoration finish before applying the relative 3px nudge.
+  if (document.readyState === 'complete') schedule();
+  else window.addEventListener('pageshow', schedule, {once: true, signal: listeners.signal});
+  // Visitor input always wins; browser restoration on reload is not user input.
+  const events = ['touchstart', 'pointerdown', 'wheel', 'keydown', 'pagehide'];
+  if (!reloading) events.push('scroll');
+  for (const event of events) {
     window.addEventListener(event, cancel, {passive: true, signal: listeners.signal});
   }
 })();
