@@ -39,7 +39,7 @@
   play();
 })();
 
-// One CSS pixel is the smallest useful nudge. Browser toolbar collapse is
+// A single 3 CSS pixel nudge. Browser toolbar collapse is
 // browser-controlled: never chase it with larger scrolls or repeated attempts.
 (() => {
   const mobile = matchMedia('(max-width: 720px) and (pointer: coarse)');
@@ -60,7 +60,7 @@
     const root = document.documentElement;
     const previous = root.style.scrollBehavior;
     root.style.scrollBehavior = 'auto';
-    window.scrollTo({top: 1, left: 0, behavior: 'instant'});
+    window.scrollTo({top: 3, left: 0, behavior: 'instant'});
     root.style.scrollBehavior = previous;
   }, 350);
   // Any visitor interaction takes priority, including a restored scroll position.
