@@ -38,3 +38,33 @@
   updateControl();
   play();
 })();
+
+// One CSS pixel is the smallest useful nudge. Browser toolbar collapse is
+// browser-controlled: never chase it with larger scrolls or repeated attempts.
+(() => {
+  const mobile = matchMedia('(max-width: 720px) and (pointer: coarse)');
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+  const navigation = performance.getEntriesByType('navigation')[0];
+  if (!mobile.matches || reduced.matches || navigator.standalone ||
+      matchMedia('(display-mode: standalone)').matches ||
+      navigation?.type === 'back_forward' || location.hash || window.scrollY !== 0) return;
+
+  const listeners = new AbortController();
+  const cancel = () => { clearTimeout(timer); listeners.abort(); };
+  const timer = setTimeout(() => {
+    listeners.abort();
+    if (!mobile.matches || reduced.matches || document.hidden || location.hash ||
+        window.scrollY !== 0 || document.body.classList.contains('lock') ||
+        document.querySelector('.menu.open,.langmenu.open')) return;
+    // Override the site's smooth anchor scrolling for this imperceptible nudge.
+    const root = document.documentElement;
+    const previous = root.style.scrollBehavior;
+    root.style.scrollBehavior = 'auto';
+    window.scrollTo({top: 1, left: 0, behavior: 'instant'});
+    root.style.scrollBehavior = previous;
+  }, 350);
+  // Any visitor interaction takes priority, including a restored scroll position.
+  for (const event of ['touchstart', 'pointerdown', 'wheel', 'keydown', 'scroll', 'pagehide']) {
+    window.addEventListener(event, cancel, {passive: true, signal: listeners.signal});
+  }
+})();
