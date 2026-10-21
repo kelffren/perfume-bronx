@@ -17,7 +17,9 @@ const perfumes=[
 const verifiedImages={
 "Lattafa Yara":"https://scentzoneperfumes.com/cdn/shop/files/1000027890_1024x1024_0a262995-4cf6-4330-b009-79da032d1a3c.png?v=1764447533&width=720",
 "Lattafa Khamrah":"https://www.frameofmind.hu/img/56231/FOM1025/FOM1025.webp",
-"Lattafa Asad":"https://www.opulensi.com/cdn/shop/files/AsadMain.jpg?v=1683748573&width=720"
+"Lattafa Asad":"https://www.opulensi.com/cdn/shop/files/AsadMain.jpg?v=1683748573&width=720",
+"Maison Alhambra Delilah":"https://www.perfume-empire.com/cdn/shop/files/Untitleddesign_17_ef5e7509-9b60-428f-bc42-8eaf3894aea9.jpg?v=1749151039&width=1200",
+"Afnan 9PM":"https://emiratesfragrance.com/cdn/shop/files/afnan-9-pm-eau-de-parfum-for-men-1.jpg?v=1726044462&width=2048"
 };
 const photo=p=>{const url=verifiedImages[p.name];return url?'<img src="'+esc(url)+'" alt="'+esc(p.name)+'" loading="lazy" decoding="async" width="110" height="130" style="width:110px;height:130px;object-fit:contain;border-radius:12px;background:#f7f7f5" onerror="this.hidden=true;this.nextElementSibling.hidden=false"><span hidden class="quiz-image-placeholder" style="width:110px;min-height:130px;align-items:center;justify-content:center;background:#f7f7f5;color:#777;padding:12px;border-radius:12px;text-align:center;font-size:12px">'+tr("Foto pendiente","Photo pending")+'</span>':'<div class="quiz-image-placeholder" style="width:110px;min-height:130px;display:flex;align-items:center;justify-content:center;background:#f7f7f5;color:#777;padding:12px;border-radius:12px;text-align:center;font-size:12px">'+tr("Foto pendiente","Photo pending")+'</div>'};
 const questions=[
