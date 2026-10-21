@@ -19,7 +19,14 @@ const verifiedImages={
 "Lattafa Khamrah":"https://www.frameofmind.hu/img/56231/FOM1025/FOM1025.webp",
 "Lattafa Asad":"https://www.opulensi.com/cdn/shop/files/AsadMain.jpg?v=1683748573&width=720",
 "Maison Alhambra Delilah":"https://www.perfume-empire.com/cdn/shop/files/Untitleddesign_17_ef5e7509-9b60-428f-bc42-8eaf3894aea9.jpg?v=1749151039&width=1200",
-"Afnan 9PM":"https://emiratesfragrance.com/cdn/shop/files/afnan-9-pm-eau-de-parfum-for-men-1.jpg?v=1726044462&width=2048"
+"Afnan 9PM":"https://emiratesfragrance.com/cdn/shop/files/afnan-9-pm-eau-de-parfum-for-men-1.jpg?v=1726044462&width=2048",
+"Armaf Club de Nuit Intense Man":"https://www.maxaroma.com/productimages/large/UP6294015131024.jpg?ver=1757020357",
+"Lattafa Fakhar Black":"https://m.magazineluiza.com.br/a-static/420x420/lattafa-fakhar-black-eau-de-parfum-100ml-lattafa-perfumes/gbsbeautycosmeticos/latf-0003/3ba471b3599e15aedb1bedd6df7cd0f0.jpeg",
+"Lattafa Ana Abiyedh Rouge":"https://lamilas.com.au/cdn/shop/files/Ana_Abiyedh_Rouge_1.png?v=1762772501&width=1920",
+"Afnan Turathi Blue":"https://www.fragranceoutlet.com/cdn/shop/files/Afnan_Turathi_Blue_EDP_34_1024x1024.png?v=1752865344",
+"Lattafa Eclaire":"https://static.wixstatic.com/media/2d75da_e97718741ab14bbc9e5b7b59162a8591~mv2.png/v1/fill/w_1080%2Ch_1080%2Cal_c%2Cq_90%2Cenc_avif%2Cquality_auto/2d75da_e97718741ab14bbc9e5b7b59162a8591~mv2.png",
+"Lattafa Bade'e Al Oud Oud for Glory":"https://oudhmusk.pl/hpeciai/354e00f6ef4c0c16dd64580e4d0bbd14/pol_pl_Lattafa-Badee-Al-Oud-OUD-FOR-GLORY-100-ml-5204_1.jpg",
+"Armaf Club de Nuit Woman":"https://wafadutyfree.com/cdn/shop/files/armaf-eau-de-parfum-105ml-club-de-nuit-edp-for-women-35226104660061.png?v=1750194013"
 };
 const photo=p=>{const url=verifiedImages[p.name];return url?'<img src="'+esc(url)+'" alt="'+esc(p.name)+'" loading="lazy" decoding="async" width="110" height="130" style="width:110px;height:130px;object-fit:contain;border-radius:12px;background:#f7f7f5" onerror="this.hidden=true;this.nextElementSibling.hidden=false"><span hidden class="quiz-image-placeholder" style="width:110px;min-height:130px;align-items:center;justify-content:center;background:#f7f7f5;color:#777;padding:12px;border-radius:12px;text-align:center;font-size:12px">'+tr("Foto pendiente","Photo pending")+'</span>':'<div class="quiz-image-placeholder" style="width:110px;min-height:130px;display:flex;align-items:center;justify-content:center;background:#f7f7f5;color:#777;padding:12px;border-radius:12px;text-align:center;font-size:12px">'+tr("Foto pendiente","Photo pending")+'</div>'};
 const questions=[
