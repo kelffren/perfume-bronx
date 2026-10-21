@@ -39,3 +39,10 @@ Al cerrar cada pendiente, marcar `[x]` y anotar fecha y evidencia de la prueba.
 - [ ] Auditar en iPhone Safari, Chrome Android, redes lentas, navegación por teclado y movimiento reducido; documentar pruebas reales y errores.
 - [ ] Conseguir imágenes verificadas de las 9 fragancias del recomendador sin foto; después ampliar 12 → 40 con fichas verificadas, sin asumir stock.
 - [ ] A/B test solo cuando exista suficiente tráfico; cambiar una variable cada vez y comparar conversiones, no solo clics.
+
+## Entrega parcial de sprint — 21 octubre 2026
+- [x] Añadido gancho `window.oudAnalytics(event)` a `trackFunnel`, preparado para enviar eventos a un proveedor si se configura.
+- [ ] **Plausible (placeholder desactivado):** crear y verificar cuenta/sitio de analítica, confirmar dominio definitivo, revisar privacidad y consentimiento aplicable y habilitar script. El dominio de GitHub Pages puede requerir configuración de sitio/ruta según el proveedor. Hasta entonces, **no existe panel global activo**. No insertar credenciales privadas en GitHub Pages.
+- [ ] **Fotos:** identificadas fuentes oficiales para Club de Nuit Intense Man, Club de Nuit Woman, Afnan 9PM y Turathi Blue. Falta obtener archivos de imagen permitidos, optimizarlos y validar visualmente que correspondan al frasco/variante exactos antes de añadirlos. No se han publicado fotos nuevas de estos cuatro.
+- [ ] **Pruebas de navegador:** ejecución visual remota pendiente; no afirmar compatibilidad iOS/Android sin captura y recorrido funcional.
+- [ ] **Ventas reales:** registrar manualmente cierre, producto, importe, margen y canal, o conectar un CRM. Ningún evento de clic representa una venta.
