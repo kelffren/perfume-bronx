@@ -113,7 +113,7 @@ if('IntersectionObserver' in window){
  const stickyObs=new IntersectionObserver(entries=>{const show=entries[0].boundingClientRect.bottom<=70;$("#sticky").classList.toggle("show",show);$("#sticky").inert=!show||$("#sheet").classList.contains("open")},{rootMargin:"-70px 0px 0px 0px",threshold:0});stickyObs.observe($("#home"));
 }
 document.querySelector(".hero-primary")?.addEventListener("click",()=>trackFunnel("hero_shop_click"));document.querySelector(".hero-secondary")?.addEventListener("click",()=>trackFunnel("hero_quiz_click"));document.querySelector(".hero-bundle-link")?.addEventListener("click",()=>trackFunnel("hero_bundle_click"));// Reveal WhatsApp only after the second content section (#packs) is passed.
-function updateHelpVisibility(){const packs=document.querySelector("#packs"),help=document.querySelector("#oudHelp");if(!packs||!help)return;help.hidden=!!document.querySelector("#sheet.open")||packs.getBoundingClientRect().bottom>innerHeight*0.85}
-window.addEventListener("scroll",updateHelpVisibility,{passive:true});window.addEventListener("resize",updateHelpVisibility);updateHelpVisibility();
+function updateHelpVisibility(){const help=document.querySelector("#oudHelp"),results=document.querySelector("#scentQuiz .quiz-results");if(!help)return;const active=!!results&&results.getBoundingClientRect().top<innerHeight*0.85&&results.getBoundingClientRect().bottom>0;help.hidden=!active||!!document.querySelector("#sheet.open");}
+window.addEventListener("scroll",updateHelpVisibility,{passive:true});window.addEventListener("resize",updateHelpVisibility);new MutationObserver(updateHelpVisibility).observe(document.querySelector("#scentQuiz"),{childList:true,subtree:false});updateHelpVisibility();
 $("#year").textContent=new Date().getFullYear();
 </script></body></html>
