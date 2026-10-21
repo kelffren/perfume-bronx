@@ -18,6 +18,13 @@ Antes de tomar decisiones comerciales, diseñar funcionalidades o cambiar el emb
 
 - [ ] **WhatsApp Business:** introducir el número real con código de país, solo dígitos, en `CONFIG.whatsapp` de `index.html` (actualmente vacío). Verificar que los botones de pedidos, ayuda y el futuro acceso flotante abran el chat correcto. Nunca reutilizar automáticamente el teléfono de otro negocio.
 - [ ] **Fotografías del recomendador:** comprobar todos los perfumes del catálogo, asociar a cada SKU una fotografía verificable del frasco correcto, optimizada para móvil, y documentar cuáles falten. No inventar fotografías de productos reales ni declarar 40/40 hasta verificarlo.
-- [ ] **QA de conversión móvil:** verificar botones individuales desde $25–$35, packs de 2 por $55, animación sutil solo del CTA principal y accesibilidad `prefers-reduced-motion`; comprobar que el acceso flotante no tape controles.
+- [ ] **Catálogo del recomendador:** actualmente hay 12 fragancias configuradas, no 40. Faltan 28 fichas reales con nombre, notas, precio de referencia y foto verificada. No inventar inventario ni precios. Las fotos verificadas de Yara, Khamrah y Asad se muestran en resultados; faltan las otras 9 fotografías de las 12 fichas actuales. Comprobar también permisos y estabilidad de imágenes alojadas en sitios externos.\n- [ ] **QA de conversión móvil:** verificar botones individuales desde $25–$35, packs de 2 por $55, animación sutil solo del CTA principal y accesibilidad `prefers-reduced-motion`; comprobar que el acceso flotante no tape controles.
 
 Al cerrar cada pendiente, marcar `[x]` y anotar fecha y evidencia de la prueba.
+
+## Cambios implementados — 21 octubre 2026
+- Hero: botón principal a perfumes individuales desde $25, segundo botón al test y enlace discreto a paquetes de $55.
+- Animación de respiración solo en el CTA principal, desactivada con `prefers-reduced-motion`.
+- Ayuda flotante de WhatsApp con texto bilingüe y número tomado de `CONFIG.whatsapp`; **no se abrirá un chat real hasta configurar el teléfono**.
+- Recomendador: fotografías asociadas a Yara, Khamrah y Asad; los otros productos mantienen aviso explícito de fotografía pendiente.
+- **Pendiente de validación real:** comprobar funcionamiento en iPhone, enlaces, ausencia de superposiciones y carga de imágenes. Estos cambios no prueban aumento de ventas: medir clics y pedidos antes/después.
