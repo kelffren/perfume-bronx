@@ -28,3 +28,14 @@ Al cerrar cada pendiente, marcar `[x]` y anotar fecha y evidencia de la prueba.
 - Ayuda flotante de WhatsApp con texto bilingüe y número tomado de `CONFIG.whatsapp`; **no se abrirá un chat real hasta configurar el teléfono**.
 - Recomendador: fotografías asociadas a Yara, Khamrah y Asad; los otros productos mantienen aviso explícito de fotografía pendiente.
 - **Pendiente de validación real:** comprobar funcionamiento en iPhone, enlaces, ausencia de superposiciones y carga de imágenes. Estos cambios no prueban aumento de ventas: medir clics y pedidos antes/después.
+
+## Próximo sprint — embudo medible (21 octubre 2026)
+
+**Implementado en código:** contadores locales de clics al Hero (perfumes, test y packs), selección de perfume, selección de pack, intento de envío de pedido, apertura intentada de WhatsApp y falta de número. Se almacenan únicamente en `localStorage` del navegador del visitante, sin datos personales ni envío a servidor. Son diagnósticos locales, **no analítica agregada del negocio ni ventas confirmadas**. Se pueden inspeccionar en la consola del navegador con `JSON.parse(localStorage.getItem("oud-funnel-local-v1") || "{}")`.
+
+**Pendientes siguientes:**
+- [ ] Configurar un servicio de analítica agregado respetuoso con privacidad y consentimiento aplicable; no confundir clic con pedido ni pedido con venta.
+- [ ] Medir el embudo real: sesiones → clic Hero → test iniciado/completado → selección → WhatsApp → venta confirmada (esta última requiere registro manual o CRM).
+- [ ] Auditar en iPhone Safari, Chrome Android, redes lentas, navegación por teclado y movimiento reducido; documentar pruebas reales y errores.
+- [ ] Conseguir imágenes verificadas de las 9 fragancias del recomendador sin foto; después ampliar 12 → 40 con fichas verificadas, sin asumir stock.
+- [ ] A/B test solo cuando exista suficiente tráfico; cambiar una variable cada vez y comparar conversiones, no solo clics.
