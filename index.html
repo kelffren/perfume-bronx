@@ -103,6 +103,53 @@ body.lock .sticky{visibility:hidden;transform:translate(-50%,130%)}
 .discovery-tabs button:focus-visible,.discovery-arrow:focus-visible{outline:2px solid #e7d5b9;outline-offset:4px}
 @media(max-width:720px){.discovery-card[data-pos="-1"]{transform:translate3d(-74%,10px,-145px) rotateY(19deg) scale(.94)}.discovery-card[data-pos="1"]{transform:translate3d(74%,10px,-145px) rotateY(-19deg) scale(.94)}}
 @media(prefers-reduced-motion:reduce){.discovery-card{transition:none;will-change:auto}.discovery-ambient{display:none}}
+
+/* Sprint 1 — art direction: quiet luxury, responsive editorial composition */
+.discovery{background:radial-gradient(ellipse 65% 40% at 50% 42%,#302720 0%,#171311 58%,#0a0909 100%);border-top:1px solid #b69a6b20}
+.discovery .wrap{max-width:1100px}
+.discovery .eyebrow{font-weight:500;letter-spacing:.32em}
+.discovery h2{font-family:"Cormorant Garamond",Georgia,serif;font-weight:500;font-size:clamp(46px,8vw,84px);letter-spacing:-.018em;text-wrap:balance}
+.discovery-intro{font-size:13px;line-height:1.7;max-width:380px}
+.discovery-tabs{width:max-content;max-width:100%;margin:30px auto 17px}
+.discovery-tabs button{font-weight:600;white-space:nowrap}
+.discovery-stage{max-width:930px;height:475px;perspective:1350px}
+.discovery-stage:before{content:"";position:absolute;left:50%;bottom:28px;width:min(75%,570px);height:54px;transform:translateX(-50%);border-radius:50%;background:radial-gradient(ellipse,#bb93622b 0%,#0000 72%);filter:blur(18px);pointer-events:none}
+.discovery-card{top:20px;width:min(66vw,290px);height:408px;margin-left:calc(-1 * min(66vw,290px) / 2);border:1px solid #ead7b847;border-radius:3px;background:#1b1714;box-shadow:0 34px 65px #0009,0 2px 0 #ffffff08;overflow:hidden}
+.discovery-image{height:73%;background:radial-gradient(ellipse at 50% 36%,#f6f1e8 0%,#e6dacc 62%,#cbb9a4 100%);overflow:hidden}
+.discovery-image:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#6e4e2814,transparent 26%,#fff7 51%,transparent 74%,#5c3d2518);pointer-events:none}
+.discovery-image:after{bottom:7%;height:7%;background:#36251624;filter:blur(11px)}
+.discovery-card img{width:100%;height:100%;object-fit:contain;padding:20px 30px 24px;mix-blend-mode:multiply;transform:scale(.97);image-rendering:auto}
+.discovery-image-shine{background:linear-gradient(110deg,#fff4 0%,transparent 32%,transparent 75%,#fff2 100%)}
+.discovery-card .details{height:27%;padding:12px 17px 10px;text-align:left;background:linear-gradient(145deg,#2a221d,#171310)}
+.discovery-card-kicker{font-size:8px;letter-spacing:.19em;color:#cbb391}
+.discovery-card h3{font-size:clamp(23px,3vw,29px);letter-spacing:-.015em;line-height:1.1;margin:6px 45px 4px 0}
+.discovery-card p{font-size:10px;letter-spacing:.015em;line-height:1.5;color:#b7a998}
+.discovery-price{top:38px;right:16px;font-size:12px;font-weight:500;color:#e4cba6}
+.discovery-card[data-pos="0"]{transform:translate3d(0,0,92px) scale(1);opacity:1;box-shadow:0 35px 80px #000b,0 0 45px #c2a07316;z-index:5}
+.discovery-card[data-pos="-1"]{transform:translate3d(-87%,13px,-155px) rotateY(16deg) scale(.94);opacity:.5;z-index:2}
+.discovery-card[data-pos="1"]{transform:translate3d(87%,13px,-155px) rotateY(-16deg) scale(.94);opacity:.5;z-index:2}
+.discovery-caption{font-size:12px;letter-spacing:.035em;color:#c4b3a0;margin-top:1px}
+.discovery-actions .btn{background:#eadcc6;color:#1a1511;border-radius:3px;font-weight:600}
+.discovery-actions .btn:hover{background:#f5e8d5}
+.discovery-count{font-variant-numeric:tabular-nums}
+@media(max-width:720px){
+ .discovery{padding:70px 0 72px}
+ .discovery .wrap{width:calc(100% - 32px)}
+ .discovery h2{font-size:clamp(43px,12vw,62px)}
+ .discovery-intro{font-size:12px}
+ .discovery-stage{height:400px;perspective:1100px}
+ .discovery-card{top:18px;width:min(65vw,248px);height:347px;margin-left:calc(-1 * min(65vw,248px) / 2)}
+ .discovery-image{height:71%}
+ .discovery-card img{padding:18px 22px 19px}
+ .discovery-card .details{height:29%;padding:11px 12px 9px}
+ .discovery-card h3{font-size:24px;margin-right:34px}
+ .discovery-price{top:33px;right:11px;font-size:11px}
+ .discovery-card[data-pos="-1"]{transform:translate3d(-76%,12px,-150px) rotateY(16deg) scale(.94)}
+ .discovery-card[data-pos="1"]{transform:translate3d(76%,12px,-150px) rotateY(-16deg) scale(.94)}
+ .discovery-tabs button{font-size:9px;padding:12px 13px;letter-spacing:.11em}
+ .discovery-caption{font-size:11px}
+}
+@media(max-width:360px){.discovery-card{width:67vw;margin-left:-33.5vw}.discovery-card h3{font-size:21px}.discovery-actions .btn{font-size:11px;padding-inline:10px}}
 </style><link rel="stylesheet" href="assets/quiz.css"><script src="assets/quiz.js" defer></script><link rel="preload" as="image" href="assets/hero-poster.jpg" fetchpriority="high"><link rel="stylesheet" href="assets/hero.css"><script src="assets/hero.js" defer></script><!-- ANALYTICS PLACEHOLDER: enable only after Plausible account, site ownership and privacy review. <script defer data-domain="kelffren.github.io" src="https://plausible.io/js/script.js"></script> --></head><body>
 <header class="top"><div class="wrap"><button id="menuBtn" class="icon" aria-label="Abrir menú" aria-controls="menu" aria-expanded="false">☰</button><a href="#home" class="brand">OUD <span>BRONX</span></a><div class="head-actions"><button id="langBtn" class="lang" aria-label="Cambiar idioma" aria-controls="langMenu" aria-expanded="false">ES ⌄</button><button id="orderBtn" class="icon" aria-label="Preparar pedido" aria-controls="sheet"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 7h14l1 14H4L5 7Z"/><path d="M8 8V6a4 4 0 0 1 8 0v2"/></svg><sup id="badge">0</sup></button></div></div><div class="langmenu" id="langMenu"><button data-lang="es">Español</button><button data-lang="en">English</button></div></header>
 <nav class="menu" id="menu"><a href="#collection" data-es="Perfumes" data-en="Perfumes">Perfumes</a><a href="#guide" data-es="Guía de aromas" data-en="Scent guide">Guía de aromas</a><a href="#how" data-es="Cómo pedir" data-en="How to order">Cómo pedir</a><a href="#faq">FAQ</a></nav>
