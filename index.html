@@ -87,6 +87,22 @@ body.lock .sticky{visibility:hidden;transform:translate(-50%,130%)}
 .discovery-arrow:hover{background:#ffffff12;border-color:#cdb18c}.discovery-count{font-size:10px;letter-spacing:.26em;color:#b9a78f;margin-top:23px}.discovery-video-note{font-size:10px;color:#82766a;margin-top:27px}
 @media(max-width:720px){.discovery{padding:75px 0 72px}.discovery-stage{height:405px}.discovery-card{top:24px;height:345px;width:min(62vw,248px);margin-left:calc(-1 * min(62vw,248px) / 2)}.discovery-card .details{padding:12px}.discovery-card h3{font-size:24px}.discovery-price{right:11px;top:31px}.discovery-card[data-pos="-1"]{transform:translate3d(-74%,12px,-160px) rotateY(24deg)}.discovery-card[data-pos="1"]{transform:translate3d(74%,12px,-160px) rotateY(-24deg)}.discovery-tabs button{padding:12px 16px;font-size:9px}.discovery-actions{gap:12px}.discovery-actions .btn{min-width:0;flex:1}.discovery-arrow{flex-shrink:0}}
 @media(prefers-reduced-motion:reduce){.discovery-card{transition:none}}
+
+/* Carousel refinement: stable DOM, composited motion, restrained material */
+.discovery-stage{contain:layout style;transform-style:preserve-3d}
+#discoveryCards{position:absolute;inset:0;pointer-events:none}
+.discovery-card{pointer-events:none;transform-origin:center center;will-change:transform,opacity;transition:transform 780ms cubic-bezier(.2,.75,.2,1),opacity 780ms ease;filter:none!important}
+.discovery-card[data-pos="0"]{pointer-events:auto;transform:translate3d(0,0,100px) scale(1);opacity:1}
+.discovery-card[data-pos="-1"]{transform:translate3d(-86%,12px,-145px) rotateY(19deg) scale(.94);opacity:.46}
+.discovery-card[data-pos="1"]{transform:translate3d(86%,12px,-145px) rotateY(-19deg) scale(.94);opacity:.46}
+.discovery-image{position:relative;isolation:isolate}
+.discovery-image:after{content:"";position:absolute;inset:auto 10% 5%;height:13%;border-radius:50%;background:#35261d20;filter:blur(17px);pointer-events:none}
+.discovery-image-shine{position:absolute;inset:0;background:linear-gradient(118deg,#fff5 0%,transparent 32%,transparent 75%,#fff2 100%);pointer-events:none}
+.discovery-card img{position:relative;z-index:1;filter:none}
+.discovery-actions .btn{transition:background-color .2s,transform .2s}.discovery-actions .btn:active,.discovery-arrow:active{transform:scale(.97)}
+.discovery-tabs button:focus-visible,.discovery-arrow:focus-visible{outline:2px solid #e7d5b9;outline-offset:4px}
+@media(max-width:720px){.discovery-card[data-pos="-1"]{transform:translate3d(-74%,10px,-145px) rotateY(19deg) scale(.94)}.discovery-card[data-pos="1"]{transform:translate3d(74%,10px,-145px) rotateY(-19deg) scale(.94)}}
+@media(prefers-reduced-motion:reduce){.discovery-card{transition:none;will-change:auto}.discovery-ambient{display:none}}
 </style><link rel="stylesheet" href="assets/quiz.css"><script src="assets/quiz.js" defer></script><link rel="preload" as="image" href="assets/hero-poster.jpg" fetchpriority="high"><link rel="stylesheet" href="assets/hero.css"><script src="assets/hero.js" defer></script><!-- ANALYTICS PLACEHOLDER: enable only after Plausible account, site ownership and privacy review. <script defer data-domain="kelffren.github.io" src="https://plausible.io/js/script.js"></script> --></head><body>
 <header class="top"><div class="wrap"><button id="menuBtn" class="icon" aria-label="Abrir menú" aria-controls="menu" aria-expanded="false">☰</button><a href="#home" class="brand">OUD <span>BRONX</span></a><div class="head-actions"><button id="langBtn" class="lang" aria-label="Cambiar idioma" aria-controls="langMenu" aria-expanded="false">ES ⌄</button><button id="orderBtn" class="icon" aria-label="Preparar pedido" aria-controls="sheet"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 7h14l1 14H4L5 7Z"/><path d="M8 8V6a4 4 0 0 1 8 0v2"/></svg><sup id="badge">0</sup></button></div></div><div class="langmenu" id="langMenu"><button data-lang="es">Español</button><button data-lang="en">English</button></div></header>
 <nav class="menu" id="menu"><a href="#collection" data-es="Perfumes" data-en="Perfumes">Perfumes</a><a href="#guide" data-es="Guía de aromas" data-en="Scent guide">Guía de aromas</a><a href="#how" data-es="Cómo pedir" data-en="How to order">Cómo pedir</a><a href="#faq">FAQ</a></nav>
@@ -148,25 +164,33 @@ window.addEventListener("scroll",updateHelpVisibility,{passive:true});window.add
 (function(){
 const stage=document.getElementById("discoveryStage");if(!stage)return;
 const sets={hot:[{id:"khamrah",note:"Cálido · Especiado · Envolvente"},{id:"yara",note:"Suave · Cremoso · Irresistible"},{id:"asad",note:"Intenso · Ambarado · Magnético"}],gems:[{id:"asad",note:"Para quienes prefieren aromas con carácter"},{id:"khamrah",note:"Un gourmand para noches memorables"},{id:"yara",note:"Un toque tropical para cada día"}]};
-let mode="hot",index=0,timer=null,visible=false;const cards=document.getElementById("discoveryCards"),ambient=document.getElementById("discoveryAmbient");
-function render(){
- const arr=sets[mode];cards.innerHTML=arr.map((v,i)=>{const p=catalog.find(x=>x.id===v.id);const d=(i-index+arr.length)%arr.length;const pos=d===arr.length-1?-1:d===0?0:1;
- return '<article class="discovery-card" data-pos="'+pos+'" aria-hidden="'+(pos!==0)+'"><div class="discovery-image"><img src="'+p.image+'" alt="'+p.name+'" loading="lazy" decoding="async"></div><div class="details"><span class="discovery-card-kicker">OUD BRONX / THE EDIT</span><h3>'+p.name+'</h3><p>'+p[lang]+'</p><span class="discovery-price">$'+p.price+'</span></div></article>'}).join("");
- document.getElementById("discoveryCaption").textContent=arr[index].note;
- document.getElementById("discoveryCount").textContent=String(index+1).padStart(2,"0")+" — "+String(arr.length).padStart(2,"0");
- document.getElementById("discoveryBuy").textContent=lang==="en"?"Add to my order ↗":"Descubrir perfume ↗";
+const cards=document.getElementById("discoveryCards"),ambient=document.getElementById("discoveryAmbient"),caption=document.getElementById("discoveryCaption"),counter=document.getElementById("discoveryCount"),buy=document.getElementById("discoveryBuy");
+const reduced=matchMedia("(prefers-reduced-motion: reduce)");let mode="hot",index=0,timer=0,visible=false,dragX=null;
+function build(){
+ cards.replaceChildren(...sets[mode].map(v=>{const p=catalog.find(x=>x.id===v.id);const article=document.createElement("article");article.className="discovery-card";article.innerHTML='<div class="discovery-image"><img loading="lazy" decoding="async" alt="'+p.name+'"><div class="discovery-image-shine"></div></div><div class="details"><span class="discovery-card-kicker">OUD BRONX / THE EDIT</span><h3>'+p.name+'</h3><p>'+p[lang]+'</p><span class="discovery-price">$'+p.price+'</span></div>';article.querySelector("img").src=p.image;return article}));
+ render();
 }
-function step(n){index=(index+n+sets[mode].length)%sets[mode].length;render()}
-function schedule(){clearInterval(timer);if(visible&&!matchMedia("(prefers-reduced-motion: reduce)").matches&&!document.hidden)timer=setInterval(()=>step(1),5600)}
-function setMode(m){mode=m;index=0;document.getElementById("tabHot").setAttribute("aria-selected",String(m==="hot"));document.getElementById("tabGems").setAttribute("aria-selected",String(m==="gems"));document.getElementById("discoveryTitle").textContent=m==="hot"?"HOT RIGHT NOW":"HIDDEN GEMS";document.getElementById("discoveryIntro").textContent=m==="hot"?"Fragancias que merecen toda la atención.":"Hallazgos seleccionados para descubrir algo diferente.";render();schedule()}
-document.getElementById("tabHot").onclick=()=>setMode("hot");document.getElementById("tabGems").onclick=()=>setMode("gems");
-document.getElementById("discoveryPrev").onclick=()=>{step(-1);schedule()};document.getElementById("discoveryNext").onclick=()=>{step(1);schedule()};
-document.getElementById("discoveryBuy").onclick=()=>{const p=sets[mode][index];items[p.id]=(items[p.id]||0)+1;selectedBundle=null;renderCart();openSheet()};
-let startX=0;stage.addEventListener("touchstart",e=>{startX=e.touches[0].clientX},{passive:true});stage.addEventListener("touchend",e=>{const delta=e.changedTouches[0].clientX-startX;if(Math.abs(delta)>35){step(delta<0?1:-1);schedule()}},{passive:true});
-stage.addEventListener("mouseenter",()=>clearInterval(timer));stage.addEventListener("mouseleave",schedule);stage.addEventListener("focusin",()=>clearInterval(timer));stage.addEventListener("focusout",schedule);
-document.addEventListener("visibilitychange",schedule);
-new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;if(visible){if(!ambient.src){ambient.src=ambient.dataset.src;ambient.load()}if(!matchMedia("(prefers-reduced-motion: reduce)").matches)ambient.play().catch(()=>{});}else ambient.pause();schedule()},{threshold:.15}).observe(stage);
-render();
+function render(){
+ const arr=sets[mode],nodes=[...cards.children];
+ nodes.forEach((node,i)=>{const delta=(i-index+arr.length)%arr.length;const pos=delta===0?0:delta===1?1:-1;node.dataset.pos=String(pos);node.setAttribute("aria-hidden",String(pos!==0));node.inert=pos!==0;node.style.setProperty("--depth",String(pos));});
+ caption.textContent=arr[index].note;counter.textContent=String(index+1).padStart(2,"0")+" / "+String(arr.length).padStart(2,"0");
+ buy.textContent=lang==="en"?"Add to my order ↗":"Descubrir perfume ↗";
+}
+function schedule(){clearTimeout(timer);if(visible&&!reduced.matches&&!document.hidden&&!stage.matches(":hover")&&!stage.contains(document.activeElement))timer=setTimeout(()=>{step(1);schedule()},5700)}
+function step(n){index=(index+n+sets[mode].length)%sets[mode].length;render();schedule()}
+function setMode(m){if(mode===m)return;mode=m;index=0;document.getElementById("tabHot").setAttribute("aria-selected",String(m==="hot"));document.getElementById("tabGems").setAttribute("aria-selected",String(m==="gems"));document.getElementById("discoveryTitle").textContent=m==="hot"?"HOT RIGHT NOW":"HIDDEN GEMS";document.getElementById("discoveryIntro").textContent=m==="hot"?"Fragancias que merecen toda la atención.":"Hallazgos seleccionados para descubrir algo diferente.";build();schedule()}
+document.getElementById("tabHot").addEventListener("click",()=>setMode("hot"));document.getElementById("tabGems").addEventListener("click",()=>setMode("gems"));
+document.getElementById("discoveryPrev").addEventListener("click",()=>step(-1));document.getElementById("discoveryNext").addEventListener("click",()=>step(1));
+buy.addEventListener("click",()=>{const p=sets[mode][index];items[p.id]=(items[p.id]||0)+1;selectedBundle=null;renderCart();openSheet()});
+stage.addEventListener("pointerdown",e=>{if(e.pointerType==="mouse")return;dragX=e.clientX},{passive:true});
+stage.addEventListener("pointerup",e=>{if(dragX===null)return;const delta=e.clientX-dragX;dragX=null;if(Math.abs(delta)>42)step(delta<0?1:-1)},{passive:true});
+stage.addEventListener("pointercancel",()=>{dragX=null});
+stage.addEventListener("mouseenter",()=>clearTimeout(timer));stage.addEventListener("mouseleave",schedule);
+stage.addEventListener("focusin",()=>clearTimeout(timer));stage.addEventListener("focusout",()=>requestAnimationFrame(schedule));
+document.addEventListener("visibilitychange",()=>{if(document.hidden)ambient.pause();else if(visible&&!reduced.matches)ambient.play().catch(()=>{});schedule()});
+reduced.addEventListener?.("change",schedule);
+new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;if(visible&&!reduced.matches){if(!ambient.src){ambient.src=ambient.dataset.src;ambient.load()}ambient.play().catch(()=>{})}else ambient.pause();schedule()},{threshold:.2}).observe(stage);
+build();
 })();
 $("#year").textContent=new Date().getFullYear();
 </script></body></html>
