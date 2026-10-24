@@ -167,6 +167,43 @@ body.lock .sticky{visibility:hidden;transform:translate(-50%,130%)}
 </style><style>
 .discovery-personalize{margin:14px 0}.discovery-occasions{display:flex;gap:7px;justify-content:center;flex-wrap:wrap;margin:9px 0}.discovery-occasions button{border:1px solid #8b735a;border-radius:30px;background:transparent;color:#f4e9db;padding:9px 13px;min-height:44px}.discovery-occasions button[aria-pressed=true]{background:#e9d6bd;color:#21170f;border-color:#e9d6bd}.discovery-personalize p{font-size:12px;color:#dbc9b7;min-height:20px;margin:8px 0}.discovery-pair{display:flex;align-items:center;gap:11px;text-align:left;background:#35291f;border:1px solid #6e5540;border-radius:12px;padding:10px;margin:12px 0}.discovery-pair img{width:58px;height:65px;object-fit:contain;background:#e8dfd4;border-radius:7px}.discovery-pair>div{flex:1;min-width:0}.discovery-pair strong,.discovery-pair small{display:block}.discovery-pair strong{font-size:13px;line-height:1.35}.discovery-pair small{font-size:12px;color:#e7cba7;margin-top:3px}.discovery-pair button{border:1px solid #d9c1a2;background:#e9d6bd;color:#21170f;border-radius:8px;padding:9px 10px;font-weight:600;min-height:44px;font-size:12px}
 @media(max-width:390px){.discovery-pair{gap:7px}.discovery-pair img{width:44px}.discovery-pair button{padding:8px}.discovery-occasions button{padding:8px 10px;font-size:12px}}
+</style>
+<style id="cinematic-discovery-v1">
+/* Oud Bronx cinematic stage: mobile-first, no changes to commerce logic */
+.discovery{position:relative;background:radial-gradient(ellipse 85% 45% at 50% 48%,#50301d 0%,#1b120f 48%,#080707 100%);padding:56px 0 94px;isolation:isolate}
+.discovery:before{content:"";position:absolute;inset:20% -25% 6%;pointer-events:none;background:radial-gradient(ellipse at 50% 46%,#bb6c2c30,transparent 56%);filter:blur(35px);animation:oudGlow 9s ease-in-out infinite alternate}
+.discovery .wrap{position:relative;z-index:1}
+.discovery h2{font-size:clamp(48px,9vw,86px);line-height:.9;margin:13px auto 15px;max-width:700px;text-wrap:balance}
+.discovery-intro{font-size:13px;max-width:370px;line-height:1.6}
+.discovery-tabs{margin:22px auto 8px;max-width:340px}
+.discovery-stage{height:490px;perspective:950px;overflow:visible}
+.discovery-ambient{opacity:.1;filter:blur(35px) saturate(.8);mask-image:radial-gradient(ellipse,black 15%,transparent 75%)}
+.discovery-card{top:18px;width:min(72vw,350px);height:435px;margin-left:calc(-1 * min(72vw,350px) / 2);border:1px solid #dfb77d40;border-radius:3px;background:linear-gradient(160deg,#2c1c14,#100c0b);box-shadow:0 34px 90px #000c,0 0 75px #bd77301a;transition:transform 850ms cubic-bezier(.18,.82,.2,1),opacity 700ms ease,box-shadow 700ms ease}
+.discovery-card[data-pos="0"]{transform:translate3d(0,0,135px) scale(1);opacity:1;z-index:4;box-shadow:0 45px 100px #000d,0 0 90px #b87a3a35}
+.discovery-card[data-pos="-1"]{transform:translate3d(-84%,23px,-205px) rotateY(30deg) scale(.88);opacity:.38;z-index:2}
+.discovery-card[data-pos="1"]{transform:translate3d(84%,23px,-205px) rotateY(-30deg) scale(.88);opacity:.38;z-index:2}
+.discovery-image{height:77%;background:radial-gradient(ellipse at 50% 40%,#b28b65 0%,#4e3323 50%,#1a100d 100%);overflow:hidden}
+.discovery-image:before{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 28%,#fff3 43%,transparent 56%);opacity:.35;pointer-events:none;z-index:2}
+.discovery-card img{padding:13px;mix-blend-mode:normal;object-fit:contain;filter:drop-shadow(0 22px 18px #0008);transform:scale(1.04)}
+.discovery-card .details{padding:13px 17px;background:linear-gradient(140deg,#231812,#100d0c)}
+.discovery-card h3{font-size:clamp(23px,5vw,31px)}
+.discovery-price{top:31px}
+.discovery-caption{margin:0 auto 16px}
+@keyframes oudGlow{from{opacity:.55;transform:translateX(-2%)}to{opacity:1;transform:translateX(2%)}}
+@media(max-width:720px){
+.discovery{padding:48px 0 100px}
+.discovery h2{font-size:clamp(48px,13vw,69px);max-width:330px}
+.discovery .eyebrow{font-size:9px}
+.discovery-intro{font-size:12px;max-width:290px}
+.discovery-stage{height:420px}
+.discovery-card{top:17px;width:min(72vw,305px);height:380px;margin-left:calc(-1 * min(72vw,305px) / 2)}
+.discovery-card[data-pos="-1"]{transform:translate3d(-81%,19px,-195px) rotateY(29deg) scale(.88)}
+.discovery-card[data-pos="1"]{transform:translate3d(81%,19px,-195px) rotateY(-29deg) scale(.88)}
+.discovery-card .details{padding:12px 14px}
+.discovery-card h3{font-size:24px}
+.discovery-actions{position:relative;z-index:5}
+}
+@media(prefers-reduced-motion:reduce){.discovery:before{animation:none}.discovery-card{transition:none}}
 </style></head><body>
 <header class="top"><div class="wrap"><button id="menuBtn" class="icon" aria-label="Abrir menú" aria-controls="menu" aria-expanded="false">☰</button><a href="#home" class="brand">OUD <span>BRONX</span></a><div class="head-actions"><button id="langBtn" class="lang" aria-label="Cambiar idioma" aria-controls="langMenu" aria-expanded="false">ES ⌄</button><button id="orderBtn" class="icon" aria-label="Preparar pedido" aria-controls="sheet"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 7h14l1 14H4L5 7Z"/><path d="M8 8V6a4 4 0 0 1 8 0v2"/></svg><sup id="badge">0</sup></button></div></div><div class="langmenu" id="langMenu"><button data-lang="es">Español</button><button data-lang="en">English</button></div></header>
 <nav class="menu" id="menu"><a href="#collection" data-es="Perfumes" data-en="Perfumes">Perfumes</a><a href="#guide" data-es="Guía de aromas" data-en="Scent guide">Guía de aromas</a><a href="#how" data-es="Cómo pedir" data-en="How to order">Cómo pedir</a><a href="#faq">FAQ</a></nav>
