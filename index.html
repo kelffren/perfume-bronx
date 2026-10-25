@@ -204,7 +204,7 @@ body.lock .sticky{visibility:hidden;transform:translate(-50%,130%)}
 .discovery-actions{position:relative;z-index:5}
 }
 @media(prefers-reduced-motion:reduce){.discovery:before{animation:none}.discovery-card{transition:none}}
-</style></head><body>
+</style><style id="discovery-product-video-style">.discovery-product-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;z-index:2;pointer-events:none;transition:opacity .65s ease}.discovery-card.is-playing .discovery-product-video{opacity:1}.discovery-card.is-playing .discovery-image-shine{z-index:3}@media(prefers-reduced-motion:reduce){.discovery-product-video{display:none!important}}</style></head><body>
 <header class="top"><div class="wrap"><button id="menuBtn" class="icon" aria-label="Abrir menú" aria-controls="menu" aria-expanded="false">☰</button><a href="#home" class="brand">OUD <span>BRONX</span></a><div class="head-actions"><button id="langBtn" class="lang" aria-label="Cambiar idioma" aria-controls="langMenu" aria-expanded="false">ES ⌄</button><button id="orderBtn" class="icon" aria-label="Preparar pedido" aria-controls="sheet"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 7h14l1 14H4L5 7Z"/><path d="M8 8V6a4 4 0 0 1 8 0v2"/></svg><sup id="badge">0</sup></button></div></div><div class="langmenu" id="langMenu"><button data-lang="es">Español</button><button data-lang="en">English</button></div></header>
 <nav class="menu" id="menu"><a href="#collection" data-es="Perfumes" data-en="Perfumes">Perfumes</a><a href="#guide" data-es="Guía de aromas" data-en="Scent guide">Guía de aromas</a><a href="#how" data-es="Cómo pedir" data-en="How to order">Cómo pedir</a><a href="#faq">FAQ</a></nav>
 <main><section id="home" class="hero" aria-label="Oud Bronx">
@@ -266,10 +266,24 @@ window.addEventListener("scroll",updateHelpVisibility,{passive:true});window.add
 const stage=document.getElementById("discoveryStage");if(!stage)return;
 const sets={hot:[{id:"khamrah",note:"Cálido · Especiado · Envolvente",hook:"Una noche especial en una sola fragancia",secret:"Canela, dátiles y vainilla. Un gourmand cálido que suele compararse con Angels’ Share, aunque tiene su propia personalidad."},{id:"yara",note:"Suave · Cremoso · Irresistible",hook:"El aroma dulce que despierta preguntas",secret:"Un perfil cremoso, afrutado y avainillado, ideal si buscas algo delicado y envolvente."},{id:"asad",note:"Intenso · Ambarado · Magnético",hook:"Carácter de lujo, sin precio de lujo",secret:"Pimienta, café y ámbar. Un perfil intenso que suele compararse con Sauvage Elixir; no son fragancias idénticas."}],gems:[{id:"asad",note:"Para quienes prefieren aromas con carácter",hook:"¿Buscas una fragancia que deje huella?",secret:"Asad combina especias, café y ámbar. Ideal para quienes prefieren aromas intensos."},{id:"khamrah",note:"Un gourmand para noches memorables",hook:"El secreto de las noches memorables",secret:"Dátiles, canela y vainilla para un aroma dulce, especiado y cálido."},{id:"yara",note:"Un toque dulce para cada día",hook:"Una joya suave que merece descubrirse",secret:"Vainilla y acordes afrutados con una sensación cremosa y delicada."}]};
 const cards=document.getElementById("discoveryCards"),ambient=document.getElementById("discoveryAmbient"),caption=document.getElementById("discoveryCaption"),counter=document.getElementById("discoveryCount"),buy=document.getElementById("discoveryBuy"),reveal=document.getElementById("discoveryReveal"),revealText=document.getElementById("discoveryRevealText"),order=document.getElementById("discoveryOrder");
-const reduced=matchMedia("(prefers-reduced-motion: reduce)");let mode="hot",index=0,timer=0,visible=false,dragX=null,expanded=false,occasion="";
+const reduced=matchMedia("(prefers-reduced-motion: reduce)");
+// Only verified, product-matched, licensed MP4 URLs belong here. Empty entries safely use the photo.
+const productVideos={khamrah:"",yara:"",asad:""};
+let mode="hot",index=0,timer=0,visible=false,dragX=null,expanded=false,occasion="",activeVideo=null;
+function stopVideo(){if(activeVideo){activeVideo.pause();activeVideo.removeAttribute("src");activeVideo.load();activeVideo=null}cards.querySelectorAll(".discovery-card.is-playing").forEach(n=>n.classList.remove("is-playing"))}
+function startProductVideo(){
+ if(!visible||document.hidden||reduced.matches||expanded)return;
+ const item=sets[mode][index],url=productVideos[item.id];
+ if(!url){step(1);return}
+ const card=cards.children[index],video=card?.querySelector("video");
+ if(!video){step(1);return}
+ stopVideo();activeVideo=video;video.src=url;video.onended=()=>{stopVideo();step(1)};video.onerror=()=>{stopVideo();step(1)};
+ video.play().then(()=>card.classList.add("is-playing")).catch(()=>{stopVideo();step(1)});
+}
+
 function trackDiscovery(action){try{window.dataLayer?.push({event:"oud_discovery",action,collection:mode,perfume:sets[mode][index].id})}catch(e){}}
 function build(){
- cards.replaceChildren(...sets[mode].map(v=>{const p=catalog.find(x=>x.id===v.id);const article=document.createElement("article");article.className="discovery-card";article.innerHTML='<div class="discovery-image"><img loading="lazy" decoding="async" alt=""><div class="discovery-image-shine"></div></div><div class="details"><span class="discovery-card-kicker">OUD BRONX / THE EDIT</span><h3></h3><p></p><span class="discovery-price"></span></div>';article.querySelector("img").alt=p.name;article.querySelector("img").src=p.image;article.querySelector("h3").textContent=p.name;article.querySelector(".details p").textContent=p[lang];article.querySelector(".discovery-price").textContent="$"+p.price;return article}));
+ cards.replaceChildren(...sets[mode].map(v=>{const p=catalog.find(x=>x.id===v.id);const article=document.createElement("article");article.className="discovery-card";article.innerHTML='<div class="discovery-image"><img loading="lazy" decoding="async" alt=""><video class="discovery-product-video" muted playsinline preload="none" aria-hidden="true"></video><div class="discovery-image-shine"></div></div><div class="details"><span class="discovery-card-kicker">OUD BRONX / THE EDIT</span><h3></h3><p></p><span class="discovery-price"></span></div>';article.querySelector("img").alt=p.name;article.querySelector("img").src=p.image;article.querySelector("h3").textContent=p.name;article.querySelector(".details p").textContent=p[lang];article.querySelector(".discovery-price").textContent="$"+p.price;return article}));
  render();
 }
 function render(){
@@ -293,20 +307,20 @@ function addPack(){const id=sets[mode][index].id,other=choosePair(id,occasion);c
 document.getElementById("discoveryPack").addEventListener("click",addPack);
 document.getElementById("discoveryOccasions").addEventListener("click",e=>{const b=e.target.closest("button[data-occasion]");if(!b)return;occasion=b.dataset.occasion;trackDiscovery("occasion_selected");render()});
 function addCurrent(){const p=sets[mode][index];items[p.id]=(items[p.id]||0)+1;selectedBundle=null;renderCart();trackDiscovery("add_to_order");openSheet()}
-function schedule(){clearTimeout(timer);if(visible&&!expanded&&!reduced.matches&&!document.hidden&&!stage.matches(":hover")&&!stage.contains(document.activeElement))timer=setTimeout(()=>{step(1);schedule()},5700)}
-function step(n){index=(index+n+sets[mode].length)%sets[mode].length;expanded=false;occasion="";trackDiscovery("swipe");render();schedule()}
-function setMode(m){if(mode===m)return;mode=m;index=0;expanded=false;occasion="";trackDiscovery("switch_collection");document.getElementById("tabHot").setAttribute("aria-selected",String(m==="hot"));document.getElementById("tabGems").setAttribute("aria-selected",String(m==="gems"));document.getElementById("discoveryTitle").textContent=m==="hot"?"HOT RIGHT NOW":"HIDDEN GEMS";document.getElementById("discoveryIntro").textContent=m==="hot"?"Fragancias que merecen toda la atención.":"Hallazgos seleccionados para descubrir algo diferente.";build();schedule()}
+function schedule(){clearTimeout(timer);if(visible&&!expanded&&!reduced.matches&&!document.hidden&&!stage.matches(":hover")&&!stage.contains(document.activeElement))timer=setTimeout(startProductVideo,23000)}
+function step(n){stopVideo();index=(index+n+sets[mode].length)%sets[mode].length;expanded=false;occasion="";trackDiscovery("swipe");render();schedule()}
+function setMode(m){if(mode===m)return;stopVideo();mode=m;index=0;expanded=false;occasion="";trackDiscovery("switch_collection");document.getElementById("tabHot").setAttribute("aria-selected",String(m==="hot"));document.getElementById("tabGems").setAttribute("aria-selected",String(m==="gems"));document.getElementById("discoveryTitle").textContent=m==="hot"?"HOT RIGHT NOW":"HIDDEN GEMS";document.getElementById("discoveryIntro").textContent=m==="hot"?"Fragancias que merecen toda la atención.":"Hallazgos seleccionados para descubrir algo diferente.";build();schedule()}
 document.getElementById("tabHot").addEventListener("click",()=>setMode("hot"));document.getElementById("tabGems").addEventListener("click",()=>setMode("gems"));
 document.getElementById("discoveryPrev").addEventListener("click",()=>step(-1));document.getElementById("discoveryNext").addEventListener("click",()=>step(1));
-buy.addEventListener("click",()=>{if(!expanded){expanded=true;trackDiscovery("reveal");render();clearTimeout(timer)}else addCurrent()});order.addEventListener("click",addCurrent);
+buy.addEventListener("click",()=>{if(!expanded){stopVideo();expanded=true;trackDiscovery("reveal");render();clearTimeout(timer)}else addCurrent()});order.addEventListener("click",addCurrent);
 stage.addEventListener("pointerdown",e=>{if(e.pointerType==="mouse")return;dragX=e.clientX},{passive:true});
 stage.addEventListener("pointerup",e=>{if(dragX===null)return;const delta=e.clientX-dragX;dragX=null;if(Math.abs(delta)>42)step(delta<0?1:-1)},{passive:true});
 stage.addEventListener("pointercancel",()=>{dragX=null});
 stage.addEventListener("mouseenter",()=>clearTimeout(timer));stage.addEventListener("mouseleave",schedule);
 stage.addEventListener("focusin",()=>clearTimeout(timer));stage.addEventListener("focusout",()=>requestAnimationFrame(schedule));
-document.addEventListener("visibilitychange",()=>{if(document.hidden)ambient.pause();else if(visible&&!reduced.matches)ambient.play().catch(()=>{});schedule()});
-reduced.addEventListener?.("change",schedule);
-new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;if(visible&&!reduced.matches){if(!ambient.src){ambient.src=ambient.dataset.src;ambient.load()}ambient.play().catch(()=>{})}else ambient.pause();schedule()},{threshold:.2}).observe(stage);
+document.addEventListener("visibilitychange",()=>{if(document.hidden){ambient.pause();stopVideo()}else if(visible&&!reduced.matches)ambient.play().catch(()=>{});schedule()});
+reduced.addEventListener?.("change",()=>{if(reduced.matches)stopVideo();schedule()});
+new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;if(!visible)stopVideo();if(visible&&!reduced.matches){if(!ambient.src){ambient.src=ambient.dataset.src;ambient.load()}ambient.play().catch(()=>{})}else ambient.pause();schedule()},{threshold:.2}).observe(stage);
 build();
 })();
 $("#year").textContent=new Date().getFullYear();
