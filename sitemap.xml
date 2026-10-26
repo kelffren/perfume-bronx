@@ -1,2 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>https://kelffren.github.io/perfume-bronx/</loc></url></urlset>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+<url><loc>https://kelffren.github.io/perfume-bronx/</loc></url>
+<url><loc>https://kelffren.github.io/perfume-bronx/es/products/yara/</loc><image:image><image:loc>https://scentzoneperfumes.com/cdn/shop/files/1000027890_1024x1024_0a262995-4cf6-4330-b009-79da032d1a3c.png?v=1764447533&amp;width=720</image:loc></image:image></url>
+<url><loc>https://kelffren.github.io/perfume-bronx/es/products/khamrah/</loc><image:image><image:loc>https://www.frameofmind.hu/img/56231/FOM1025/FOM1025.webp</image:loc></image:image></url>
+<url><loc>https://kelffren.github.io/perfume-bronx/es/products/asad/</loc><image:image><image:loc>https://www.opulensi.com/cdn/shop/files/AsadMain.jpg?v=1683748573&amp;width=720</image:loc></image:image></url>
+<url><loc>https://kelffren.github.io/perfume-bronx/es/compare/yara-khamrah-asad/</loc></url>
+<url><loc>https://kelffren.github.io/perfume-bronx/es/bronx-delivery/</loc></url>
+<url><loc>https://kelffren.github.io/perfume-bronx/es/</loc></url>
+<url><loc>https://kelffren.github.io/perfume-bronx/en/products/yara/</loc><image:image><image:loc>https://scentzoneperfumes.com/cdn/shop/files/1000027890_1024x1024_0a262995-4cf6-4330-b009-79da032d1a3c.png?v=1764447533&amp;width=720</image:loc></image:image></url>
+<url><loc>https://kelffren.github.io/perfume-bronx/en/products/khamrah/</loc><image:image><image:loc>https://www.frameofmind.hu/img/56231/FOM1025/FOM1025.webp</image:loc></image:image></url>
+<url><loc>https://kelffren.github.io/perfume-bronx/en/products/asad/</loc><image:image><image:loc>https://www.opulensi.com/cdn/shop/files/AsadMain.jpg?v=1683748573&amp;width=720</image:loc></image:image></url>
+<url><loc>https://kelffren.github.io/perfume-bronx/en/compare/yara-khamrah-asad/</loc></url>
+<url><loc>https://kelffren.github.io/perfume-bronx/en/bronx-delivery/</loc></url>
+<url><loc>https://kelffren.github.io/perfume-bronx/en/</loc></url>
+</urlset>
