@@ -1,7 +1,7 @@
 """Notify participating search engines after deployment, only for changed canonical pages.
 Dry-run by default. No Google submission or indexing/ranking guarantee.
 """
-import argparse, json, subprocess, urllib.request, xml.etree.ElementTree as ET
+import argparse, json, subprocess, time, urllib.request, xml.etree.ElementTree as ET
 from pathlib import Path
 from urllib.parse import urlsplit
 
@@ -20,10 +20,31 @@ def payload(urls):
     assert all(u.startswith(BASE) and not urlsplit(u).query for u in urls)
     return {'host': urlsplit(BASE).netloc, 'key': key, 'keyLocation': BASE + 'indexnow-key.txt', 'urlList': urls}
 
+def wait_for_publication(urls, seconds):
+    deadline = time.monotonic() + seconds
+    pending = list(urls)
+    while pending:
+        for url in pending[:]:
+            expected = (ROOT / (url[len(BASE):] + 'index.html')).read_bytes()
+            try:
+                request = urllib.request.Request(url + '?indexnow_check=' + str(time.time_ns()), headers={'Cache-Control': 'no-cache'})
+                with urllib.request.urlopen(request, timeout=15) as response:
+                    if response.read() == expected:
+                        pending.remove(url)
+            except OSError:
+                pass
+        if not pending:
+            return
+        if time.monotonic() >= deadline:
+            raise RuntimeError('Deployment not verified; no notification sent: ' + ', '.join(pending))
+        print(f'Waiting for published content: {len(pending)} pages', flush=True)
+        time.sleep(10)
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--since', default='HEAD^')
     parser.add_argument('--submit', action='store_true')
+    parser.add_argument('--wait-seconds', type=int, default=180)
     args = parser.parse_args()
     urls = changed_urls(args.since)
     if not urls:
@@ -33,6 +54,7 @@ def main():
     if not args.submit:
         print(json.dumps({'mode': 'dry-run', 'urls': urls}, indent=2))
         return
+    wait_for_publication(urls, args.wait_seconds)
     # Prevent notifying before the ownership file is actually published.
     with urllib.request.urlopen(data['keyLocation'], timeout=30) as response:
         assert response.read().decode().strip() == data['key'], 'Published key mismatch'

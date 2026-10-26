@@ -1,8 +1,6 @@
-name: Notify IndexNow after Pages deployment
+name: Notify IndexNow after publication
 on:
-  workflow_run:
-    workflows: [pages build and deployment]
-    types: [completed]
+  push:
     branches: [main]
   workflow_dispatch:
 permissions:
@@ -12,14 +10,13 @@ concurrency:
   cancel-in-progress: false
 jobs:
   notify:
-    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.workflow_run.head_sha || github.sha }}
           fetch-depth: 2
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - run: python scripts/notify-indexnow.py --submit
+      - run: python scripts/notify-indexnow.py --submit --wait-seconds 240

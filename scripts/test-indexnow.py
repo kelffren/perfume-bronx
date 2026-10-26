@@ -14,3 +14,14 @@ data=m.payload([m.BASE+'en/'])
 assert data['keyLocation']==m.BASE+'indexnow-key.txt'
 assert data['host']=='kelffren.github.io'
 print('PASS: changed canonical pages only, no legacy/docs, host/path scope, no query strings')
+from unittest.mock import MagicMock
+response=MagicMock();response.__enter__.return_value=response
+response.read.return_value=(m.ROOT/'en/index.html').read_bytes()
+with patch.object(m.urllib.request,'urlopen',return_value=response):
+ m.wait_for_publication([m.BASE+'en/'],0)
+response.read.return_value=b'old deployment'
+with patch.object(m.urllib.request,'urlopen',return_value=response):
+ try:m.wait_for_publication([m.BASE+'en/'],0)
+ except RuntimeError:pass
+ else:raise AssertionError('Stale deployment accepted')
+print('PASS: published content accepted, stale deployment prevents submission')

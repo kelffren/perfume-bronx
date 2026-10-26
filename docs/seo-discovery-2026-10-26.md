@@ -3,7 +3,7 @@
 ## Implemented
 - Twelve EN/ES guides now offer native sharing with clipboard/manual-link fallback. Shared URLs are canonical and exclude query strings, cart data and personal details. Cancellation is quiet. No third-party tracking is added.
 - Complete Twitter title/description/image tags and Open Graph image descriptions per guide. Existing catalogue photographs retained; no new media rights asserted.
-- IndexNow notifier and public ownership file scoped to `/perfume-bronx/`. Only changed HTML pages currently in the sitemap are submitted after a successful GitHub Pages deployment; documentation-only changes submit nothing. Dry run by default; `--submit` explicitly sends. HTTP 200/202 means receipt, not indexing, rankings or Google notification. Removed URLs are not submitted by this version; add deletion support if removing pages.
+- IndexNow notifier and public ownership file scoped to `/perfume-bronx/`. Only changed HTML pages currently in the sitemap are submitted after verifying that the changed HTML matches the published site; documentation-only changes submit nothing. Dry run by default; `--submit` explicitly sends. HTTP 200/202 means receipt, not indexing, rankings or Google notification. Removed URLs are not submitted by this version; add deletion support if removing pages.
 - SEO checks on PRs and main pushes: generation consistency, canonical URLs, unique URLs/H1, language reciprocity, internal links, local script/CSS existence, no noindex on sitemap pages, structured-data and JS syntax, share metadata and scoped IndexNow tests. Checks report failures; branch protection is not configured by this change and deployment is not gated on these checks.
 - Main storefront/cart code is unchanged by this batch. Concurrent main cart changes preserved.
 
@@ -33,3 +33,8 @@
 `python scripts/notify-indexnow.py --since <previous-deployed-commit>` (dry run)
 
 For multi-commit manual releases, provide the previous deployed commit with `--since`; the automatic workflow compares to the first parent of the deployed commit. The usual merge-PR deployment covers that PR's changes. Do not bulk-resubmit unchanged pages. No background process outside GitHub events is created.
+
+## Production verification
+PR #3 merged as `14bcd0dc3f0e232720b4fcd19268b1f43cced43b`. GitHub SEO checks and Pages deployment succeeded; all 13 public URLs returned HTTP 200 and all twelve guides contain sharing. Manual submission from that deployed commit returned HTTP 202 for twelve URLs: receipt accepted, key validation pending. No indexing or traffic increase is established.
+
+The dynamic Pages workflow did not trigger the workflow_run notification during this release. Replaced that trigger with main pushes and byte-for-byte publication verification before sending. The notifier waits for the changed HTML and public key; a stale/failed deployment never causes a premature submission. Documentation-only commits are no-ops. Automatic runtime validation follows in Actions.
