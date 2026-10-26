@@ -27,3 +27,6 @@ No fabricated address, inventory, delivery promises, testimonials, reviews, link
 https://developers.google.com/search/docs/specialty/ecommerce
 https://developers.google.com/search/docs/essentials/spam-policies
 https://developers.google.com/search/docs/specialty/ecommerce/help-google-understand-your-ecommerce-site-structure
+
+## Resume point — 26 October 2026
+Read `docs/organic-growth-2026-10-26.md`. Edit the bilingual library through `scripts/build-organic.py`, then run the structural and browser checks. Resolve the verified WhatsApp number and Search Console access if provided; otherwise continue owned imagery and verified editorial content. Inspect current main before editing to preserve parallel funnel/media work.
