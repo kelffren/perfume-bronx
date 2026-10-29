@@ -131,7 +131,7 @@ for lang in ('es','en'):
  sitemap.write_text(xml,encoding='utf-8')
 # Preserve six reviewed bilingual Academy presentations in the generated sitemap.
 for lang in ('es','en'):
- for perfume in ('yara','khamrah','asad','notes','authenticity','longevity'):
+ for perfume in ('yara','khamrah','asad','notes','authenticity','longevity','concentration','gifts','oud','care','occasions'):
   presentation=R/lang/'academy'/perfume/'index.html'
   if not presentation.is_file():
    raise ValueError(f'Missing Academy presentation: {presentation}')
@@ -141,5 +141,5 @@ for lang in ('es','en'):
   if '<loc>'+url+'</loc>' not in xml:
    xml=xml.replace('</urlset>','<url><loc>'+e(url)+'</loc></url>\n</urlset>')
   sitemap.write_text(xml,encoding='utf-8')
-print(f'Built 12 curated pages and {len(article_urls)} editorial article URLs; sitemap includes {27+len(article_urls)} URLs.')
+print(f'Built 12 curated pages and {len(article_urls)} editorial article URLs; sitemap includes {37+len(article_urls)} URLs.')
 
