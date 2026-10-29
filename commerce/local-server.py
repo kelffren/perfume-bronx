@@ -6,6 +6,7 @@ from http.server import BaseHTTPRequestHandler,ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import urlsplit
 import json,sqlite3,uuid,datetime,os,secrets,hmac
+from inventory import reserve
 DB=Path(os.environ.get("OUD_LOCAL_DB",str(Path(__file__).with_name("commerce-local.sqlite3"))))
 PORT=int(os.environ.get("OUD_LOCAL_PORT","8765"))
 CATALOG_PATH=Path(__file__).with_name("catalog.json")
@@ -71,12 +72,19 @@ class Handler(BaseHTTPRequestHandler):
    self.send(200,{"sku":sku,"price":round(price,2),"stock":stock})
   except (ValueError,KeyError,TypeError,json.JSONDecodeError):self.send(400,{"error":"invalid product"})
  def do_POST(self):
-  if urlsplit(self.path).path!="/orders":return self.send(404,{"error":"not found"})
+  route=urlsplit(self.path).path
+  if route not in ("/orders","/admin/reservations"):return self.send(404,{"error":"not found"})
+  if route=="/admin/reservations" and not admin_authorized(self):return self.send(403,{"error":"local admin authorization required"})
   try:
    size=int(self.headers.get("Content-Length","0"))
    if size<1 or size>8192:return self.send(413,{"error":"invalid body size"})
    payload=json.loads(self.rfile.read(size))
    items=payload.get("items")
+   if route=="/admin/reservations":
+    try:
+     with connect() as db:record=reserve(db,items)
+     return self.send(201,record)
+    except ValueError as exc:return self.send(409,{"error":str(exc)})
    if not isinstance(items,list) or not 1<=len(items)<=20:raise ValueError("invalid items")
    with connect() as db:allowed={p["sku"]:p["price"] for p in catalog_rows(db)}
    validated=[]
