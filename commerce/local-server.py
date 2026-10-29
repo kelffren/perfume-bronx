@@ -28,6 +28,7 @@ def connect():
  if db.execute("SELECT COUNT(*) FROM products").fetchone()[0]==0:
   data=json.loads(CATALOG_PATH.read_text())["products"]
   db.executemany("INSERT INTO products VALUES (?,?,?,?)",[(p["sku"],p["name"],p["price"],p["stock"]) for p in data])
+ db.commit()
  return db
 class Handler(BaseHTTPRequestHandler):
  def send(self,status,data):
