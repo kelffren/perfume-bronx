@@ -7,3 +7,6 @@ Files: `assets/knowledge-tools.js`, `assets/knowledge-tools.css`, `es/tools/inde
 Tests: GitHub Actions pending at time of this entry; do not infer production publication from commit.
 Blockers: verified WhatsApp destination, Search Console access, actual stock and first-hand fragrance evidence.
 Next: confirm CI; validate published URLs; implement sourced Scent Match and central catalogue.
+
+## 2026-10-29 — Scent Match MVP
+Branch `feat/scent-match-v1`. Created `/es/scent-match/`, `/en/scent-match/`, `assets/scent-match.js`, `assets/scent-match.css`, `data/scent-match.json`; generator and sitemap integration. Editorial matching only; no unverified luxury dupes, prices, availability or personal wear-test claims. Test CI and verify production before claiming publication. Next: centralize catalogue and add evidence-backed reference perfumes.
