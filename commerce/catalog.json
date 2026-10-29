@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "currency": "USD",
+  "status": "prototype",
+  "products": [
+    {
+      "sku": "yara",
+      "name": "Lattafa Yara",
+      "price": 25,
+      "stock": 0
+    },
+    {
+      "sku": "khamrah",
+      "name": "Lattafa Khamrah",
+      "price": 35,
+      "stock": 0
+    },
+    {
+      "sku": "asad",
+      "name": "Lattafa Asad",
+      "price": 35,
+      "stock": 0
+    }
+  ]
+}
