@@ -26,3 +26,6 @@ Next three: (1) verify KE-001 CI/deployment, (2) build KE-002 with sourced compa
 
 ## KE-002 progress — 2026-10-29
 Bilingual Scent Match MVP built for three documented Lattafa profiles with accessible search and family filters, indexed routes and crawlable fallback cards. Status IMPLEMENTADA; CI, deployment and live interaction verification remain pending. Next: expand verified data and create distinct editorial comparisons, not unsupported dupes.
+
+## KE-005 — central catalogue, 2026-10-29
+Status: IMPLEMENTADA (pending CI and public verification). Source `data/catalog.json` holds the three current store products, displayed-but-unconfirmed prices, explicit unknown stock, bilingual manufacturer-note metadata, imagery provenance and tags. `scripts/build-organic.py` regenerates the existing synchronous storefront array without changing cart/bundle interfaces; Scent Match reads the same JSON. CI checks catalogue consistency. Acceptance: CI green, storefront cart and Scent Match browser verified. Next: expand only with confirmed SKU details and licensed imagery.
