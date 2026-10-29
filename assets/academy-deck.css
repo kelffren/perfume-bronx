@@ -23,3 +23,5 @@
 @keyframes deck-reveal{from{opacity:0;transform:translateX(24px) rotateY(-7deg) scale(.97)}to{opacity:1;transform:translateX(0) rotateY(0) scale(1)}}
 @media(max-width:680px){.deck-slide{grid-template-columns:1fr;min-height:0;padding:24px}.deck-slide .deck-art{order:-1;transform:none}.deck-slide .deck-copy{transform:none}.deck-slide img{max-height:220px}.deck-controls button{padding:10px 13px}.deck-intro h1{font-size:46px}}
 @media(prefers-reduced-motion:reduce){.deck-enhanced .deck-slide[aria-hidden="false"]{animation:none}.deck-progress span{transition:none}.deck-slide .deck-art,.deck-slide .deck-copy{transform:none}}
+
+.deck-no-motion .deck-slide[aria-hidden="false"]{animation:none!important}.deck-no-motion .deck-art,.deck-no-motion .deck-copy{transform:none!important}
