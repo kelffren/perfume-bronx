@@ -28,3 +28,6 @@ Status: specification only. No Search Console, GA4 or Plausible access verified 
 - [ ] Record a baseline of indexed pages, clicks, impressions and top queries.
 - [ ] Record the actual business WhatsApp destination and test on mobile.
 - [ ] Define a private paid-order ledger to close the attribution loop.
+
+## Knowledge Engine instrumentation backlog — 2026-10-29
+New tools: calculator submitted, problem selected, guide click. Event aggregation is **not enabled**; do not infer usage from localStorage. Implement only after consent/privacy review and verified analytics provider. Separate outbound WhatsApp clicks from actual paid orders.

@@ -41,3 +41,6 @@ P2 local: Bronx fragrance consultation, delivery eligibility and testing only af
 
 ## Session log format
 Date | branch/commit | pages/tools changed | checks (pass/fail/not run) | deployed URL verified | blockers | next 3 actions.
+
+## Knowledge Engine 2.0 — 2026-10-29
+See `WORK-SEO-ROADMAP.md`, `WORK-SEO-SESSION-LOG.md`, `SEO-CONTENT-INVENTORY.md`, `SEO-QUALITY-CHECKLIST.md`. First batch adds bilingual calculators and troubleshooting. Publication not confirmed until GitHub Pages checks pass. Resume with sourced Scent Match and central catalogue. Do not redo existing authenticity guides.

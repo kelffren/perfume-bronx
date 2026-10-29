@@ -136,6 +136,21 @@ for lang in ('es','en'):
   url=BASE+lang+'/'+slug+'/'
   if '<loc>'+url+'</loc>' not in xml:xml=xml.replace('</urlset>','<url><loc>'+e(url)+'</loc></url>\n</urlset>')
   sitemap.write_text(xml,encoding='utf-8')
+# Knowledge Engine tools are independently authored and must survive regeneration.
+for lang in ('es','en'):
+ guide=R/lang/'tools'/'index.html'
+ if not guide.is_file():raise ValueError(f'Missing knowledge tools: {guide}')
+ hub=R/lang/'index.html'
+ html=hub.read_text(encoding='utf-8')
+ label='Calculadoras y respuestas sobre perfumes' if lang=='es' else 'Perfume calculators and troubleshooting'
+ link_html='<section class="reading"><h2>'+label+'</h2><p><a href="'+PREFIX+lang+'/tools/">'+label+'</a></p></section>'
+ if PREFIX+lang+'/tools/' not in html:html=html.replace('</main>',link_html+'</main>',1)
+ hub.write_text(html,encoding='utf-8')
+ sitemap=R/'sitemap.xml'
+ xml=sitemap.read_text(encoding='utf-8')
+ url=BASE+lang+'/tools/'
+ if '<loc>'+url+'</loc>' not in xml:xml=xml.replace('</urlset>','<url><loc>'+e(url)+'</loc></url>\n</urlset>')
+ sitemap.write_text(xml,encoding='utf-8')
 # Academy landing pages are authored independently, so include them in the sitemap.
 for lang in ('es','en'):
  academy=R/lang/'academy'/'index.html'
