@@ -11,3 +11,7 @@
 - [ ] Inspect GitHub Actions, fix failures, merge only green changes.
 - [ ] Verify public deployment and exact routes, separately from Google indexing.
 - [ ] Update roadmap, session log, inventory and next three tasks.
+
+- [ ] Validate central JSON against storefront products and Scent Match via `python scripts/check-catalog.py`.
+- [ ] Confirm storefront cart and bundle totals still work with generated catalogue.
+- [ ] Review image rights and confirm live prices/availability with merchant before public promises.
