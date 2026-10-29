@@ -17,3 +17,6 @@ Existing organic product pages, comparisons, local explainers and Academy routes
 
 ## Structured product inventory
 Source `data/catalog.json`: Lattafa Yara, Khamrah and Asad; each with ES/EN scent notes, manufacturer URL, third-party image provenance and current storefront display price. Stock explicitly unknown; do not infer availability. No new indexed product routes in this batch.
+
+## Fragrance encyclopedia batch 1
+ES + EN: `/notes/`, `/notes/vanilla/`, `/notes/amber/`, `/notes/cinnamon/`. Eight authored routes; source examples reference Lattafa Yara, Khamrah and Asad where appropriate. Status IMPLEMENTADA, pending production verification.
