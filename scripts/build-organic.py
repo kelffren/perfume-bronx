@@ -23,8 +23,8 @@ index_path=R/'index.html'
 raw_home=index_path.read_text(encoding='utf-8')
 def js_obj(obj):
  return '{'+','.join(k+':'+json.dumps(v,ensure_ascii=False,separators=(',',':')) for k,v in obj.items())+'}'
-pattern=r'const catalog=\\[\\{id:"yara".*?\\}\\];\\nconst bundles='
-replacement='const catalog=['+','.join(js_obj(p) for p in storefront)+'];\\nconst bundles='
+pattern=r'const catalog=\[\{id:"yara".*?\}\];\nconst bundles='
+replacement='const catalog=['+','.join(js_obj(p) for p in storefront)+'];\nconst bundles='
 new_home,count=re.subn(pattern,lambda _:replacement,raw_home,count=1,flags=re.S)
 if count!=1:raise ValueError('Storefront catalogue anchor not found; refusing to change cart')
 if new_home!=raw_home:index_path.write_text(new_home,encoding='utf-8')
