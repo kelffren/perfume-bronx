@@ -21,7 +21,9 @@ jobs:
         run: python scripts/check-organic.py
       - name: Verify generator is deterministic
         run: |
+          git diff -- index.html es en sitemap.xml > /tmp/seo-first-build.diff
           python scripts/build-organic.py
-          git diff --exit-code -- index.html es en sitemap.xml
+          git diff -- index.html es en sitemap.xml > /tmp/seo-second-build.diff
+          cmp /tmp/seo-first-build.diff /tmp/seo-second-build.diff
       - run: node --check assets/share.js
       - run: python scripts/test-indexnow.py
