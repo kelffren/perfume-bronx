@@ -172,6 +172,21 @@ for lang in ('es','en'):
  url=BASE+lang+'/tools/'
  if '<loc>'+url+'</loc>' not in xml:xml=xml.replace('</urlset>','<url><loc>'+e(url)+'</loc></url>\n</urlset>')
  sitemap.write_text(xml,encoding='utf-8')
+# Fragrance encyclopedia: authored bilingual pages, preserved on every build.
+for lang in ('es','en'):
+ hub=R/lang/'index.html'
+ html=hub.read_text(encoding='utf-8')
+ label='Enciclopedia de notas olfativas' if lang=='es' else 'Fragrance notes encyclopedia'
+ card=section(label,'<p>'+link(lang+'/notes/',label)+'</p>')
+ if PREFIX+lang+'/notes/' not in html:html=html.replace('</main>',card+'</main>',1)
+ hub.write_text(html,encoding='utf-8')
+ for page in sorted((R/lang/'notes').rglob('index.html')):
+  slug=page.parent.relative_to(R).as_posix()+'/'
+  sitemap=R/'sitemap.xml'
+  xml=sitemap.read_text(encoding='utf-8')
+  url=BASE+slug
+  if '<loc>'+url+'</loc>' not in xml:xml=xml.replace('</urlset>','<url><loc>'+e(url)+'</loc></url>\\n</urlset>')
+  sitemap.write_text(xml,encoding='utf-8')
 # Scent Match is independently authored; preserve its crawlable links and sitemap.
 for lang in ('es','en'):
  guide=R/lang/'scent-match'/'index.html'
