@@ -116,7 +116,7 @@ for lang in ('es','en'):
 if article_urls:
  sitemap=R/'sitemap.xml'
  xml=sitemap.read_text(encoding='utf-8')
- xml=xml.replace('</urlset>',''.join('<url><loc>'+e(url)+'</loc></url>\\n' for url in article_urls)+'</urlset>')
+ xml=xml.replace('</urlset>',''.join('<url><loc>'+e(url)+'</loc></url>\n' for url in article_urls)+'</urlset>')
  sitemap.write_text(xml,encoding='utf-8')
 print(f'Built 12 curated pages and {len(article_urls)} editorial article URLs; sitemap includes {13+len(article_urls)} URLs.')
 
