@@ -25,3 +25,25 @@ def reserve(db,items):
  except (ValueError,sqlite3.Error):
   db.rollback()
   raise
+
+def cancel_reservation(db,order_id):
+ """Release stock once; repeated cancellation is a no-op."""
+ if not isinstance(order_id,str) or len(order_id)>100:raise ValueError("invalid order id")
+ try:
+  db.execute("BEGIN IMMEDIATE")
+  row=db.execute("SELECT status,items FROM orders WHERE id=?",(order_id,)).fetchone()
+  if row is None:raise ValueError("unknown order")
+  status,serialized=row
+  if status=="cancelled-test":
+   db.rollback()
+   return {"id":order_id,"status":"cancelled-test","alreadyCancelled":True}
+  if status!="reserved-test":raise ValueError("order is not a reservation")
+  items=json.loads(serialized)
+  for item in items:
+   db.execute("UPDATE products SET stock=stock+? WHERE sku=?",(item["quantity"],item["sku"]))
+  db.execute("UPDATE orders SET status='cancelled-test' WHERE id=?",(order_id,))
+  db.commit()
+  return {"id":order_id,"status":"cancelled-test","alreadyCancelled":False}
+ except (ValueError,sqlite3.Error):
+  db.rollback()
+  raise
