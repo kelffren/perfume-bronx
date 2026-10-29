@@ -29,3 +29,6 @@ Bilingual Scent Match MVP built for three documented Lattafa profiles with acces
 
 ## KE-005 — central catalogue, 2026-10-29
 Status: IMPLEMENTADA (pending CI and public verification). Source `data/catalog.json` holds the three current store products, displayed-but-unconfirmed prices, explicit unknown stock, bilingual manufacturer-note metadata, imagery provenance and tags. `scripts/build-organic.py` regenerates the existing synchronous storefront array without changing cart/bundle interfaces; Scent Match reads the same JSON. CI checks catalogue consistency. Acceptance: CI green, storefront cart and Scent Match browser verified. Next: expand only with confirmed SKU details and licensed imagery.
+
+## KE-003 progress — 2026-10-29
+Status: IMPLEMENTADA, pending CI and public verification. Created ES/EN fragrance encyclopedia hubs and vanilla, amber, cinnamon note guides (8 routes), with manufacturer-linked real catalogue examples, canonical/hreflang, crawlable links and sitemap generator integration. Next: extend with independently sourced oud, musk, rose, sandalwood, etc. Avoid empty programmatic SEO pages.
