@@ -36,7 +36,7 @@ class Handler(BaseHTTPRequestHandler):
   self.send_response(status)
   self.send_header("Content-Type","application/json; charset=utf-8")
   self.send_header("Cache-Control","no-store")
-  self.send_header("Access-Control-Allow-Origin",self.headers.get("Origin","null") if self.headers.get("Origin") in ("http://localhost:8000","http://127.0.0.1:8000","https://kelffren.github.io") else "null")
+  self.send_header("Access-Control-Allow-Origin",self.headers.get("Origin","null") if self.headers.get("Origin") in ("http://localhost:8000","http://127.0.0.1:8000") else "null")
   self.send_header("Access-Control-Allow-Headers","Content-Type, X-OUD-Admin-Token")
   self.send_header("Content-Length",str(len(body)))
   self.end_headers()
@@ -55,6 +55,7 @@ class Handler(BaseHTTPRequestHandler):
    with connect() as db:return self.send(200,{"products":catalog_rows(db)})
   if urlsplit(self.path).path=="/health":return self.send(200,{"ok":True,"mode":"local-sqlite"})
   if urlsplit(self.path).path!="/orders":return self.send(404,{"error":"not found"})
+  if not admin_authorized(self):return self.send(403,{"error":"local admin authorization required"})
   with connect() as db:rows=db.execute("SELECT id,created_at,status,items FROM orders ORDER BY created_at DESC LIMIT 200").fetchall()
   self.send(200,[{"id":a,"createdAt":b,"status":c,"items":json.loads(d)} for a,b,c,d in rows])
  def do_PUT(self):
@@ -76,7 +77,7 @@ class Handler(BaseHTTPRequestHandler):
   route=urlsplit(self.path).path
   cancel=route.startswith("/admin/reservations/") and route.endswith("/cancel")
   if route not in ("/orders","/admin/reservations") and not cancel:return self.send(404,{"error":"not found"})
-  if (route=="/admin/reservations" or cancel) and not admin_authorized(self):return self.send(403,{"error":"local admin authorization required"})
+  if (route=="/admin/reservations" or cancel or route=="/orders") and not admin_authorized(self):return self.send(403,{"error":"local admin authorization required"})
   if cancel:
    try:
     order_id=route.split("/")[3]
