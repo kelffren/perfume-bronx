@@ -10,5 +10,5 @@ class TestLocalStorage(unittest.TestCase):
     db.execute("INSERT INTO orders VALUES (?,?,?,?)",("test","2026-10-29T00:00:00Z","draft",'[{"sku":"yara","quantity":1,"unitPrice":25}]'))
     self.assertEqual(db.execute("SELECT COUNT(*) FROM orders").fetchone()[0],1)
  def test_prices(self):
-  self.assertEqual(mod.ALLOWED,{"yara":25,"khamrah":35,"asad":35})
+  self.assertEqual(mod.prices(),{"yara":25,"khamrah":35,"asad":35})
 if __name__=="__main__":unittest.main()
