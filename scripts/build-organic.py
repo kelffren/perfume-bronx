@@ -18,16 +18,18 @@ for product in products:
  assert product['id'] and product['name'] and product['price']>=0
  assert product['availability'] in ('unknown','in_stock','out_of_stock')
 assert {p['id'] for p in products}=={'yara','khamrah','asad'}, 'Current cart/bundles support exactly three products'
-storefront=[{key:p[key] for key in ('id','name','price','es','en') } | {'image':p['image'],'source':p['image_source']} for p in products]
+storefront=[{key:p[key] for key in ('id','name','price','es','en')} | {'image':p['image'],'source':p['image_source']} for p in products]
 index_path=R/'index.html'
 raw_home=index_path.read_text(encoding='utf-8')
+def js_obj(obj):
+ return '{'+','.join(k+':'+json.dumps(v,ensure_ascii=False,separators=(',',':')) for k,v in obj.items())+'}'
 pattern=r'const catalog=\\[\\{id:"yara".*?\\}\\];\\nconst bundles='
-replacement='const catalog='+json.dumps(storefront,ensure_ascii=False,separators=(',',':'))+';\\nconst bundles='
+replacement='const catalog=['+','.join(js_obj(p) for p in storefront)+'];\\nconst bundles='
 new_home,count=re.subn(pattern,lambda _:replacement,raw_home,count=1,flags=re.S)
 if count!=1:raise ValueError('Storefront catalogue anchor not found; refusing to change cart')
 if new_home!=raw_home:index_path.write_text(new_home,encoding='utf-8')
 home=new_home
-photos=dict(re.findall(r'id:"(yara|khamrah|asad)".*?image:"([^"]+)"',home.split('const bundles=')[0]))
+photos={p['id']:p['image'] for p in products}
 DATA={
  'yara':{
  'es':['Vainilla · Floral · Tropical','Mandarina, heliotropo y orquídea','Acordes tropicales y gourmand','Vainilla, sándalo y almizcle','Empieza por Yara si buscas una combinación floral y dulce. Pregunta por el original: compartir nombre con otras versiones no significa compartir aroma.','Si prefieres evitar el dulzor, compara antes de elegir. Describe un perfume que te guste y uno que no; esa información ayuda más que pedir simplemente «el mejor».'],
