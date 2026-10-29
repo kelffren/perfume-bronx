@@ -8,7 +8,9 @@ from urllib.parse import urlsplit
 import json,sqlite3,uuid,datetime,os
 DB=Path(os.environ.get("OUD_LOCAL_DB",str(Path(__file__).with_name("commerce-local.sqlite3"))))
 PORT=int(os.environ.get("OUD_LOCAL_PORT","8765"))
-ALLOWED={"yara":25,"khamrah":35,"asad":35}
+CATALOG_PATH=Path(__file__).with_name("catalog.json")
+def prices():
+ return {p["sku"]:p["price"] for p in json.loads(CATALOG_PATH.read_text())["products"]}
 def connect():
  db=sqlite3.connect(DB)
  db.execute("CREATE TABLE IF NOT EXISTS orders (id TEXT PRIMARY KEY, created_at TEXT NOT NULL, status TEXT NOT NULL, items TEXT NOT NULL)")
@@ -30,6 +32,7 @@ class Handler(BaseHTTPRequestHandler):
   self.send_header("Access-Control-Allow-Headers","Content-Type")
   self.end_headers()
  def do_GET(self):
+  if urlsplit(self.path).path=="/catalog":return self.send(200,json.loads(CATALOG_PATH.read_text()))
   if urlsplit(self.path).path=="/health":return self.send(200,{"ok":True,"mode":"local-sqlite"})
   if urlsplit(self.path).path!="/orders":return self.send(404,{"error":"not found"})
   with connect() as db:rows=db.execute("SELECT id,created_at,status,items FROM orders ORDER BY created_at DESC LIMIT 200").fetchall()
@@ -42,11 +45,12 @@ class Handler(BaseHTTPRequestHandler):
    payload=json.loads(self.rfile.read(size))
    items=payload.get("items")
    if not isinstance(items,list) or not 1<=len(items)<=20:raise ValueError("invalid items")
+   allowed=prices()
    validated=[]
    for item in items:
     sku=item["sku"];qty=item["quantity"]
-    if sku not in ALLOWED or type(qty)!=int or not 1<=qty<=20:raise ValueError("invalid product or quantity")
-    validated.append({"sku":sku,"quantity":qty,"unitPrice":ALLOWED[sku]})
+    if sku not in allowed or type(qty)!=int or not 1<=qty<=20:raise ValueError("invalid product or quantity")
+    validated.append({"sku":sku,"quantity":qty,"unitPrice":allowed[sku]})
    record={"id":str(uuid.uuid4()),"createdAt":datetime.datetime.now(datetime.timezone.utc).isoformat(),"status":"draft","items":validated}
    with connect() as db:db.execute("INSERT INTO orders VALUES (?,?,?,?)",(record["id"],record["createdAt"],record["status"],json.dumps(validated)))
    self.send(201,record)
