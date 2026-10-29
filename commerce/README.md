@@ -20,3 +20,7 @@ OUD_LOCAL_ADMIN_TOKEN="$(python3 -c 'import secrets; print(secrets.token_urlsafe
 For repeated use, save the generated token in your local password manager and start the server with that same value. In a separate terminal run `python3 -m http.server 8000` from the repository root. Open `http://localhost:8000/commerce/admin.html`, select **SQLite local**, enter the exact token, and load the catalogue. The server persists price and stock updates in its SQLite database. This does not change public storefront prices.
 
 The admin endpoint requires a configured token and a local browser Origin. Do not publish this server, expose port 8765, or store the token in frontend files. No customer data, payment data, or live inventory should be entered. Security hardening, end-to-end tests, and deployment review are required before real use.
+
+## Atomic test reservations
+
+The localhost-only `POST /admin/reservations` endpoint requires the same `X-OUD-Admin-Token` and an allowed localhost Origin. JSON body example: `{"items":[{"sku":"yara","quantity":1}]}`. This is an **administrative test reservation**, not a customer checkout. It atomically checks stock, decrements it, and stores a `reserved-test` order. An insufficient-stock request returns HTTP 409 without changing stock. Run `python3 commerce/test-local-server.py` to exercise the reservation and rollback tests. Do not use it for real orders or payments; cancellation/release, idempotency, expiry, and security review are not yet implemented.
