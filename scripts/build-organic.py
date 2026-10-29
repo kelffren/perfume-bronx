@@ -151,6 +151,21 @@ for lang in ('es','en'):
  url=BASE+lang+'/tools/'
  if '<loc>'+url+'</loc>' not in xml:xml=xml.replace('</urlset>','<url><loc>'+e(url)+'</loc></url>\n</urlset>')
  sitemap.write_text(xml,encoding='utf-8')
+# Scent Match is independently authored; preserve its crawlable links and sitemap.
+for lang in ('es','en'):
+ guide=R/lang/'scent-match'/'index.html'
+ if not guide.is_file():raise ValueError(f'Missing scent match page: {guide}')
+ hub=R/lang/'index.html'
+ html=hub.read_text(encoding='utf-8')
+ label='Descubre perfumes por aroma' if lang=='es' else 'Find fragrances by scent'
+ card='<section class="reading"><h2>'+label+'</h2><p><a href="'+PREFIX+lang+'/scent-match/">'+label+'</a></p></section>'
+ if PREFIX+lang+'/scent-match/' not in html:html=html.replace('</main>',card+'</main>',1)
+ hub.write_text(html,encoding='utf-8')
+ sitemap=R/'sitemap.xml'
+ xml=sitemap.read_text(encoding='utf-8')
+ url=BASE+lang+'/scent-match/'
+ if '<loc>'+url+'</loc>' not in xml:xml=xml.replace('</urlset>','<url><loc>'+e(url)+'</loc></urlset>')
+ sitemap.write_text(xml,encoding='utf-8')
 # Academy landing pages are authored independently, so include them in the sitemap.
 for lang in ('es','en'):
  academy=R/lang/'academy'/'index.html'
