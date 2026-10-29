@@ -1,0 +1,23 @@
+name: Editorial question research
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '15 13 * * 1'
+permissions:
+  contents: read
+  issues: write
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Discover editorial questions
+        run: python scripts/discover-questions.py --live
+      - name: Create review issue (never publish automatically)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh issue create --title "Revisión editorial semanal: preguntas frecuentes $(date -u +%F)" --body-file docs/editorial-question-queue.md
