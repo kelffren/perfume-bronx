@@ -17,7 +17,11 @@ jobs:
         with:
           node-version: '22'
       - run: python scripts/build-organic.py
-      - run: git diff --exit-code -- index.html es en sitemap.xml
-      - run: python scripts/check-organic.py
+      - name: Validate generated pages and links
+        run: python scripts/check-organic.py
+      - name: Verify generator is deterministic
+        run: |
+          python scripts/build-organic.py
+          git diff --exit-code -- index.html es en sitemap.xml
       - run: node --check assets/share.js
       - run: python scripts/test-indexnow.py
