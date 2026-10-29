@@ -164,7 +164,7 @@ for lang in ('es','en'):
  sitemap=R/'sitemap.xml'
  xml=sitemap.read_text(encoding='utf-8')
  url=BASE+lang+'/scent-match/'
- if '<loc>'+url+'</loc>' not in xml:xml=xml.replace('</urlset>','<url><loc>'+e(url)+'</loc></urlset>')
+ if '<loc>'+url+'</loc>' not in xml:xml=xml.replace('</urlset>','<url><loc>'+e(url)+'</loc></url></urlset>')
  sitemap.write_text(xml,encoding='utf-8')
 # Academy landing pages are authored independently, so include them in the sitemap.
 for lang in ('es','en'):
