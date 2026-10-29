@@ -31,7 +31,7 @@ P2 local: Bronx fragrance consultation, delivery eligibility and testing only af
 - Make all tools accessible by keyboard and discoverable from mobile menu and footer.
 
 ## Current implementation status
-- 2026-10-29: repository audit started; this plan/ledger created. No new SEO article, authenticity tool, finder or comparator implemented in this change.
+- 2026-10-29: created four bilingual authenticity guides (general + Lattafa QR), linked from both editorial hubs, indexed in sitemap and preserved by the generator. Added social metadata and share controls after CI exposed missing tags. No interactive authenticity tool, finder or comparator yet. GitHub Actions revalidation pending; no production deployment claimed.
 - Existing SEO generator and QA scripts discovered. Full browser/device QA not yet performed.
 
 ## Next three executable tasks
