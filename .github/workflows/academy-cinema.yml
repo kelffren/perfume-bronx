@@ -1,0 +1,42 @@
+name: Academy cinema QA
+on:
+  pull_request:
+    paths:
+      - 'assets/academy-*'
+      - 'scripts/*academy*'
+      - 'scripts/test-organic.cjs'
+      - 'es/academy/**'
+      - 'en/academy/**'
+      - '.github/workflows/academy-cinema.yml'
+permissions:
+  contents: read
+jobs:
+  browser:
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, webkit]
+    runs-on: ubuntu-latest
+    env:
+      BROWSER: ${{ matrix.browser }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: npm install --no-save --package-lock=false playwright@1.62.1
+      - run: npx playwright install --with-deps ${{ matrix.browser }}
+      - run: |
+          python scripts/build-academy-cinema.py
+          python scripts/build-academy-products.py
+          python scripts/build-academy-lessons.py
+          python scripts/build-academy-hub.py
+      - run: git diff --exit-code -- es/academy en/academy
+      - run: python scripts/check-organic.py
+      - run: node scripts/test-academy-cinema.cjs
+      - run: node scripts/test-academy-all.cjs
+      - if: matrix.browser == 'chromium'
+        run: node scripts/test-organic.cjs

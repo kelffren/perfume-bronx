@@ -1,0 +1,2 @@
+/* Open a native topic disclosure when navigating to its existing HTML anchor. */
+(()=>{'use strict';const reveal=()=>{let id;try{id=decodeURIComponent(location.hash.slice(1))}catch{return}const target=document.getElementById(id);if(target?.matches('details.hub-topic'))target.open=true;};addEventListener('hashchange',reveal);document.querySelectorAll('.academy-jump a').forEach(a=>a.addEventListener('click',()=>{const target=document.getElementById(a.hash.slice(1));if(target?.matches('details.hub-topic'))target.open=true;}));reveal();})();
