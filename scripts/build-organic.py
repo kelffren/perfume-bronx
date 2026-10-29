@@ -80,4 +80,43 @@ else:home=home.replace('<div class="grid" id="products"></div>','<div class="gri
 xml=['<?xml version="1.0" encoding="UTF-8"?>','<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">',f'<url><loc>{BASE}</loc></url>']
 for dest,image in pages:xml.append(f'<url><loc>{BASE+dest}</loc>'+(f'<image:image><image:loc>{e(image)}</image:loc></image:image>' if image else '')+'</url>')
 (R/'sitemap.xml').write_text('\n'.join(xml+['</urlset>'])+'\n')
-print('Built 12 curated pages and 13 sitemap URLs.')
+# Preserve and index independently authored editorial articles.
+# Discover articles on disk rather than hard-coding a list. Each article is a
+# reviewed static HTML file, never generated from a keyword-only template.
+from html.parser import HTMLParser
+class ArticleTitle(HTMLParser):
+ def __init__(self):
+  super().__init__();self.inside=False;self.title=''
+ def handle_starttag(self,tag,attrs):
+  if tag=='h1':self.inside=True
+ def handle_endtag(self,tag):
+  if tag=='h1':self.inside=False
+ def handle_data(self,data):
+  if self.inside:self.title+=data
+
+article_urls=[]
+for lang in ('es','en'):
+ cards_html=[]
+ for article in sorted((R/lang/'articles').glob('*/index.html')):
+  parser=ArticleTitle();parser.feed(article.read_text(encoding='utf-8'))
+  if not parser.title.strip():
+   raise ValueError(f'Article missing H1: {article}')
+  relative=article.parent.relative_to(R).as_posix()+'/'
+  article_urls.append(BASE+relative)
+  cards_html.append('<article>'+link(relative,parser.title.strip(),'card-title')+'</article>')
+ if cards_html:
+  hub=R/lang/'index.html'
+  content=hub.read_text(encoding='utf-8')
+  section_title='Tutoriales de perfumes' if lang=='es' else 'Perfume tutorials'
+  section_html=section(section_title,'<div class="cards">'+''.join(cards_html)+'</div>')
+  anchor='<section class="reading"><h2>'+('Elige con información' if lang=='es' else 'Make an informed choice')+'</h2>'
+  if anchor not in content:raise ValueError(f'Missing guide hub anchor: {hub}')
+  content=content.replace(anchor,section_html+anchor,1)
+  hub.write_text(content,encoding='utf-8')
+if article_urls:
+ sitemap=R/'sitemap.xml'
+ xml=sitemap.read_text(encoding='utf-8')
+ xml=xml.replace('</urlset>',''.join('<url><loc>'+e(url)+'</loc></url>\\n' for url in article_urls)+'</urlset>')
+ sitemap.write_text(xml,encoding='utf-8')
+print(f'Built 12 curated pages and {len(article_urls)} editorial article URLs; sitemap includes {13+len(article_urls)} URLs.')
+
