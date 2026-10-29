@@ -13,7 +13,7 @@ for p in items:
  assert all(p['notes'][l].get(k) for l in ('es','en') for k in ('top','heart','base'))
  assert p['tags']
 html=(R/'index.html').read_text(encoding='utf-8')
-match=re.search(r'const catalog=\\[(.*?)\\];\\nconst bundles=',html,re.S)
+match=re.search(r'const catalog=\[(.*?)\];\nconst bundles=',html,re.S)
 assert match,'Missing storefront catalogue'
 for p in items:
  assert 'id:"'+p['id']+'"' in match.group(1)
