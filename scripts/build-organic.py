@@ -118,6 +118,24 @@ if article_urls:
  xml=sitemap.read_text(encoding='utf-8')
  xml=xml.replace('</urlset>',''.join('<url><loc>'+e(url)+'</loc></url>\n' for url in article_urls)+'</urlset>')
  sitemap.write_text(xml,encoding='utf-8')
+# Preserve reviewed authenticity guides, which are authored independently of the catalogue generator.
+for lang in ('es','en'):
+ hub=R/lang/'index.html'
+ content=hub.read_text(encoding='utf-8')
+ slugs=('how-to-tell-if-perfume-is-original','verify-lattafa-perfume')
+ labels=('Cómo saber si un perfume es original','Cómo verificar Lattafa con QR') if lang=='es' else ('How to tell if a perfume is authentic','How to verify Lattafa with QR')
+ cards_html='<div class="cards">'+''.join('<article>'+link(lang+'/'+slug+'/',label,'card-title')+'</article>' for slug,label in zip(slugs,labels))+'</div>'
+ section_html=section('Autenticidad de perfumes' if lang=='es' else 'Perfume authenticity',cards_html)
+ content=content.replace('</main>',section_html+'</main>',1)
+ hub.write_text(content,encoding='utf-8')
+ for slug in slugs:
+  guide=R/lang/slug/'index.html'
+  if not guide.is_file():raise ValueError(f'Missing authenticity guide: {guide}')
+  sitemap=R/'sitemap.xml'
+  xml=sitemap.read_text(encoding='utf-8')
+  url=BASE+lang+'/'+slug+'/'
+  if '<loc>'+url+'</loc>' not in xml:xml=xml.replace('</urlset>','<url><loc>'+e(url)+'</loc></url>\n</urlset>')
+  sitemap.write_text(xml,encoding='utf-8')
 # Academy landing pages are authored independently, so include them in the sitemap.
 for lang in ('es','en'):
  academy=R/lang/'academy'/'index.html'
