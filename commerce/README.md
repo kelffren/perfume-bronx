@@ -24,3 +24,9 @@ The admin endpoint requires a configured token and a local browser Origin. Do no
 ## Atomic test reservations
 
 The localhost-only `POST /admin/reservations` endpoint requires the same `X-OUD-Admin-Token` and an allowed localhost Origin. JSON body example: `{"items":[{"sku":"yara","quantity":1}]}`. This is an **administrative test reservation**, not a customer checkout. It atomically checks stock, decrements it, and stores a `reserved-test` order. An insufficient-stock request returns HTTP 409 without changing stock. Run `python3 commerce/test-local-server.py` to exercise the reservation and rollback tests. Do not use it for real orders or payments; cancellation/release, idempotency, expiry, and security review are not yet implemented.
+
+## Local reservation management screen
+
+Open `http://localhost:8000/commerce/orders.html` after starting both the local Python API with `OUD_LOCAL_ADMIN_TOKEN` and the static UI server on port 8000. Enter the token in the page (held only in memory), then select a SKU and quantity to create a test reservation. The table lists drafts and reservations; active test reservations have a cancellation button that returns stock exactly once. The public storefront and WhatsApp checkout are intentionally untouched. Do not use this screen for real customer orders.
+
+**Release gate:** GitHub Actions and HTTP/browser integration tests must pass, security issues must be addressed, and a human should review the change before merging into main. The backend is a localhost prototype, not an internet-exposed production service.
