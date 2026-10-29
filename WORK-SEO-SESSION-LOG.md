@@ -13,3 +13,6 @@ Branch `feat/scent-match-v1`. Created `/es/scent-match/`, `/en/scent-match/`, `a
 
 ## 2026-10-29 — central catalogue integration
 Branch `feat/central-catalog-v1`. Added `data/catalog.json`, updated `scripts/build-organic.py` to regenerate storefront product array deterministically, rewired `assets/scent-match.js` to load shared data with static fallback, added `scripts/check-catalog.py` and CI validation. Existing product IDs, cart prices and bundle semantics retained. No inventory claims; image rights still need review. Status: code implemented, CI/public verification pending. Next three: verify deployment and cart; build sourced fragrance encyclopedia; add gift finder using shared catalogue.
+
+## 2026-10-29 — fragrance encyclopedia batch 1
+Branch `feat/fragrance-encyclopedia-v1`: ES/EN `/notes/` hubs and `/notes/vanilla/`, `/notes/amber/`, `/notes/cinnamon/` pages; related product links, manufacturer sources, sitemap and generator updates. CI and live verification required before PUBLICADA/VERIFICADA. Next: check SEO tests; add gift finder; expand sourced notes.
