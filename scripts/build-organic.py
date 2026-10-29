@@ -202,6 +202,24 @@ for lang in ('es','en'):
  url=BASE+lang+'/compare/'
  if '<loc>'+url+'</loc>' not in xml:xml=xml.replace('</urlset>','<url><loc>'+e(url)+'</loc></url>\n</urlset>')
  sitemap.write_text(xml,encoding='utf-8')
+# Preserve independently authored note-family landing pages and link from guide hubs.
+NOTE_SLUGS={'es':('vainilla','especiados','ambarados'),'en':('vanilla','spicy','amber')}
+for lang,slugs in NOTE_SLUGS.items():
+ hub=R/lang/'index.html'
+ html=hub.read_text(encoding='utf-8')
+ labels={'es':('Perfumes con vainilla','Perfumes especiados','Perfumes ambarados'),'en':('Vanilla perfumes','Spicy perfumes','Amber perfumes')}[lang]
+ cards_html='<div class="cards">'+''.join('<article>'+link(lang+'/notes/'+slug+'/',label,'card-title')+'</article>' for slug,label in zip(slugs,labels))+'</div>'
+ section_html=section('Descubre perfumes por notas' if lang=='es' else 'Discover fragrances by notes',cards_html)
+ if PREFIX+lang+'/notes/'+slugs[0]+'/' not in html:html=html.replace('</main>',section_html+'</main>',1)
+ hub.write_text(html,encoding='utf-8')
+ sitemap=R/'sitemap.xml'
+ xml=sitemap.read_text(encoding='utf-8')
+ for slug in slugs:
+  guide=R/lang/'notes'/slug/'index.html'
+  if not guide.is_file():raise ValueError(f'Missing note-family page: {guide}')
+  url=BASE+lang+'/notes/'+slug+'/'
+  if '<loc>'+url+'</loc>' not in xml:xml=xml.replace('</urlset>','<url><loc>'+e(url)+'</loc></url>\n</urlset>')
+ sitemap.write_text(xml,encoding='utf-8')
 # Academy landing pages are authored independently, so include them in the sitemap.
 for lang in ('es','en'):
  academy=R/lang/'academy'/'index.html'
