@@ -72,6 +72,14 @@ for lang in COPY:
   body+=section(c['notes'],'<dl>'+''.join('<div><dt>'+a+'</dt><dd>'+e(b)+'</dd></div>' for a,b in zip(['Top','Heart','Base'] if en else ['Salida','Corazón','Fondo'],info[1:4]))+'</dl>'+p('These describe the scent, not the ingredient list.' if en else 'Describen el aroma, no la lista de ingredientes.'))
   body+=section(c['fit'],p(info[4])+p(info[5]))+section(c['before'],p(c['delivery']))+section(c['duration'],p(c['duration_text']))+section(c['sources'],sources(lang,[key]))+section(c['next'],cards(lang)+link(path(lang,'compare/yara-khamrah-asad'),c['compare']))+'</div>'
   body=body.replace('</div>',section('Comparador interactivo' if not en else 'Interactive comparison',link(path(lang,'compare'),'Comparar Yara, Khamrah y Asad' if not en else 'Compare Yara, Khamrah and Asad'))+'</div>',1)
+  # Contextual links to reviewed note-family guides; no invented scent attributes.
+  NOTE_LINKS={
+   'es':{'yara':('vainilla',),'khamrah':('vainilla','especiados','ambarados'),'asad':('especiados','ambarados')},
+   'en':{'yara':('vanilla',),'khamrah':('vanilla','spicy','amber'),'asad':('spicy','amber')}
+  }
+  NOTE_LABELS={'es':{'vainilla':'Perfumes árabes con vainilla','especiados':'Perfumes árabes especiados','ambarados':'Perfumes árabes ambarados'},'en':{'vanilla':'Arabian perfumes with vanilla','spicy':'Spicy Arabian perfumes','amber':'Amber Arabian perfumes'}}
+  related=''.join('<li>'+link(path(lang,'notes/'+slug),NOTE_LABELS[lang][slug])+'</li>' for slug in NOTE_LINKS[lang][key])
+  body+=section('Explora por notas olfativas' if not en else 'Explore by scent notes','<ul>'+related+'</ul>')
   shell(lang,'products/'+key,title,desc,body,key)
  title=c['compare'];desc='Compare three Lattafa originals by notes, preferences and buying questions.' if en else 'Compara tres originales de Lattafa según notas, preferencias y preguntas de compra.'
  body='<div class="wrap"><section class="intro"><p class="eyebrow">THE OUD BRONX GUIDE</p><h1>'+title+'</h1>'+p('Choose the scent direction first, then confirm the version and your delivered total. None is automatically best for everyone.' if en else 'Elige primero la dirección del aroma; después confirma la versión y el total con entrega. Ninguno es automáticamente el mejor para todos.')+'</section>'
