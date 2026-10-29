@@ -11,3 +11,6 @@ Updated: 2026-10-29. URLs below are repository routes; publication must be separ
 | EN | `/en/verify-lattafa-perfume/` | Lattafa QR verification | Existing |
 
 Existing organic product pages, comparisons, local explainers and Academy routes remain in the generator and sitemap; audit before expansion.
+
+| ES | `/es/scent-match/` | Scent Match verified Lattafa finder | IMPLEMENTADA |
+| EN | `/en/scent-match/` | Scent Match verified Lattafa finder | IMPLEMENTADA |

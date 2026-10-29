@@ -1,0 +1,77 @@
+{
+  "version": 1,
+  "method": "Editorial matching by documented fragrance-family tags. No equivalence or wear-test claims.",
+  "source": "https://lattafa.com/product/{yara,khamrah,asad}/",
+  "checked": "2026-10-25",
+  "products": {
+    "yara": {
+      "es": {
+        "name": "Lattafa Yara",
+        "profile": "Floral, tropical y dulce",
+        "top": "Mandarina, heliotropo y orquídea",
+        "middle": "Acordes tropicales y gourmand",
+        "base": "Vainilla, sándalo y almizcle",
+        "why": "Para quienes disfrutan una combinación floral con dulzor cremoso."
+      },
+      "en": {
+        "name": "Lattafa Yara",
+        "profile": "Floral, tropical and sweet",
+        "top": "Tangerine, heliotrope and orchid",
+        "middle": "Tropical and gourmand accords",
+        "base": "Vanilla, sandalwood and musk",
+        "why": "For people who enjoy a creamy, sweet floral profile."
+      },
+      "tags": [
+        "sweet",
+        "floral",
+        "tropical"
+      ]
+    },
+    "khamrah": {
+      "es": {
+        "name": "Lattafa Khamrah",
+        "profile": "Especiado, dulce y ambarado",
+        "top": "Bergamota, canela y nuez moscada",
+        "middle": "Dátiles, praliné y flores",
+        "base": "Vainilla, tonka, maderas ambaradas y resinas",
+        "why": "Para quienes buscan especias cálidas con dulzor."
+      },
+      "en": {
+        "name": "Lattafa Khamrah",
+        "profile": "Spicy, sweet and amber",
+        "top": "Bergamot, cinnamon and nutmeg",
+        "middle": "Dates, praline and florals",
+        "base": "Vanilla, tonka, amber woods and resins",
+        "why": "For people who enjoy warm spice with sweetness."
+      },
+      "tags": [
+        "sweet",
+        "spicy",
+        "amber"
+      ]
+    },
+    "asad": {
+      "es": {
+        "name": "Lattafa Asad",
+        "profile": "Especiado, ambarado y amaderado",
+        "top": "Pimienta negra, piña y tabaco",
+        "middle": "Café, iris y pachulí",
+        "base": "Ámbar, vainilla, maderas secas y resinas",
+        "why": "Para quienes prefieren especias con un fondo ambarado y maderas."
+      },
+      "en": {
+        "name": "Lattafa Asad",
+        "profile": "Spicy, amber and woody",
+        "top": "Black pepper, pineapple and tobacco",
+        "middle": "Coffee, iris and patchouli",
+        "base": "Amber, vanilla, dry woods and resins",
+        "why": "For people who prefer spices, amber and dry woods."
+      },
+      "tags": [
+        "spicy",
+        "amber",
+        "woody"
+      ]
+    }
+  }
+}
