@@ -71,6 +71,7 @@ for lang in COPY:
   body=f'<section class="wrap product"><figure><img src="{e(photos[key])}" width="512" height="512" alt="{name}" fetchpriority="high"><figcaption>'+('Reference image from the existing catalogue; actual packaging may differ.' if en else 'Imagen de referencia del catálogo; el empaque real puede variar.')+'</figcaption></figure><div><p class="eyebrow">LATTAFA · THE ORIGINAL EDIT</p><h1>'+name+'</h1><p class="lead">'+info[0]+'</p>'+p('Ask for the original version and confirm the bottle size before ordering.' if en else 'Consulta por la versión original y confirma el tamaño del frasco antes de pedir.')+'<p class="availability">'+c['status']+'</p>'+link('?product='+key+'&intent=inquiry&lang='+lang+'#collection',c['inquire'],'btn')+'<p class="small">'+('Continue to the store with this fragrance selected. No online payment.' if en else 'Continúa en la tienda con este perfume seleccionado. Sin pago online.')+'</p></div></section><div class="wrap">'
   body+=section(c['notes'],'<dl>'+''.join('<div><dt>'+a+'</dt><dd>'+e(b)+'</dd></div>' for a,b in zip(['Top','Heart','Base'] if en else ['Salida','Corazón','Fondo'],info[1:4]))+'</dl>'+p('These describe the scent, not the ingredient list.' if en else 'Describen el aroma, no la lista de ingredientes.'))
   body+=section(c['fit'],p(info[4])+p(info[5]))+section(c['before'],p(c['delivery']))+section(c['duration'],p(c['duration_text']))+section(c['sources'],sources(lang,[key]))+section(c['next'],cards(lang)+link(path(lang,'compare/yara-khamrah-asad'),c['compare']))+'</div>'
+  body=body.replace('</div>',section('Comparador interactivo' if not en else 'Interactive comparison',link(path(lang,'compare'),'Comparar Yara, Khamrah y Asad' if not en else 'Compare Yara, Khamrah and Asad'))+'</div>',1)
   shell(lang,'products/'+key,title,desc,body,key)
  title=c['compare'];desc='Compare three Lattafa originals by notes, preferences and buying questions.' if en else 'Compara tres originales de Lattafa según notas, preferencias y preguntas de compra.'
  body='<div class="wrap"><section class="intro"><p class="eyebrow">THE OUD BRONX GUIDE</p><h1>'+title+'</h1>'+p('Choose the scent direction first, then confirm the version and your delivered total. None is automatically best for everyone.' if en else 'Elige primero la dirección del aroma; después confirma la versión y el total con entrega. Ninguno es automáticamente el mejor para todos.')+'</section>'
@@ -185,6 +186,21 @@ for lang in ('es','en'):
  xml=sitemap.read_text(encoding='utf-8')
  url=BASE+lang+'/scent-match/'
  if '<loc>'+url+'</loc>' not in xml:xml=xml.replace('</urlset>','<url><loc>'+e(url)+'</loc></url></urlset>')
+ sitemap.write_text(xml,encoding='utf-8')
+# Keep independently authored interactive comparison pages discoverable after regeneration.
+for lang in ('es','en'):
+ guide=R/lang/'compare'/'index.html'
+ if not guide.is_file():raise ValueError(f'Missing interactive comparator: {guide}')
+ hub=R/lang/'index.html'
+ html=hub.read_text(encoding='utf-8')
+ label='Comparador interactivo de perfumes' if lang=='es' else 'Interactive fragrance comparator'
+ card=section(label,'<p>'+link(lang+'/compare/',label)+'</p>')
+ if PREFIX+lang+'/compare/' not in html:html=html.replace('</main>',card+'</main>',1)
+ hub.write_text(html,encoding='utf-8')
+ sitemap=R/'sitemap.xml'
+ xml=sitemap.read_text(encoding='utf-8')
+ url=BASE+lang+'/compare/'
+ if '<loc>'+url+'</loc>' not in xml:xml=xml.replace('</urlset>','<url><loc>'+e(url)+'</loc></url>\n</urlset>')
  sitemap.write_text(xml,encoding='utf-8')
 # Academy landing pages are authored independently, so include them in the sitemap.
 for lang in ('es','en'):
