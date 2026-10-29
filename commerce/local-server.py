@@ -6,7 +6,7 @@ from http.server import BaseHTTPRequestHandler,ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import urlsplit
 import json,sqlite3,uuid,datetime,os,secrets,hmac
-from inventory import reserve
+from inventory import reserve,cancel_reservation
 DB=Path(os.environ.get("OUD_LOCAL_DB",str(Path(__file__).with_name("commerce-local.sqlite3"))))
 PORT=int(os.environ.get("OUD_LOCAL_PORT","8765"))
 CATALOG_PATH=Path(__file__).with_name("catalog.json")
@@ -74,8 +74,15 @@ class Handler(BaseHTTPRequestHandler):
   except (ValueError,KeyError,TypeError,json.JSONDecodeError):self.send(400,{"error":"invalid product"})
  def do_POST(self):
   route=urlsplit(self.path).path
-  if route not in ("/orders","/admin/reservations"):return self.send(404,{"error":"not found"})
-  if route=="/admin/reservations" and not admin_authorized(self):return self.send(403,{"error":"local admin authorization required"})
+  cancel=route.startswith("/admin/reservations/") and route.endswith("/cancel")
+  if route not in ("/orders","/admin/reservations") and not cancel:return self.send(404,{"error":"not found"})
+  if (route=="/admin/reservations" or cancel) and not admin_authorized(self):return self.send(403,{"error":"local admin authorization required"})
+  if cancel:
+   try:
+    order_id=route.split("/")[3]
+    with connect() as db:result=cancel_reservation(db,order_id)
+    return self.send(200,result)
+   except ValueError as exc:return self.send(409,{"error":str(exc)})
   try:
    size=int(self.headers.get("Content-Length","0"))
    if size<1 or size>8192:return self.send(413,{"error":"invalid body size"})
