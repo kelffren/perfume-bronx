@@ -1,5 +1,6 @@
 /* Run with Playwright; optional CHROMIUM_EXECUTABLE_PATH for host-provided Chromium. */
-const {chromium}=require('playwright');
+const {chromium,webkit}=require('playwright');
+const browserType=process.env.BROWSER==='webkit'?webkit:chromium;
 const fs=require('node:fs'),path=require('node:path'),http=require('node:http'),assert=require('node:assert/strict');
 const root=path.resolve(__dirname,'..');
 (async()=>{
@@ -9,7 +10,7 @@ const root=path.resolve(__dirname,'..');
  });
  await new Promise(r=>server.listen(0,'127.0.0.1',r));
  const origin='http://127.0.0.1:'+server.address().port;
- const b=await chromium.launch({headless:true,executablePath:process.env.CHROMIUM_EXECUTABLE_PATH||undefined,args:['--no-sandbox','--disable-dev-shm-usage','--disable-gpu']});
+ const b=await browserType.launch({headless:true,executablePath:process.env.BROWSER==='webkit'?undefined:process.env.CHROMIUM_EXECUTABLE_PATH||undefined,args:process.env.BROWSER==='webkit'?[]:['--no-sandbox','--disable-dev-shm-usage','--disable-gpu']});
  try{
  const errors=[];
  const out=process.env.SCREENSHOT_DIR;

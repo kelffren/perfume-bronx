@@ -1,0 +1,498 @@
+{
+  "notes": {
+    "es": {
+      "title": "Notas de salida, corazón y fondo",
+      "description": "Aprende a leer una pirámide olfativa sin confundir notas declaradas con ingredientes exactos.",
+      "scenes": [
+        {
+          "title": "¿Qué es una pirámide olfativa?",
+          "text": "Es una forma de describir cómo se percibe y evoluciona una fragancia. No es una fórmula química."
+        },
+        {
+          "title": "Notas de salida",
+          "text": "Son impresiones percibidas al comienzo. Su presencia y evolución varían según la fórmula y la persona."
+        },
+        {
+          "title": "Notas de corazón",
+          "text": "Describen el carácter aromático que emerge cuando cambia la primera impresión."
+        },
+        {
+          "title": "Notas de fondo",
+          "text": "Son acordes que pueden sentirse en etapas posteriores. No garantizan una duración concreta."
+        },
+        {
+          "title": "Ejemplo con Khamrah",
+          "text": "Lattafa describe canela y nuez moscada en la salida, dátiles y praliné en el corazón y vainilla en el fondo."
+        },
+        {
+          "title": "Aplica lo aprendido",
+          "text": "Compara pirámides y decide según tus preferencias; probar el perfume sigue siendo la mejor referencia."
+        }
+      ]
+    },
+    "en": {
+      "title": "Top, heart and base notes",
+      "description": "Understand fragrance pyramids without confusing listed notes with exact chemical ingredients.",
+      "scenes": [
+        {
+          "title": "What is a fragrance pyramid?",
+          "text": "A way to describe how a fragrance may be perceived and evolve. It is not a chemical formula."
+        },
+        {
+          "title": "Top notes",
+          "text": "The first impressions of a fragrance. Their presence and evolution vary by formula and person."
+        },
+        {
+          "title": "Heart notes",
+          "text": "The aromatic character that emerges as the initial impression changes."
+        },
+        {
+          "title": "Base notes",
+          "text": "Accords associated with later stages. They do not guarantee a specific wear time."
+        },
+        {
+          "title": "Khamrah example",
+          "text": "Lattafa lists cinnamon and nutmeg on top, dates and praline in the heart, and vanilla in the base."
+        },
+        {
+          "title": "Use what you learned",
+          "text": "Compare pyramids against your preferences; sampling is still the best guide."
+        }
+      ]
+    }
+  },
+  "authenticity": {
+    "es": {
+      "title": "Cómo evaluar la autenticidad de un perfume",
+      "description": "Señales útiles, límites de la inspección y decisiones de compra más seguras.",
+      "scenes": [
+        {
+          "title": "La autenticidad no depende de un solo detalle",
+          "text": "Un código, una pegatina o el color de una caja no demuestra por sí solo que un perfume sea original."
+        },
+        {
+          "title": "Revisa la procedencia",
+          "text": "Pregunta por el vendedor, su política de devoluciones y documentación cuando corresponda."
+        },
+        {
+          "title": "Compara la presentación exacta",
+          "text": "Confirma la variante y el tamaño; las presentaciones pueden cambiar por mercado o lote."
+        },
+        {
+          "title": "Inspecciona sin sacar conclusiones rápidas",
+          "text": "Observa calidad de impresión, sellos y datos, pero evita tratar una diferencia aislada como prueba definitiva."
+        },
+        {
+          "title": "Desconfía de garantías fáciles",
+          "text": "Un QR, un número de lote o una foto no constituyen verificación independiente concluyente."
+        },
+        {
+          "title": "Antes de comprar",
+          "text": "Solicita fotos reales y condiciones claras; ante dudas importantes, consulta al fabricante o un canal autorizado."
+        }
+      ]
+    },
+    "en": {
+      "title": "How to assess perfume authenticity",
+      "description": "Useful signals, limits of visual inspection, and safer buying decisions.",
+      "scenes": [
+        {
+          "title": "No single detail proves authenticity",
+          "text": "A code, sticker, or box color alone does not establish that a perfume is genuine."
+        },
+        {
+          "title": "Check provenance",
+          "text": "Ask about the seller, return policy, and supporting documentation where appropriate."
+        },
+        {
+          "title": "Match the exact presentation",
+          "text": "Check the variant and size; packaging can differ by market or batch."
+        },
+        {
+          "title": "Inspect without jumping to conclusions",
+          "text": "Look at print quality, seals and product details, but do not treat one difference as definitive proof."
+        },
+        {
+          "title": "Beware of easy guarantees",
+          "text": "A QR code, batch number or photo is not independent conclusive verification."
+        },
+        {
+          "title": "Before buying",
+          "text": "Request real photos and clear terms; for serious doubts, contact the manufacturer or an authorized channel."
+        }
+      ]
+    }
+  },
+  "longevity": {
+    "es": {
+      "title": "Por qué un perfume dura diferente",
+      "description": "La duración percibida depende de múltiples factores; evita promesas universales.",
+      "scenes": [
+        {
+          "title": "No existe una duración universal",
+          "text": "La duración varía entre personas y condiciones; una reseña no predice tu experiencia."
+        },
+        {
+          "title": "La fórmula importa",
+          "text": "Concentración, composición y volatilidad influyen, pero una etiqueta EDP no garantiza un número de horas."
+        },
+        {
+          "title": "La piel y el ambiente influyen",
+          "text": "Temperatura, humedad y características individuales pueden modificar la percepción."
+        },
+        {
+          "title": "Aplicación y conservación",
+          "text": "Aplica según indicaciones y guarda el frasco lejos de calor y luz excesivos."
+        },
+        {
+          "title": "Fatiga olfativa",
+          "text": "La adaptación olfativa puede hacer que notes menos tu perfume aunque otras personas todavía lo perciban."
+        },
+        {
+          "title": "Elige sin falsas garantías",
+          "text": "Prueba en tu piel si es posible y evita interpretar las cifras publicitarias como resultados garantizados."
+        }
+      ]
+    },
+    "en": {
+      "title": "Why perfume longevity varies",
+      "description": "Perceived wear time depends on several factors; avoid universal promises.",
+      "scenes": [
+        {
+          "title": "There is no universal wear time",
+          "text": "Wear time varies by person and conditions; a review cannot predict your experience."
+        },
+        {
+          "title": "The formula matters",
+          "text": "Concentration, composition and volatility matter, but an EDP label does not guarantee a set number of hours."
+        },
+        {
+          "title": "Skin and environment matter",
+          "text": "Temperature, humidity and individual characteristics may change perception."
+        },
+        {
+          "title": "Application and storage",
+          "text": "Follow application guidance and store the bottle away from excessive heat and light."
+        },
+        {
+          "title": "Olfactory adaptation",
+          "text": "Olfactory adaptation may make a scent less noticeable to you even when others still detect it."
+        },
+        {
+          "title": "Choose without false guarantees",
+          "text": "Try it on your skin when possible and avoid treating advertised hours as guarantees."
+        }
+      ]
+    }
+  },
+  "concentration": {
+    "es": {
+      "title": "EDT, EDP y Extrait: qué significan",
+      "description": "Concentración y percepción no son lo mismo.",
+      "scenes": [
+        {
+          "title": "¿Qué significa concentración?",
+          "text": "Las denominaciones suelen describir categorías de concentración, pero no existe un porcentaje universal obligatorio para todas las marcas."
+        },
+        {
+          "title": "Eau de Toilette",
+          "text": "EDT suele indicar una concentración relativamente menor dentro de una línea, sin determinar por sí sola la intensidad."
+        },
+        {
+          "title": "Eau de Parfum",
+          "text": "EDP suele indicar una concentración mayor que EDT en una misma línea, aunque las fórmulas pueden ser distintas."
+        },
+        {
+          "title": "Extrait de Parfum",
+          "text": "Extrait suele referirse a fórmulas de concentración elevada; su comportamiento depende de los ingredientes."
+        },
+        {
+          "title": "¿Cuál dura más?",
+          "text": "Una mayor concentración no garantiza mayor proyección ni horas específicas. La composición y el uso importan."
+        },
+        {
+          "title": "Elige con criterio",
+          "text": "Consulta la presentación exacta y, cuando sea posible, prueba en piel antes de decidir."
+        }
+      ]
+    },
+    "en": {
+      "title": "EDT, EDP and Extrait explained",
+      "description": "Concentration and perception are not the same.",
+      "scenes": [
+        {
+          "title": "What does concentration mean?",
+          "text": "These names commonly describe concentration categories, but there is no universal mandatory percentage across all brands."
+        },
+        {
+          "title": "Eau de Toilette",
+          "text": "EDT commonly denotes relatively lower concentration within a line, but this does not define strength by itself."
+        },
+        {
+          "title": "Eau de Parfum",
+          "text": "EDP often denotes higher concentration than EDT within a line, although formulas can differ."
+        },
+        {
+          "title": "Extrait de Parfum",
+          "text": "Extrait usually refers to higher-concentration formulas; behavior still depends on ingredients."
+        },
+        {
+          "title": "Which lasts longer?",
+          "text": "Higher concentration does not guarantee projection or a fixed wear time. Composition and usage matter."
+        },
+        {
+          "title": "Choose thoughtfully",
+          "text": "Check the exact version and sample on skin when possible."
+        }
+      ]
+    }
+  },
+  "gifts": {
+    "es": {
+      "title": "Cómo elegir un perfume para regalo",
+      "description": "Una guía práctica para regalar sin adivinar.",
+      "scenes": [
+        {
+          "title": "Empieza por sus gustos",
+          "text": "Piensa en aromas que la persona ya usa y disfruta, no solo en lo que está de moda."
+        },
+        {
+          "title": "Pregunta por familias aromáticas",
+          "text": "Dulce, floral, especiado o amaderado son puntos de partida, no garantías de agrado."
+        },
+        {
+          "title": "Considera la ocasión",
+          "text": "Un regalo de uso diario puede requerir preferencias distintas a uno para ocasiones especiales."
+        },
+        {
+          "title": "Confirma la presentación",
+          "text": "Comprueba tamaño, variante, presupuesto y política de cambios antes de pagar."
+        },
+        {
+          "title": "Evita suposiciones",
+          "text": "No atribuyas gustos por edad o género; pregunta directamente cuando sea posible."
+        },
+        {
+          "title": "Decide con opciones",
+          "text": "Compara las notas y consulta si existe posibilidad de prueba antes de elegir."
+        }
+      ]
+    },
+    "en": {
+      "title": "How to choose perfume as a gift",
+      "description": "A practical guide to gifting without guessing.",
+      "scenes": [
+        {
+          "title": "Start with their preferences",
+          "text": "Think about scents they already use and enjoy, not only current trends."
+        },
+        {
+          "title": "Ask about scent families",
+          "text": "Sweet, floral, spicy or woody are starting points, not guarantees of preference."
+        },
+        {
+          "title": "Consider the occasion",
+          "text": "Everyday use and special occasions can call for different preferences."
+        },
+        {
+          "title": "Confirm the exact product",
+          "text": "Confirm size, variant, budget and exchange policy before paying."
+        },
+        {
+          "title": "Avoid assumptions",
+          "text": "Do not infer preferences from age or gender; ask directly when possible."
+        },
+        {
+          "title": "Choose with options",
+          "text": "Compare notes and ask about sampling before deciding."
+        }
+      ]
+    }
+  },
+  "oud": {
+    "es": {
+      "title": "Qué es el oud y a qué puede oler",
+      "description": "Conoce el ingrediente y sus interpretaciones en perfumería.",
+      "scenes": [
+        {
+          "title": "¿Qué es el oud?",
+          "text": "Oud o agarwood se relaciona con madera resinosa de ciertos árboles Aquilaria, utilizada en perfumería."
+        },
+        {
+          "title": "De dónde viene",
+          "text": "Se forma cuando la madera desarrolla resinas en determinadas condiciones; su procedencia y tratamiento influyen."
+        },
+        {
+          "title": "Cómo puede oler",
+          "text": "Puede describirse como amaderado, resinoso, ahumado o animalizado según el material y la composición."
+        },
+        {
+          "title": "Oud natural y acordes",
+          "text": "Muchas fragancias usan acordes que evocan oud; una nota listada no prueba presencia de aceite natural."
+        },
+        {
+          "title": "Cómo leer una descripción",
+          "text": "Busca descripciones concretas de las notas y no asumas que todos los perfumes con oud huelen igual."
+        },
+        {
+          "title": "Antes de comprar",
+          "text": "Prueba una muestra si es posible; el oud puede sentirse muy diferente entre fórmulas."
+        }
+      ]
+    },
+    "en": {
+      "title": "What is oud and what can it smell like?",
+      "description": "Understand agarwood and its interpretations in perfumery.",
+      "scenes": [
+        {
+          "title": "What is oud?",
+          "text": "Oud or agarwood refers to resinous wood from certain Aquilaria trees, used in perfumery."
+        },
+        {
+          "title": "Where it comes from",
+          "text": "Resin can develop in the wood under particular conditions; origin and treatment affect the material."
+        },
+        {
+          "title": "What it may smell like",
+          "text": "It can be described as woody, resinous, smoky or animalic depending on material and formulation."
+        },
+        {
+          "title": "Natural oud and accords",
+          "text": "Many perfumes use oud-like accords; a listed oud note does not prove natural oud oil is present."
+        },
+        {
+          "title": "Read the description",
+          "text": "Look for specific note descriptions and do not assume all oud fragrances smell alike."
+        },
+        {
+          "title": "Before you buy",
+          "text": "Sample when possible; oud can feel very different between formulas."
+        }
+      ]
+    }
+  },
+  "care": {
+    "es": {
+      "title": "Cómo aplicar y conservar tu perfume",
+      "description": "Hábitos prácticos sin promesas de duración.",
+      "scenes": [
+        {
+          "title": "Empieza por una aplicación moderada",
+          "text": "Aplica una cantidad que te resulte cómoda y respete el entorno y a quienes te rodean."
+        },
+        {
+          "title": "Evita irritaciones",
+          "text": "Evita piel irritada y mucosas. Si notas molestias, suspende el uso y consulta a un profesional."
+        },
+        {
+          "title": "No frotes por costumbre",
+          "text": "Frotar no es obligatorio; deja secar el perfume según las indicaciones del producto."
+        },
+        {
+          "title": "Cuida el frasco",
+          "text": "Mantén el frasco cerrado y lejos de calor, sol directo y cambios extremos de temperatura."
+        },
+        {
+          "title": "Atención a ropa y superficies",
+          "text": "Algunas fórmulas pueden manchar textiles o superficies; prueba con precaución."
+        },
+        {
+          "title": "Evalúa el aroma",
+          "text": "Prueba el perfume en distintas ocasiones sin asumir una duración idéntica cada día."
+        }
+      ]
+    },
+    "en": {
+      "title": "How to apply and store perfume",
+      "description": "Practical habits without longevity promises.",
+      "scenes": [
+        {
+          "title": "Start with moderate application",
+          "text": "Apply an amount comfortable for you and considerate of people nearby."
+        },
+        {
+          "title": "Avoid irritation",
+          "text": "Avoid irritated skin and mucous membranes. Stop use if irritation occurs and seek professional advice."
+        },
+        {
+          "title": "Rubbing is not required",
+          "text": "Rubbing is not required; allow fragrance to dry according to product guidance."
+        },
+        {
+          "title": "Care for the bottle",
+          "text": "Keep the bottle closed and away from heat, direct sun and extreme temperature changes."
+        },
+        {
+          "title": "Watch fabrics and surfaces",
+          "text": "Some formulas can stain fabric or surfaces; use caution."
+        },
+        {
+          "title": "Evaluate the scent",
+          "text": "Try the fragrance on different occasions without assuming identical wear time every day."
+        }
+      ]
+    }
+  },
+  "occasions": {
+    "es": {
+      "title": "Cómo elegir perfumes para cada ocasión",
+      "description": "Prioriza tus preferencias y el entorno.",
+      "scenes": [
+        {
+          "title": "No hay reglas absolutas",
+          "text": "Un mismo perfume puede funcionar en distintos momentos; importa cuánto aplicas y dónde estarás."
+        },
+        {
+          "title": "Para el trabajo o estudio",
+          "text": "En espacios compartidos, considera aplicaciones discretas y preferencias de quienes te rodean."
+        },
+        {
+          "title": "Para salir por la noche",
+          "text": "Si disfrutas notas especiadas o dulces, puedes explorar perfiles como Khamrah o Asad."
+        },
+        {
+          "title": "Para climas cálidos",
+          "text": "En calor, la percepción del aroma puede cambiar; empieza con poca cantidad y evalúa."
+        },
+        {
+          "title": "Para ocasiones especiales",
+          "text": "Un regalo o evento no exige una familia aromática determinada; el gusto personal manda."
+        },
+        {
+          "title": "Compara antes de decidir",
+          "text": "Consulta notas, variantes y posibilidad de prueba antes de comprar."
+        }
+      ]
+    },
+    "en": {
+      "title": "How to choose perfume for different occasions",
+      "description": "Let your preferences and surroundings guide you.",
+      "scenes": [
+        {
+          "title": "There are no absolute rules",
+          "text": "The same perfume can work in different settings; application amount and surroundings matter."
+        },
+        {
+          "title": "Work or study",
+          "text": "In shared spaces, consider lighter application and people nearby."
+        },
+        {
+          "title": "Going out at night",
+          "text": "If you enjoy sweet or spicy notes, explore profiles such as Khamrah or Asad."
+        },
+        {
+          "title": "Warm weather",
+          "text": "In warm conditions scent perception can change; start lightly and evaluate."
+        },
+        {
+          "title": "Special occasions",
+          "text": "A gift or event does not require any particular fragrance family; personal taste comes first."
+        },
+        {
+          "title": "Compare before choosing",
+          "text": "Check notes, variants and sampling options before purchasing."
+        }
+      ]
+    }
+  }
+}

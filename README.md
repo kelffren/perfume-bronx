@@ -69,3 +69,6 @@ Guides support native sharing/copying of clean canonical links. GitHub Actions c
 
 ## Khamrah cinematic pilot — draft, 28 October 2026
 A bilingual seven-scene implementation is prepared in `scripts/build-academy-cinema.py`, with isolated `assets/academy-cinema.css/js` and Playwright coverage in `scripts/test-academy-cinema.cjs`. See [audit, QA and release blocker](docs/academy-cinema-2026-10-28.md). Product photography is gated by `assets/academy-media.json`; a commercial license or owned-photo evidence is required before this pilot is approved for main. The remaining ten presentations have not been redesigned in this iteration.
+
+## Academy extension — 29 October 2026
+The draft now covers all 11 bilingual presentations and both Academy directories (24 pages), with lesson-specific exercises and separate Yara/Asad art directions. See [current implementation and QA log](docs/academy-cinema-2026-10-29.md). This supersedes the pilot-only scope above; production release still requires approved photographs for the three exact product variants. Build all four Academy generators in the documented order and run both Academy browser suites before merging.

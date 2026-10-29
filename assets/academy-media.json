@@ -4,5 +4,17 @@
     "path": null,
     "rights_evidence": null,
     "reason": "Existing third-party photo has no verified commercial permission. Production release remains blocked pending an owned or licensed photograph of Khamrah original."
+  },
+  "yara": {
+    "approved": false,
+    "path": null,
+    "rights_evidence": null,
+    "reason": "Product photograph requires documented ownership or commercial permission and exact-variant review before release."
+  },
+  "asad": {
+    "approved": false,
+    "path": null,
+    "rights_evidence": null,
+    "reason": "Product photograph requires documented ownership or commercial permission and exact-variant review before release."
   }
 }

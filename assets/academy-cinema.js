@@ -15,9 +15,9 @@
   let readAll = false;
   let animate = !reduced.matches;
   const fromURL = () => {
-    const match = location.hash.match(/^#scene-([1-7])$/);
+    const match = location.hash.match(/^#scene-(\d+)$/);
     const old = Number(new URL(location.href).searchParams.get('slide'));
-    return match ? Number(match[1])-1 : Number.isInteger(old) && old>=1 && old<=7 ? old-1 : 0;
+    return match && Number(match[1])>=1 && Number(match[1])<=scenes.length ? Number(match[1])-1 : Number.isInteger(old) && old>=1 && old<=scenes.length ? old-1 : 0;
   };
   function setMotion() {
     root.classList.toggle('cinema-still', !animate || reduced.matches);
@@ -104,8 +104,8 @@
     });
   }
   tiers.forEach((button,i)=>button.addEventListener('click',()=>selectTier(button.classList.contains('is-selected')?null:i)));
-  reset.hidden=false;
-  reset.addEventListener('click',()=>selectTier(null));
+  if (reset) reset.hidden=false;
+  if (reset) reset.addEventListener('click',()=>selectTier(null));
   // Observe natural scrolling only; never intercept the wheel or lock body scrolling.
   if ('IntersectionObserver' in window) {
     const observer=new IntersectionObserver(entries=>entries.forEach(e=>e.target.classList.toggle('is-near',e.isIntersecting)),{threshold:.65});
