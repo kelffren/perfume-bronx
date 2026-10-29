@@ -1,0 +1,94 @@
+{
+  "version": 1,
+  "updated": "2026-10-29",
+  "notes": "Prices mirror the existing storefront but have not been independently verified. Stock unknown. Images from third-party sources require licensing review.",
+  "products": [
+    {
+      "id": "yara",
+      "name": "Lattafa Yara",
+      "price": 25,
+      "price_status": "site_displayed_unconfirmed",
+      "availability": "unknown",
+      "es": "Vainilla · Floral · Tropical",
+      "en": "Vanilla · Floral · Tropical",
+      "image": "https://scentzoneperfumes.com/cdn/shop/files/1000027890_1024x1024_0a262995-4cf6-4330-b009-79da032d1a3c.png?v=1764447533&width=720",
+      "image_source": "https://scentzoneperfumes.com/products/lattafa-yara",
+      "manufacturer_url": "https://lattafa.com/product/yara/",
+      "tags": [
+        "sweet",
+        "floral",
+        "tropical"
+      ],
+      "notes": {
+        "es": {
+          "top": "Mandarina, heliotropo y orquídea",
+          "heart": "Acordes tropicales y gourmand",
+          "base": "Vainilla, sándalo y almizcle"
+        },
+        "en": {
+          "top": "Tangerine, heliotrope and orchid",
+          "heart": "Tropical and gourmand accords",
+          "base": "Vanilla, sandalwood and musk"
+        }
+      }
+    },
+    {
+      "id": "khamrah",
+      "name": "Lattafa Khamrah",
+      "price": 35,
+      "price_status": "site_displayed_unconfirmed",
+      "availability": "unknown",
+      "es": "Canela · Dátiles · Vainilla",
+      "en": "Cinnamon · Dates · Vanilla",
+      "image": "https://www.frameofmind.hu/img/56231/FOM1025/FOM1025.webp",
+      "image_source": "https://www.frameofmind.hu/Lattafa-Khamrah-EDP-100ml",
+      "manufacturer_url": "https://lattafa.com/product/khamrah/",
+      "tags": [
+        "sweet",
+        "spicy",
+        "amber"
+      ],
+      "notes": {
+        "es": {
+          "top": "Bergamota, canela y nuez moscada",
+          "heart": "Dátiles, praliné y flores",
+          "base": "Vainilla, tonka, maderas ambaradas y resinas"
+        },
+        "en": {
+          "top": "Bergamot, cinnamon and nutmeg",
+          "heart": "Dates, praline and florals",
+          "base": "Vanilla, tonka, amber woods and resins"
+        }
+      }
+    },
+    {
+      "id": "asad",
+      "name": "Lattafa Asad",
+      "price": 35,
+      "price_status": "site_displayed_unconfirmed",
+      "availability": "unknown",
+      "es": "Pimienta · Café · Ámbar",
+      "en": "Pepper · Coffee · Amber",
+      "image": "https://www.opulensi.com/cdn/shop/files/AsadMain.jpg?v=1683748573&width=720",
+      "image_source": "https://www.opulensi.com/products/asad-perfume-eau-de-parfum-100ml-for-men-long-lasting-luxury-fragrance",
+      "manufacturer_url": "https://lattafa.com/product/asad/",
+      "tags": [
+        "spicy",
+        "amber",
+        "woody"
+      ],
+      "notes": {
+        "es": {
+          "top": "Pimienta negra, piña y tabaco",
+          "heart": "Café, iris y pachulí",
+          "base": "Ámbar, vainilla, maderas secas y resinas"
+        },
+        "en": {
+          "top": "Black pepper, pineapple and tobacco",
+          "heart": "Coffee, iris and patchouli",
+          "base": "Amber, vanilla, dry woods and resins"
+        }
+      }
+    }
+  ]
+}

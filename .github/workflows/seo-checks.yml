@@ -25,5 +25,8 @@ jobs:
           python scripts/build-organic.py
           git diff -- index.html es en sitemap.xml > /tmp/seo-second-build.diff
           cmp /tmp/seo-first-build.diff /tmp/seo-second-build.diff
+      - name: Validate central product catalogue
+        run: python scripts/check-catalog.py
+      - run: node --check assets/scent-match.js
       - run: node --check assets/share.js
       - run: python scripts/test-indexnow.py
