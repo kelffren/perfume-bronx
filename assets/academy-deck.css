@@ -1,0 +1,25 @@
+/* OUD BRONX ACADEMY — accessible, mobile-first CSS 3D storytelling */
+:root{--deck-ink:#151515;--deck-line:#dedbd5;--deck-gold:#9d8059}
+.deck-shell{width:min(1100px,calc(100% - 32px));margin:32px auto 80px;color:var(--deck-ink)}
+.deck-header{display:flex;justify-content:space-between;gap:16px;align-items:center;padding:12px 0 24px}
+.deck-header a{color:inherit}.deck-label{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#777}
+.deck-intro h1{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(42px,7vw,82px);line-height:1.02;margin:10px 0}
+.deck-intro p{max-width:700px}.deck-stage{position:relative;perspective:1100px;margin:30px 0 16px}
+.deck-slide{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center;gap:clamp(16px,4vw,48px);min-height:390px;padding:clamp(24px,5vw,54px);border:1px solid var(--deck-line);border-radius:24px;background:linear-gradient(135deg,#fff 0%,#f5f2ed 100%);margin-bottom:20px;transform-style:preserve-3d;box-shadow:0 18px 45px rgba(0,0,0,.06)}
+.deck-slide h2{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(34px,5vw,56px);line-height:1.06;margin:10px 0 20px}
+.deck-slide p{line-height:1.65}.deck-slide img{display:block;width:100%;max-height:390px;object-fit:contain;filter:drop-shadow(0 25px 20px rgba(0,0,0,.12))}
+.deck-slide .deck-art{transform:translateZ(42px);min-width:0}.deck-slide .deck-copy{transform:translateZ(20px);min-width:0}
+.deck-index{color:#8a7355;font-size:13px;letter-spacing:.14em}.deck-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
+.deck-action{display:inline-flex;align-items:center;justify-content:center;border-radius:100px;padding:12px 20px;min-height:46px;background:#151515;color:#fff;text-decoration:none;border:1px solid #151515;font:inherit;cursor:pointer}
+.deck-action.secondary{background:transparent;color:#151515}.deck-action:focus-visible,.deck-controls button:focus-visible{outline:3px solid #9d8059;outline-offset:3px}
+.deck-controls{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:18px 0 26px}.deck-controls button{font:inherit;border:1px solid #aaa;border-radius:50px;background:#fff;padding:12px 16px;cursor:pointer}.deck-controls button:disabled{opacity:.4;cursor:not-allowed}
+.deck-progress{flex:1;height:4px;background:#e9e4dc;border-radius:99px;overflow:hidden}.deck-progress span{display:block;background:#151515;height:100%;width:0;transition:width .3s}
+.deck-counter{font-size:13px;white-space:nowrap}.deck-fallback{font-size:13px;color:#666}
+.deck-enhanced .deck-slide{display:none;margin:0;opacity:0;backface-visibility:hidden}
+.deck-enhanced .deck-slide[aria-hidden="false"]{display:grid;opacity:1;animation:deck-reveal .55s cubic-bezier(.2,.7,.2,1) both}
+.deck-enhanced .deck-controls{display:flex}.deck-controls{display:none}
+.deck-pyramid{display:grid;gap:8px;margin:12px auto;max-width:340px}.deck-tier{padding:15px 12px;text-align:center;background:#e9dfd1;border:1px solid #c5b69e;border-radius:10px}.deck-tier:nth-child(1){width:62%;margin:auto}.deck-tier:nth-child(2){width:82%;margin:auto}.deck-tier:nth-child(3){width:100%}
+.deck-tier strong{display:block}.deck-source{font-size:13px;color:#666;margin:20px 0}.deck-source a{color:inherit}
+@keyframes deck-reveal{from{opacity:0;transform:translateX(24px) rotateY(-7deg) scale(.97)}to{opacity:1;transform:translateX(0) rotateY(0) scale(1)}}
+@media(max-width:680px){.deck-slide{grid-template-columns:1fr;min-height:0;padding:24px}.deck-slide .deck-art{order:-1;transform:none}.deck-slide .deck-copy{transform:none}.deck-slide img{max-height:220px}.deck-controls button{padding:10px 13px}.deck-intro h1{font-size:46px}}
+@media(prefers-reduced-motion:reduce){.deck-enhanced .deck-slide[aria-hidden="false"]{animation:none}.deck-progress span{transition:none}.deck-slide .deck-art,.deck-slide .deck-copy{transform:none}}
