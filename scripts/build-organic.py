@@ -228,6 +228,21 @@ for lang,slugs in NOTE_SLUGS.items():
   url=BASE+lang+'/notes/'+slug+'/'
   if '<loc>'+url+'</loc>' not in xml:xml=xml.replace('</urlset>','<url><loc>'+e(url)+'</loc></url>\n</urlset>')
  sitemap.write_text(xml,encoding='utf-8')
+# Gift Finder is authored independently; keep it in bilingual hubs and sitemap.
+for lang in ('es','en'):
+ guide=R/lang/'gift-finder'/'index.html'
+ if not guide.is_file():raise ValueError(f'Missing gift finder: {guide}')
+ hub=R/lang/'index.html'
+ html=hub.read_text(encoding='utf-8')
+ label='Encuentra un perfume para regalar' if lang=='es' else 'Find a perfume gift'
+ card=section(label,'<p>'+link(lang+'/gift-finder/',label)+'</p>')
+ if PREFIX+lang+'/gift-finder/' not in html:html=html.replace('</main>',card+'</main>',1)
+ hub.write_text(html,encoding='utf-8')
+ sitemap=R/'sitemap.xml'
+ xml=sitemap.read_text(encoding='utf-8')
+ url=BASE+lang+'/gift-finder/'
+ if '<loc>'+url+'</loc>' not in xml:xml=xml.replace('</urlset>','<url><loc>'+e(url)+'</loc></url>\n</urlset>')
+ sitemap.write_text(xml,encoding='utf-8')
 # Authored fragrance-note encyclopedia: preserve distinct guides and hubs.
 for lang in ('es','en'):
  hub=R/lang/'index.html'
