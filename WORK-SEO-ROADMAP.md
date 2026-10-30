@@ -32,3 +32,6 @@ Status: IMPLEMENTADA (pending CI and public verification). Source `data/catalog.
 
 ## KE-004 — Gift Finder (2026-10-29)
 Status: IMPLEMENTADA, pending CI/public verification. Bilingual `/es/gift-finder/` and `/en/gift-finder/` with accessible budget, scent family, and gift-mood filters. Data loaded from `data/catalog.json` (Yara, Khamrah, Asad). Displayed prices are unverified, stock unknown; static crawlable product guide fallback and manufacturer links. Next: verify live mobile interaction and ensure navigation discoverability.
+
+## Unified conversion finder — 2026-10-29
+Implemented bilingual `/es/find/` and `/en/find/`: one menu entry with self/gift modes, shared catalog filtering, direct product links, inquiry/try-before-buy contact path, static fallback links, accessible controls and responsive layout. Legacy gift-finder and scent-match routes remain indexable and point to the unified finder. Pricing is unverified and stock unknown. Conversion-intent events are local only; analytics integration and live mobile QA remain pending.
