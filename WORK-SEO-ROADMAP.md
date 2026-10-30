@@ -29,3 +29,6 @@ Bilingual Scent Match MVP built for three documented Lattafa profiles with acces
 
 ## KE-005 — central catalogue, 2026-10-29
 Status: IMPLEMENTADA (pending CI and public verification). Source `data/catalog.json` holds the three current store products, displayed-but-unconfirmed prices, explicit unknown stock, bilingual manufacturer-note metadata, imagery provenance and tags. `scripts/build-organic.py` regenerates the existing synchronous storefront array without changing cart/bundle interfaces; Scent Match reads the same JSON. CI checks catalogue consistency. Acceptance: CI green, storefront cart and Scent Match browser verified. Next: expand only with confirmed SKU details and licensed imagery.
+
+## KE-004 — Gift Finder (2026-10-29)
+Status: IMPLEMENTADA, pending CI/public verification. Bilingual `/es/gift-finder/` and `/en/gift-finder/` with accessible budget, scent family, and gift-mood filters. Data loaded from `data/catalog.json` (Yara, Khamrah, Asad). Displayed prices are unverified, stock unknown; static crawlable product guide fallback and manufacturer links. Next: verify live mobile interaction and ensure navigation discoverability.
