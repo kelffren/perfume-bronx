@@ -232,9 +232,23 @@ for lang,slugs in NOTE_SLUGS.items():
   url=BASE+lang+'/notes/'+slug+'/'
   if '<loc>'+url+'</loc>' not in xml:xml=xml.replace('</urlset>','<url><loc>'+e(url)+'</loc></url>\n</urlset>')
  sitemap.write_text(xml,encoding='utf-8')
+# Single self-or-gift conversion entry point (preserve legacy SEO landing pages).
+for lang in ('es','en'):
+ page=R/lang/'find'/'index.html'
+ if not page.is_file():raise ValueError(f'Missing conversion finder: {page}')
+ sitemap=R/'sitemap.xml'
+ xml=sitemap.read_text(encoding='utf-8')
+ url=BASE+lang+'/find/'
+ if '<loc>'+url+'</loc>' not in xml:xml=xml.replace('</urlset>','<url><loc>'+e(url)+'</loc></url>\\n</urlset>')
+ sitemap.write_text(xml,encoding='utf-8')
+ hub=R/lang/'index.html'
+ html=hub.read_text(encoding='utf-8')
+ label='Encuentra tu perfume' if lang=='es' else 'Find your fragrance'
+ if PREFIX+lang+'/find/' not in html:html=html.replace('</main>',section(label,'<p>'+link(lang+'/find/',label)+'</p>')+'</main>',1)
+ hub.write_text(html,encoding='utf-8')
 # Consistent discovery navigation for every bilingual editorial page and hub.
 for lang in ('es','en'):
- links=[('gift-finder','Regalos' if lang=='es' else 'Gifts'),('scent-match','Encuentra tu aroma' if lang=='es' else 'Scent Match'),('compare','Comparar' if lang=='es' else 'Compare'),('notes','Enciclopedia' if lang=='es' else 'Fragrance notes'),('tools','Calculadoras' if lang=='es' else 'Calculators'),('academy','Academia' if lang=='es' else 'Academy')]
+ links=[('find','Encuentra tu perfume' if lang=='es' else 'Find your fragrance'),('compare','Comparar' if lang=='es' else 'Compare'),('notes','Enciclopedia' if lang=='es' else 'Fragrance notes'),('tools','Calculadoras' if lang=='es' else 'Calculators'),('academy','Academia' if lang=='es' else 'Academy')]
  nav='<nav class="oud-discovery-nav" aria-label="'+('Explorar herramientas' if lang=='es' else 'Explore tools')+'">'+''.join('<a href="'+PREFIX+lang+'/'+slug+'/">'+label+'</a>' for slug,label in links)+'</nav>'
  for page in (R/lang).rglob('index.html'):
   html=page.read_text(encoding='utf-8')
