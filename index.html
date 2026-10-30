@@ -256,7 +256,8 @@ header.top .brand{color:#fff}header.top .brand span{color:#d6b889}header.top .ic
 <button class="oud-help" id="oudHelp" type="button" hidden aria-label="Servicio al cliente por WhatsApp"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="42" height="42" alt="" aria-hidden="true" decoding="async"><span data-es="Servicio al cliente" data-en="Customer service">Servicio al cliente</span></button>
 <script>
 "use strict";
-const CONFIG={whatsapp:""};\nwindow.OudContact?.ready.then(()=>{if(window.OudContact.isReady())CONFIG.whatsapp=window.OudContact.url("").match(/wa\.me\/(\d+)/)?.[1]||""});
+const CONFIG={whatsapp:""};
+window.OudContact?.ready.then(()=>{if(window.OudContact.isReady())CONFIG.whatsapp=window.OudContact.url("").match(/wa\.me\/(\d+)/)?.[1]||""});
 // Local, privacy-minimal funnel diagnostics. Counts stay on this visitor's device.
 function trackFunnel(event){try{const key="oud-funnel-local-v1";const data=JSON.parse(localStorage.getItem(key)||"{}");data[event]=(data[event]||0)+1;localStorage.setItem(key,JSON.stringify(data))}catch{};try{if(typeof window.oudAnalytics==="function")window.oudAnalytics(event)}catch{}}
 // Optional privacy-minded aggregate analytics; configure domain in README when ready.
