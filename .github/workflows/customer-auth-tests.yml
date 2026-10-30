@@ -1,0 +1,30 @@
+name: Optional customer auth checks
+on:
+  pull_request:
+    paths:
+      - "account/**"
+      - "index.html"
+      - ".github/workflows/customer-auth-tests.yml"
+  push:
+    branches: [main]
+    paths:
+      - "account/**"
+      - "index.html"
+      - ".github/workflows/customer-auth-tests.yml"
+jobs:
+  auth-static-tests:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: JavaScript syntax
+        run: |
+          node --check account/auth.js
+          node --check account/page.js
+          node --check account/config.js
+      - name: Guest access and security checks
+        run: node account/test-auth.mjs
