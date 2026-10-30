@@ -39,3 +39,18 @@ export async function logout() {
  if(session?.access_token)await request('/logout',{},session.access_token).catch(()=>{});
  session=null;localStorage.removeItem(storageKey);
 }
+
+export async function completeRecoveryFromUrl() {
+ const hash=new URLSearchParams(location.hash.slice(1));
+ if(hash.get('type')!=='recovery'||!hash.get('access_token')||!hash.get('refresh_token'))return false;
+ save({access_token:hash.get('access_token'),refresh_token:hash.get('refresh_token'),expires_in:Number(hash.get('expires_in'))||3600});
+ history.replaceState(null,'',location.pathname+location.search);
+ return true;
+}
+export async function changePassword(password) {
+ if(!session?.access_token)throw new Error('Recovery session missing');
+ const response=await fetch(API+'/user',{method:'PUT',headers:{...headers,Authorization:'Bearer '+session.access_token},body:JSON.stringify({password})});
+ const data=await response.json().catch(()=>({}));
+ if(!response.ok)throw new Error(data.msg||data.message||data.error_description||'Password update failed');
+ return data;
+}
