@@ -7,14 +7,16 @@ Open `/perfume-bronx/commerce/` after deploying. The default is **local**, using
 Next: implement authenticated server-side order validation, row-level authorization, inventory transactions, migrations, backups, and integration tests before real orders. Never expose service-role keys in GitHub Pages.
 
 ## Persistent local SQLite mode
-Run `python3 commerce/local-server.py` on your own computer, then select **SQLite local** in the Commerce Lab. The server binds only to 127.0.0.1:8765, and persists draft orders in `commerce/commerce-local.sqlite3`. Run `python3 commerce/test-local-server.py` for basic schema checks. To serve the UI locally run `python3 -m http.server 8000` from the repository root and open `http://localhost:8000/commerce/` (GitHub Pages absolute links to the storefront still point to the deployed site). Do not expose port 8765 publicly. This prototype does not implement authentication or payment processing.
+Run `python3 commerce/local-server.py` on your own computer, then select **SQLite local** in the Commerce Lab. The server binds only to 127.0.0.1:8765, and persists draft orders in `commerce/commerce-local.sqlite3`. Run `python3 commerce/test-local-server.py` for basic schema checks. To serve the UI locally run `python3 -m http.server 8000` from the repository root and open `http://localhost:8000/commerce/` (GitHub Pages absolute links to the storefront still point to the deployed site). Do not expose port 8765 publicly. The local admin API uses a development-only token; this is not production authentication or payment processing.
 
 ## Local inventory editor (development only)
 
 Start the server with an admin token (do not commit or share the token):
 
 ```sh
-OUD_LOCAL_ADMIN_TOKEN="$(python3 -c 'import secrets; print(secrets.token_urlsafe(32))')" python3 commerce/local-server.py
+export OUD_LOCAL_ADMIN_TOKEN="$(python3 -c 'import secrets; print(secrets.token_urlsafe(32))')"
+printf 'Admin token (keep private): %s\n' "$OUD_LOCAL_ADMIN_TOKEN"
+python3 commerce/local-server.py
 ```
 
 For repeated use, save the generated token in your local password manager and start the server with that same value. In a separate terminal run `python3 -m http.server 8000` from the repository root. Open `http://localhost:8000/commerce/admin.html`, select **SQLite local**, enter the exact token, and load the catalogue. The server persists price and stock updates in its SQLite database. This does not change public storefront prices.
@@ -23,7 +25,7 @@ The admin endpoint requires a configured token and a local browser Origin. Do no
 
 ## Atomic test reservations
 
-The localhost-only `POST /admin/reservations` endpoint requires the same `X-OUD-Admin-Token` and an allowed localhost Origin. JSON body example: `{"items":[{"sku":"yara","quantity":1}]}`. This is an **administrative test reservation**, not a customer checkout. It atomically checks stock, decrements it, and stores a `reserved-test` order. An insufficient-stock request returns HTTP 409 without changing stock. Run `python3 commerce/test-local-server.py` to exercise the reservation and rollback tests. Do not use it for real orders or payments; cancellation/release, idempotency, expiry, and security review are not yet implemented.
+The localhost-only `POST /admin/reservations` endpoint requires the same `X-OUD-Admin-Token` and an allowed localhost Origin. JSON body example: `{"items":[{"sku":"yara","quantity":1}]}`. This is an **administrative test reservation**, not a customer checkout. It atomically checks stock, decrements it, and stores a `reserved-test` order. An insufficient-stock request returns HTTP 409 without changing stock. Run `python3 commerce/test-local-server.py` to exercise the reservation and rollback tests. Do not use it for real orders or payments; automatic expiry, request idempotency, and production security review are not yet implemented; manual cancellation and stock release are available.
 
 ## Local reservation management screen
 
