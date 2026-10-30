@@ -1,0 +1,25 @@
+name: Commerce local tests
+on:
+  pull_request:
+    paths:
+      - "commerce/**"
+      - ".github/workflows/commerce-local-tests.yml"
+  push:
+    branches: [main]
+    paths:
+      - "commerce/**"
+      - ".github/workflows/commerce-local-tests.yml"
+jobs:
+  sqlite-tests:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Compile Python modules
+        run: python -m py_compile commerce/local-server.py commerce/inventory.py commerce/test-local-server.py
+      - name: Run SQLite inventory tests
+        run: python commerce/test-local-server.py -v

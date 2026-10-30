@@ -1,0 +1,34 @@
+# OUD BRONX Commerce Lab — local/cloud switch
+
+Open `/perfume-bronx/commerce/` after deploying. The default is **local**, using browser localStorage. Change the dropdown to cloud or use `?backend=local` / `?backend=cloud`. The chosen mode persists per browser.
+
+**Important:** This is an isolated prototype, not a production checkout or a working SaaS. Local data is not shared across devices and may disappear when browser storage is cleared. Do not enter real customer personal data. Cloud mode intentionally fails closed until an authenticated API is configured using `window.OUD_COMMERCE_API_URL` before the module loads. No silent fallback, no invented server or credentials, no automatic migration. The existing storefront is unchanged.
+
+Next: implement authenticated server-side order validation, row-level authorization, inventory transactions, migrations, backups, and integration tests before real orders. Never expose service-role keys in GitHub Pages.
+
+## Persistent local SQLite mode
+Run `python3 commerce/local-server.py` on your own computer, then select **SQLite local** in the Commerce Lab. The server binds only to 127.0.0.1:8765, and persists draft orders in `commerce/commerce-local.sqlite3`. Run `python3 commerce/test-local-server.py` for basic schema checks. To serve the UI locally run `python3 -m http.server 8000` from the repository root and open `http://localhost:8000/commerce/` (GitHub Pages absolute links to the storefront still point to the deployed site). Do not expose port 8765 publicly. The local admin API uses a development-only token; this is not production authentication or payment processing.
+
+## Local inventory editor (development only)
+
+Start the server with an admin token (do not commit or share the token):
+
+```sh
+export OUD_LOCAL_ADMIN_TOKEN="$(python3 -c 'import secrets; print(secrets.token_urlsafe(32))')"
+printf 'Admin token (keep private): %s\n' "$OUD_LOCAL_ADMIN_TOKEN"
+python3 commerce/local-server.py
+```
+
+For repeated use, save the generated token in your local password manager and start the server with that same value. In a separate terminal run `python3 -m http.server 8000` from the repository root. Open `http://localhost:8000/commerce/admin.html`, select **SQLite local**, enter the exact token, and load the catalogue. The server persists price and stock updates in its SQLite database. This does not change public storefront prices.
+
+The admin endpoint requires a configured token and a local browser Origin. Do not publish this server, expose port 8765, or store the token in frontend files. No customer data, payment data, or live inventory should be entered. Security hardening, end-to-end tests, and deployment review are required before real use.
+
+## Atomic test reservations
+
+The localhost-only `POST /admin/reservations` endpoint requires the same `X-OUD-Admin-Token` and an allowed localhost Origin. JSON body example: `{"items":[{"sku":"yara","quantity":1}]}`. This is an **administrative test reservation**, not a customer checkout. It atomically checks stock, decrements it, and stores a `reserved-test` order. An insufficient-stock request returns HTTP 409 without changing stock. Run `python3 commerce/test-local-server.py` to exercise the reservation and rollback tests. Do not use it for real orders or payments; automatic expiry, request idempotency, and production security review are not yet implemented; manual cancellation and stock release are available.
+
+## Local reservation management screen
+
+Open `http://localhost:8000/commerce/orders.html` after starting both the local Python API with `OUD_LOCAL_ADMIN_TOKEN` and the static UI server on port 8000. Enter the token in the page (held only in memory), then select a SKU and quantity to create a test reservation. The table lists drafts and reservations; active test reservations have a cancellation button that returns stock exactly once. The public storefront and WhatsApp checkout are intentionally untouched. Do not use this screen for real customer orders.
+
+**Release gate:** GitHub Actions and HTTP/browser integration tests must pass, security issues must be addressed, and a human should review the change before merging into main. The backend is a localhost prototype, not an internet-exposed production service.
