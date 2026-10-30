@@ -40,12 +40,12 @@ export async function logout() {
  session=null;localStorage.removeItem(storageKey);
 }
 
-export async function completeRecoveryFromUrl() {
+export async function completeAuthFromUrl() {
  const hash=new URLSearchParams(location.hash.slice(1));
- if(hash.get('type')!=='recovery'||!hash.get('access_token')||!hash.get('refresh_token'))return false;
+ if(!['recovery','signup','email','magiclink'].includes(hash.get('type'))||!hash.get('access_token')||!hash.get('refresh_token'))return null;
  save({access_token:hash.get('access_token'),refresh_token:hash.get('refresh_token'),expires_in:Number(hash.get('expires_in'))||3600});
  history.replaceState(null,'',location.pathname+location.search);
- return true;
+ return hash.get('type');
 }
 export async function changePassword(password) {
  if(!session?.access_token)throw new Error('Recovery session missing');
