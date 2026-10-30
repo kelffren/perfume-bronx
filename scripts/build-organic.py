@@ -232,6 +232,18 @@ for lang,slugs in NOTE_SLUGS.items():
   url=BASE+lang+'/notes/'+slug+'/'
   if '<loc>'+url+'</loc>' not in xml:xml=xml.replace('</urlset>','<url><loc>'+e(url)+'</loc></url>\n</urlset>')
  sitemap.write_text(xml,encoding='utf-8')
+# Consistent discovery navigation for every bilingual editorial page and hub.
+for lang in ('es','en'):
+ links=[('gift-finder','Regalos' if lang=='es' else 'Gifts'),('scent-match','Encuentra tu aroma' if lang=='es' else 'Scent Match'),('compare','Comparar' if lang=='es' else 'Compare'),('notes','Enciclopedia' if lang=='es' else 'Fragrance notes'),('tools','Calculadoras' if lang=='es' else 'Calculators'),('academy','Academia' if lang=='es' else 'Academy')]
+ nav='<nav class="oud-discovery-nav" aria-label="'+('Explorar herramientas' if lang=='es' else 'Explore tools')+'">'+''.join('<a href="'+PREFIX+lang+'/'+slug+'/">'+label+'</a>' for slug,label in links)+'</nav>'
+ for page in (R/lang).rglob('index.html'):
+  html=page.read_text(encoding='utf-8')
+  if 'oud-discovery-nav' in html:continue
+  if '</main>' not in html:continue
+  html=html.replace('</main>',nav+'</main>',1)
+  css='<style>.oud-discovery-nav{display:flex;flex-wrap:wrap;gap:10px;max-width:1060px;margin:30px auto;padding:20px;border-top:1px solid #e6e6e6}.oud-discovery-nav a{display:inline-block;padding:10px 13px;border:1px solid #dedede;background:#fff;color:#111;text-decoration:none;font:500 12px/1.4 Arial,sans-serif}.oud-discovery-nav a:focus-visible{outline:3px solid #c9a26a;outline-offset:2px}@media(max-width:600px){.oud-discovery-nav{padding:16px}.oud-discovery-nav a{flex:1 1 42%;text-align:center}}</style>'
+  html=html.replace('</head>',css+'</head>',1)
+  page.write_text(html,encoding='utf-8')
 # Gift Finder is authored independently; keep it in bilingual hubs and sitemap.
 for lang in ('es','en'):
  guide=R/lang/'gift-finder'/'index.html'
