@@ -17,13 +17,13 @@ async function request(path,body,token) {
  return data;
 }
 export async function signup(email,password,redirect) {
- return request('/signup',{email,password,gotrue_meta_security:{},data:{},redirect_to:redirect});
+ return request('/signup?redirect_to='+encodeURIComponent(redirect),{email,password});
 }
 export async function login(email,password) {
  const result=await request('/token?grant_type=password',{email,password});save(result);return result;
 }
 export async function resetPassword(email,redirect) {
- return request('/recover',{email},null,redirect);
+ return request('/recover?redirect_to='+encodeURIComponent(redirect),{email});
 }
 export async function currentUser() {
  if(!session?.access_token)return null;
