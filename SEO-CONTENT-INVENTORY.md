@@ -17,3 +17,6 @@ Existing organic product pages, comparisons, local explainers and Academy routes
 
 ## Structured product inventory
 Source `data/catalog.json`: Lattafa Yara, Khamrah and Asad; each with ES/EN scent notes, manufacturer URL, third-party image provenance and current storefront display price. Stock explicitly unknown; do not infer availability. No new indexed product routes in this batch.
+
+## Gift Finder
+ES `/es/gift-finder/`, EN `/en/gift-finder/`; interactive fragrance recommendations with static crawlable links to manufacturer-verified catalogue profiles. Status IMPLEMENTADA, CI/public verification pending.
