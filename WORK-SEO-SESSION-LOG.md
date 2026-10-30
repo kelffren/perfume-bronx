@@ -16,3 +16,6 @@ Branch `feat/central-catalog-v1`. Added `data/catalog.json`, updated `scripts/bu
 
 ## 2026-10-29 — Gift Finder
 Branch `feat/gift-finder-bilingual-v1`: bilingual gift finder, shared CSS/JS, sourced catalogue filters, static fallback, sitemap/generator integration. No confirmed inventory, price promises or synthetic reviews. Pending CI and Pages deployment. Next: mobile QA and menu discovery.
+
+## Unified conversion finder — 2026-10-29
+Implemented bilingual `/es/find/` and `/en/find/`: one menu entry with self/gift modes, shared catalog filtering, direct product links, inquiry/try-before-buy contact path, static fallback links, accessible controls and responsive layout. Legacy gift-finder and scent-match routes remain indexable and point to the unified finder. Pricing is unverified and stock unknown. Conversion-intent events are local only; analytics integration and live mobile QA remain pending.
