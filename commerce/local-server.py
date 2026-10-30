@@ -5,7 +5,7 @@ Run: python3 commerce/local-server.py
 from http.server import BaseHTTPRequestHandler,ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import urlsplit
-import json,sqlite3,uuid,datetime,os,secrets,hmac
+import json,sqlite3,uuid,datetime,os,hmac
 from inventory import reserve,cancel_reservation
 DB=Path(os.environ.get("OUD_LOCAL_DB",str(Path(__file__).with_name("commerce-local.sqlite3"))))
 PORT=int(os.environ.get("OUD_LOCAL_PORT","8765"))
@@ -36,14 +36,15 @@ class Handler(BaseHTTPRequestHandler):
   self.send_response(status)
   self.send_header("Content-Type","application/json; charset=utf-8")
   self.send_header("Cache-Control","no-store")
-  self.send_header("Access-Control-Allow-Origin",self.headers.get("Origin","null") if self.headers.get("Origin") in ("http://localhost:8000","http://127.0.0.1:8000") else "null")
+  if self.headers.get("Origin") in LOCAL_ORIGINS:self.send_header("Access-Control-Allow-Origin",self.headers["Origin"])
   self.send_header("Access-Control-Allow-Headers","Content-Type, X-OUD-Admin-Token")
+  self.send_header("Vary","Origin")
   self.send_header("Content-Length",str(len(body)))
   self.end_headers()
   self.wfile.write(body)
  def do_OPTIONS(self):
   self.send_response(204)
-  self.send_header("Access-Control-Allow-Origin",self.headers.get("Origin","null") if self.headers.get("Origin") in ("http://localhost:8000","http://127.0.0.1:8000","https://kelffren.github.io") else "null")
+  self.send_header("Access-Control-Allow-Origin",self.headers.get("Origin","null") if self.headers.get("Origin") in LOCAL_ORIGINS else "null")
   self.send_header("Access-Control-Allow-Methods","GET, POST, PUT, OPTIONS")
   self.send_header("Access-Control-Allow-Headers","Content-Type, X-OUD-Admin-Token")
   self.end_headers()
@@ -75,7 +76,8 @@ class Handler(BaseHTTPRequestHandler):
   except (ValueError,KeyError,TypeError,json.JSONDecodeError):self.send(400,{"error":"invalid product"})
  def do_POST(self):
   route=urlsplit(self.path).path
-  cancel=route.startswith("/admin/reservations/") and route.endswith("/cancel")
+  segments=route.split("/")
+  cancel=len(segments)==5 and segments[1:3]==["admin","reservations"] and segments[4]=="cancel" and bool(segments[3])
   if route not in ("/orders","/admin/reservations") and not cancel:return self.send(404,{"error":"not found"})
   if (route=="/admin/reservations" or cancel or route=="/orders") and not admin_authorized(self):return self.send(403,{"error":"local admin authorization required"})
   if cancel:
@@ -88,6 +90,7 @@ class Handler(BaseHTTPRequestHandler):
    size=int(self.headers.get("Content-Length","0"))
    if size<1 or size>8192:return self.send(413,{"error":"invalid body size"})
    payload=json.loads(self.rfile.read(size))
+   if not isinstance(payload,dict):raise ValueError("invalid body")
    items=payload.get("items")
    if route=="/admin/reservations":
     try:
