@@ -16,4 +16,6 @@ jobs:
         with:
           node-version: '22'
       - name: Check organic SEO
-        run: python scripts/check-organic.py
+        run: |
+          python scripts/check-organic.py
+          python scripts/check-link-graph.py
