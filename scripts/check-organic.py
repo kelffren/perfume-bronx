@@ -1,6 +1,6 @@
 from html.parser import HTMLParser
 from pathlib import Path
-from urllib.parse import urlsplit
+from urllib.parse import urlsplit, urljoin
 import json, subprocess, tempfile, xml.etree.ElementTree as ET
 R=Path(__file__).resolve().parents[1];BASE='https://kelffren.github.io/perfume-bronx/'
 class Doc(HTMLParser):
@@ -41,7 +41,7 @@ for url in urls:
  if url==BASE:continue
  for a in d.find('a'):
   if a['href'].startswith('#'):continue
-  f=resolve(a['href'])
+  f=resolve(urljoin(url,a['href']))
   if f:assert f.is_file(),a
  alts=d.find('link',rel='alternate');assert {a['hreflang'] for a in alts}=={'en','es','x-default'}
  for a in alts:assert any(x['href']==url for x in Doc(resolve(a['href']).read_text()).find('link',rel='alternate'))

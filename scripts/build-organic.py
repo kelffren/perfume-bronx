@@ -12,8 +12,7 @@ from xml.etree import ElementTree as ET
 _existing_sitemap=R/'sitemap.xml'
 _existing_urls=[x.text for x in ET.parse(_existing_sitemap).iter('{http://www.sitemaps.org/schemas/sitemap/0.9}loc')] if _existing_sitemap.is_file() else []
 PREFIX='/perfume-bronx/'
-# Single source of truth for storefront products. Keep the synchronous inline array
-# for GitHub Pages and the existing cart; regenerate it from structured JSON.
+# Generate the static catalogue shared by the homepage and product pages.
 CATALOG=json.loads((R/'data/catalog.json').read_text(encoding='utf-8'))
 assert CATALOG['version']==1 and len(CATALOG['products'])>=3
 products=CATALOG['products']
@@ -27,12 +26,8 @@ index_path=R/'index.html'
 raw_home=index_path.read_text(encoding='utf-8')
 def js_obj(obj):
  return '{'+','.join(k+':'+json.dumps(v,ensure_ascii=False,separators=(',',':')) for k,v in obj.items())+'}'
-pattern=r'const catalog=\[\{id:"yara".*?\}\];\nconst bundles='
-replacement='const catalog=['+','.join(js_obj(p) for p in storefront)+'];\nconst bundles='
-new_home,count=re.subn(pattern,lambda _:replacement,raw_home,count=1,flags=re.S)
-if count!=1:raise ValueError('Storefront catalogue anchor not found; refusing to change cart')
-if new_home!=raw_home:index_path.write_text(new_home,encoding='utf-8')
-home=new_home
+(R/'assets/catalog.js').write_text('const catalog=['+','.join(js_obj(p) for p in storefront)+'];\n')
+home=raw_home
 photos={p['id']:p['image'] for p in products}
 DATA={
  'yara':{
@@ -52,7 +47,7 @@ def path(lang,slug=''):return lang+'/'+(slug.strip('/')+'/' if slug else '')
 def link(dest,text,cls=''):return f'<a class="{cls}" href="{e(PREFIX+dest)}">{e(text)}</a>'
 def p(text):return '<p>'+e(text)+'</p>'
 def section(title,body):return '<section class="reading"><h2>'+e(title)+'</h2>'+body+'</section>'
-def cards(lang):return '<div class="cards">'+''.join('<article>'+link(path(lang,'products/'+k),'Lattafa '+k.title(),'card-title')+p(d[lang][0])+'</article>' for k,d in DATA.items())+'</div>'
+def cards(lang, exclude=None):return '<div class="cards">'+''.join('<article>'+link(path(lang,'products/'+k),'Lattafa '+k.title(),'card-title')+p(d[lang][0])+'</article>' for k,d in DATA.items() if k!=exclude)+'</div>'
 def sources(lang,keys):return p(COPY[lang]['disclaimer'])+'<p>'+' · '.join(f'<a href="https://lattafa.com/product/{k}/">Lattafa {k.title()}</a>' for k in keys)+'</p>'
 def shell(lang,slug,title,desc,body,key=None):
  dest=path(lang,slug);other=path('en' if lang=='es' else 'es',slug);c=COPY[lang];image=photos[key] if key else BASE+'assets/hero-poster.jpg'
@@ -66,15 +61,30 @@ def shell(lang,slug,title,desc,body,key=None):
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet"><link rel="stylesheet" href="{PREFIX}assets/organic.css"><script type="application/ld+json">{json.dumps(schema,ensure_ascii=False)}</script></head>
 <body><a class="skip" href="#content">{'Ir al contenido' if lang=='es' else 'Skip to content'}</a><header><nav class="wrap" aria-label="{'Navegación principal' if lang=='es' else 'Main navigation'}">{link('','OUD BRONX','brand')}<div>{link(path(lang),c['guide'])}{link(other,'English' if lang=='es' else 'Español')}</div></nav></header><main id="content"><div class="wrap breadcrumb">{link('',c['store'])} / {link(path(lang),c['guide'])}</div>{body}<section class="wrap reading share-tools" aria-label="{'Compartir' if lang=='es' else 'Share'}"><button type="button" class="btn share-button" hidden>{'Compartir esta guía' if lang=='es' else 'Share this guide'}</button><p class="small" role="status" aria-live="polite" id="share-status"></p><a class="share-url" href="{BASE+dest}">{'Enlace de esta guía' if lang=='es' else 'Link to this guide'}</a></section></main><script src="{PREFIX}assets/share.js" defer></script>
 <footer class="wrap"><p class="brand">OUD BRONX</p><p>Bronx · New York</p><nav>{link(path(lang,'compare/yara-khamrah-asad'),c['compare'])}{link(path(lang,'bronx-delivery'),c['local'])}{link('',c['store'])}</nav><p class="small">© 2026 OUD BRONX</p></footer></body></html>'''
+ if key:
+  drawer=home[home.index('<div class="shade"'):home.index('</aside>',home.index('<div class="shade"'))+len('</aside>')]
+  product=next(p for p in products if p['id']==key)
+  label='My order' if lang=='en' else 'Mi pedido'
+  add='Add to my order' if lang=='en' else 'Añadir a mi pedido'
+  price=f"${product['price']}"
+  cart_button=f'<button type="button" id="productOrder">{label} <span id="badge"></span></button>'
+  html=html.replace('<body>',f'<body data-product="{key}">').replace('</nav></header>',cart_button+'</nav></header>',1)
+  html=html.replace('<section class="wrap product">',f'<section class="wrap product" aria-label="{e(product["name"])}">',1)
+  html=html.replace('class="btn" href=', 'class="btn product-add" href=',1)
+  html=html.replace(c['inquire']+'</a>',add+' · '+price+'</a>',1)
+  sticky=f'<div class="product-bar" hidden><strong>{e(product["name"])}</strong><button type="button" class="btn product-add">{add} · {price}</button></div>'
+  html=html.replace('</body>',sticky+drawer+''.join(f'<script defer src="{PREFIX}assets/{script}.js"></script>' for script in ['contact','catalog','shop-state','shop-analytics','order-drawer','product-page','shop-navigation'])+'</body>')
+  html=html.replace('</head>',f'<link rel="stylesheet" href="{PREFIX}assets/product-page.css"></head>')
  f=R/dest/'index.html';f.parent.mkdir(parents=True,exist_ok=True);f.write_text(html);pages.append((dest,photos[key] if key else None))
 for lang in COPY:
  en=lang=='en';c=COPY[lang]
  for key,d in DATA.items():
-  info=d[lang];name='Lattafa '+key.title();title=name+(': notes and buying guide in the Bronx' if en else ': notas y guía de compra en el Bronx')
+  profile=next(p for p in products if p['id']==key)
+  info=[profile[lang],*(profile['notes'][lang][phase] for phase in ('top','heart','base')),*d[lang][4:]];name='Lattafa '+key.title();title=name+(': notes and buying guide in the Bronx' if en else ': notas y guía de compra en el Bronx')
   desc=(f'Explore {name}: {info[0]}. Compare the original fragrance and prepare a local delivery inquiry.' if en else f'Conoce {name}: {info[0]}. Compara el perfume original y prepara tu consulta de entrega local.')
-  body=f'<section class="wrap product"><figure><img src="{e(photos[key])}" width="512" height="512" alt="{name}" fetchpriority="high"><figcaption>'+('Reference image from the existing catalogue; actual packaging may differ.' if en else 'Imagen de referencia del catálogo; el empaque real puede variar.')+'</figcaption></figure><div><p class="eyebrow">LATTAFA · THE ORIGINAL EDIT</p><h1>'+name+'</h1><p class="lead">'+info[0]+'</p>'+p('Ask for the original version and confirm the bottle size before ordering.' if en else 'Consulta por la versión original y confirma el tamaño del frasco antes de pedir.')+'<p class="availability">'+c['status']+'</p>'+link('?product='+key+'&intent=inquiry&lang='+lang+'#collection',c['inquire'],'btn')+'<p class="small">'+('Continue to the store with this fragrance selected. No online payment.' if en else 'Continúa en la tienda con este perfume seleccionado. Sin pago online.')+'</p></div></section><div class="wrap">'
+  body=f'<section class="wrap product"><figure><img src="{e(photos[key])}" width="512" height="512" alt="{name}" fetchpriority="high"><figcaption>'+('Reference image from the existing catalogue; actual packaging may differ.' if en else 'Imagen de referencia del catálogo; el empaque real puede variar.')+'</figcaption></figure><div><p class="eyebrow">LATTAFA · THE ORIGINAL EDIT</p><h1>'+name+'</h1><p class="lead">'+info[0]+'</p>'+p('Ask for the original version and confirm the bottle size before ordering.' if en else 'Consulta por la versión original y confirma el tamaño del frasco antes de pedir.')+'<p class="availability">'+c['status']+'</p>'+link('?product='+key+'&intent=inquiry&lang='+lang+'#collection',c['inquire'],'btn')+'<p class="small">'+('Review your order and confirm availability on WhatsApp.' if en else 'Revisa tu pedido y confirma disponibilidad por WhatsApp.')+'</p></div></section><div class="wrap">'
   body+=section(c['notes'],'<dl>'+''.join('<div><dt>'+a+'</dt><dd>'+e(b)+'</dd></div>' for a,b in zip(['Top','Heart','Base'] if en else ['Salida','Corazón','Fondo'],info[1:4]))+'</dl>'+p('These describe the scent, not the ingredient list.' if en else 'Describen el aroma, no la lista de ingredientes.'))
-  body+=section(c['fit'],p(info[4])+p(info[5]))+section(c['before'],p(c['delivery']))+section(c['duration'],p(c['duration_text']))+section(c['sources'],sources(lang,[key]))+section(c['next'],cards(lang)+link(path(lang,'compare/yara-khamrah-asad'),c['compare']))+'</div>'
+  body+=section(c['fit'],p(info[4])+p(info[5]))+section(c['before'],p(c['delivery']))+section(c['duration'],p(c['duration_text']))+section(c['sources'],sources(lang,[key]))+section(c['next'],cards(lang,key)+link(path(lang,'compare/yara-khamrah-asad'),c['compare']))+'</div>'
   body+=section('Comparador interactivo' if not en else 'Interactive comparison',link(path(lang,'compare'),'Comparar Yara, Khamrah y Asad' if not en else 'Compare Yara, Khamrah and Asad'))
   # Contextual links to reviewed note-family guides; no invented scent attributes.
   NOTE_LINKS={
@@ -104,7 +114,7 @@ for lang in COPY:
 # Initial catalogue works without JS; enhanced buttons replace it when JS runs.
 static=[]
 for i,(k,d) in enumerate(DATA.items(),1):
- price=re.search(r'id:"'+k+r'",name:"[^"]+",price:(\d+)',home).group(1)
+ price=next(p['price'] for p in products if p['id']==k)
  static.append(f'<article class="tile"><div class="art product-photo"><img src="{e(photos[k])}" alt="Lattafa {k.title()}" loading="lazy" decoding="async" width="512" height="512"><small>Foto de referencia</small></div><div class="content"><div class="eyebrow">OUD BRONX · 0{i}</div><h3><a href="es/products/{k}/">Lattafa {k.title()}</a></h3><p class="muted">{d["es"][0]}</p><div class="price">${price}</div><a class="btn" href="es/products/{k}/">Ver notas y detalles →</a></div></article>')
 fragment='<!-- organic-catalog:start -->'+''.join(static)+'<!-- organic-catalog:end -->'
 if '<!-- organic-catalog:start -->' in home:home=re.sub(r'<!-- organic-catalog:start -->.*?<!-- organic-catalog:end -->',lambda m:fragment,home,flags=re.S)
@@ -323,3 +333,10 @@ for url in _existing_urls:
 sitemap.write_text(xml,encoding='utf-8')
 print(f'Built 12 curated pages and {len(article_urls)} editorial article URLs; sitemap includes {37+len(article_urls)} URLs.')
 
+
+# Product routes work at both the Pages project path and a nested review URL.
+for language in COPY:
+ for product in products:
+  page=R/language/'products'/product['id']/'index.html'
+  html=page.read_text().replace('href="'+PREFIX,'href="../../../').replace('src="'+PREFIX,'src="../../../')
+  page.write_text(html)

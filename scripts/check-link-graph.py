@@ -1,6 +1,6 @@
 from html.parser import HTMLParser
 from pathlib import Path
-from urllib.parse import urlsplit
+from urllib.parse import urlsplit, urljoin
 import xml.etree.ElementTree as ET
 
 root = Path(__file__).resolve().parents[1]
@@ -43,7 +43,7 @@ for page in sorted(pages - {None}):
         continue
     edges[page] = set()
     for href in Parser(f.read_text(encoding='utf-8')).links:
-        dest = path_of(href)
+        dest = path_of(urljoin(base + (page + '/' if page else ''), href))
         if dest is not None:
             if not file_of(dest).is_file():
                 errors.append('Broken link: ' + page + ' -> ' + dest)
