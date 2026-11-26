@@ -233,7 +233,66 @@ body.lock .sticky{visibility:hidden;transform:translate(-50%,130%)}
 header.top{position:absolute;top:0;left:0;right:0;width:100%;background:transparent;border:0;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none;color:#fff;z-index:35}
 header.top .brand{color:#fff}header.top .brand span{color:#d6b889}header.top .icon{background:#20171b55;color:#fff;border-color:#ffffff55}header.top .lang{color:#fff}header.top .wrap{gap:8px}
 @media(max-width:480px){header.top .wrap{width:calc(100% - 28px)}header.top .brand{font-size:clamp(19px,5vw,23px)}header.top .head-actions{gap:2px}header.top .lang{padding:8px 3px}}
-</style><script src="assets/contact.js" defer></script></head><body><header class="top"><div class="wrap"><button id="menuBtn" class="icon" aria-label="Abrir menú" aria-controls="menu" aria-expanded="false">☰</button><a href="#home" class="brand">OUD <span>BRONX</span></a><div class="head-actions"><button id="langBtn" class="lang" aria-label="Cambiar idioma" aria-controls="langMenu" aria-expanded="false">ES ⌄</button><button id="orderBtn" class="icon" aria-label="Abrir carrito" aria-controls="sheet"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="20" r="1.25"/><circle cx="18" cy="20" r="1.25"/><path d="M2.5 3.5h2.3l2.3 11.2a2 2 0 0 0 2 1.6h8.4a2 2 0 0 0 1.95-1.55L21 7H5.6"/></svg><sup id="badge"></sup></button></div></div><div class="langmenu" id="langMenu"><button data-lang="es">Español</button><button data-lang="en">English</button></div></header>
+</style><script src="assets/contact.js" defer></script><style id="oud-kelo-premium-v1">
+/* Editorial design system, based on the documented Kelo mobile audit. */
+:root{--ink:#111111;--muted:#666666;--line:#e8e8e8;--soft:#f7f7f5;--gold:#c9a26a}
+body{font-size:14px;line-height:1.6}
+h1,h2,h3,.brand{font-family:"Cormorant Garamond",Georgia,serif;font-weight:500;letter-spacing:.005em}
+.eyebrow{font-weight:500;letter-spacing:.28em;color:#737373}
+header.top{position:sticky;top:0;background:#fffffff5;color:#111;border-bottom:1px solid #e8e8e8;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+header.top .wrap{display:grid;grid-template-columns:1fr auto 1fr;gap:8px}
+header.top .brand{color:#111;letter-spacing:.08em;text-align:center}
+header.top .brand span{color:#111}
+header.top .head-actions{justify-self:end}
+header.top .icon{background:#fff;color:#111;border-color:#e8e8e8}
+header.top .lang{color:#111}
+.hero{background:#050505;min-height:calc(100svh - 70px)}
+.hero .wrap.hero-content{padding:100px 0 64px;text-align:left}
+.hero .hero-content h1{font-size:clamp(42px,6vw,82px);line-height:.98;letter-spacing:.005em;text-wrap:balance;margin:14px 0}
+.hero .hero-content .eyebrow{color:#fff;letter-spacing:.28em;font-size:11px}
+.hero .hero-content .hero-price{color:#ffffffdf;font-size:13px;font-weight:400;letter-spacing:.08em;margin:0 0 24px}
+.hero .hero-actions{align-items:flex-start;justify-content:flex-start}
+.hero .hero-actions .hero-primary{width:auto;min-height:44px;background:#0005;color:#e6cfa4;border:1px solid #c9a26a8c;font-size:11px;font-weight:500;letter-spacing:.19em;padding:12px 20px;box-shadow:none;animation:none}
+.hero .hero-actions .hero-primary:hover{background:#17130f;color:#fff}
+.trust .wrap{min-height:96px}.trust b{font-weight:500}
+.section{padding:80px 0}
+.pack-section{background:#faf8f5}
+.tile,.pack-tile,.pack-tile:first-child{border:1px solid #e8e8e8;border-radius:12px;box-shadow:none;background:#fff}
+.tile .art,.tile .product-photo{aspect-ratio:1;background:#f7f7f5}
+.tile .content{padding:22px}
+.tile h3{font-size:26px;line-height:1.12}
+.tile .price{font-size:18px;font-weight:500}
+.btn{font-weight:500;letter-spacing:.01em;box-shadow:none}
+.btn.outline{border-color:#ddd}
+.discovery{background:#0a0a0b}
+.discovery h2{font-weight:500;letter-spacing:.005em;line-height:1.02;text-transform:none}
+.discovery-intro{color:#ffffffb8}
+.oud-review-feature{background:#111;color:#fff;font-family:"DM Sans",sans-serif}
+.oud-review-feature .kicker{color:#e6cfa4;font-weight:500;letter-spacing:.28em}
+.oud-review-feature h2{font-family:"Cormorant Garamond",Georgia,serif;font-weight:500;letter-spacing:.005em;line-height:1.05;font-size:clamp(36px,6vw,64px)}
+.oud-review-card{background:#181818;border-color:#ffffff20;border-radius:12px}
+.oud-review-card h3{font-weight:500;letter-spacing:0}
+.oud-review-play,.oud-review-feature a.review-cta{background:#fff;color:#111;font-weight:500}
+.menu a[href="reviews/"]{color:#111;background:#f7f7f5;font-weight:500}
+.sheet,.sheet-foot{background:#fff}
+.sheet-head h2{font-size:26px}
+.sticky{box-shadow:0 8px 24px -12px #0003}
+@media(max-width:720px){
+.section{padding:80px 0}
+h2{font-size:30px;line-height:1.2}
+header.top .wrap{width:calc(100% - 32px)}
+header.top .brand{font-size:21px}
+.hero .wrap.hero-content{padding:80px 0 max(48px,env(safe-area-inset-bottom))}
+.hero .hero-content h1{font-size:41.6px;line-height:.98;max-width:340px}
+.hero .hero-actions{align-items:flex-start}
+.tile .art,.tile .product-photo{aspect-ratio:1}
+.tile h3{font-size:24px}
+.discovery h2{font-size:42px}
+}
+@media(max-width:360px){header.top .brand{font-size:18px;letter-spacing:.04em}header.top .wrap{gap:4px;width:calc(100% - 20px)}}
+@media(prefers-reduced-motion:reduce){.hero .hero-actions .hero-primary{animation:none}.tile,.btn{transition:none}}
+</style>
+</head><body><header class="top"><div class="wrap"><button id="menuBtn" class="icon" aria-label="Abrir menú" aria-controls="menu" aria-expanded="false">☰</button><a href="#home" class="brand">OUD <span>BRONX</span></a><div class="head-actions"><button id="langBtn" class="lang" aria-label="Cambiar idioma" aria-controls="langMenu" aria-expanded="false">ES ⌄</button><button id="orderBtn" class="icon" aria-label="Abrir carrito" aria-controls="sheet"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="20" r="1.25"/><circle cx="18" cy="20" r="1.25"/><path d="M2.5 3.5h2.3l2.3 11.2a2 2 0 0 0 2 1.6h8.4a2 2 0 0 0 1.95-1.55L21 7H5.6"/></svg><sup id="badge"></sup></button></div></div><div class="langmenu" id="langMenu"><button data-lang="es">Español</button><button data-lang="en">English</button></div></header>
 <nav class="menu" id="menu"><a href="account/" data-es="Mi cuenta (opcional)" data-en="My account (optional)">Mi cuenta (opcional)</a><a href="#collection" data-es="Perfumes" data-en="Perfumes">Perfumes</a><a href="#how" data-es="Cómo pedir" data-en="How to order">Cómo pedir</a><a href="#faq">FAQ</a><a href="reviews/" data-es="▶ Reseñas en video" data-en="▶ Video reviews">▶ Reseñas en video</a><details class="library-menu"><summary data-es="▤ Biblioteca · Explorar todo" data-en="▤ Library · Explore all">▤ Biblioteca · Explorar todo</summary><div class="library-submenu"><a href="/perfume-bronx/es/biblioteca/" data-tool-route="biblioteca" data-es="Índice general" data-en="Full index">Índice general</a><a href="/perfume-bronx/es/biblioteca/#grid" data-es="Artículos y tutoriales" data-en="Articles & tutorials">Artículos y tutoriales</a><a href="/perfume-bronx/es/academy/" data-tool-route="academy" data-es="Academia y guías de aromas" data-en="Academy & scent guides">Academia y guías de aromas</a><a href="/perfume-bronx/es/find/" data-tool-route="find" data-es="Encuentra tu perfume" data-en="Find your fragrance">Encuentra tu perfume</a><a href="/perfume-bronx/es/gift-finder/" data-es="Buscador de regalos" data-en="Gift finder">Buscador de regalos</a><a href="/perfume-bronx/es/compare/" data-tool-route="compare" data-es="Comparar perfumes" data-en="Compare perfumes">Comparar perfumes</a><a href="/perfume-bronx/es/notes/" data-tool-route="notes" data-es="Enciclopedia de notas" data-en="Fragrance notes">Enciclopedia de notas</a><a href="/perfume-bronx/es/tools/" data-tool-route="tools" data-es="Calculadoras" data-en="Calculators">Calculadoras</a></div></details></nav>
 <main><section id="home" class="hero" aria-label="Oud Bronx">
 <div class="hero-media" aria-hidden="true"><img class="hero-poster" src="assets/hero-poster.jpg" width="512" height="910" alt="" fetchpriority="high"><video id="heroVideo" class="hero-video" muted loop playsinline preload="none" poster="assets/hero-poster.jpg" tabindex="-1" data-src="assets/hero-loop.mp4"></video></div>
